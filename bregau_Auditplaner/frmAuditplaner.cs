@@ -22,7 +22,7 @@ namespace bregau_Auditplaner
             // Logger aktivieren
             Program.mainLogger = new Tools.Logger.multiLogManager();
             Program.mainLogger.Add(new Tools.Logger.simpleLoggerForm() { LogLevel = Tools.Logger.LogLevel.Info });
-            Program.mainLogger.Add(new Tools.Logger.progressLogger(this.toolStripStatusLabel1, this.toolStripProgressBar1));
+            Program.mainLogger.Add(new Tools.Logger.progressLogger(this.toolStripStatusLabel1, this.toolStripProgressBar1, 10000));
             
         }
 
@@ -83,9 +83,6 @@ namespace bregau_Auditplaner
             Admin.frmVerbindungseinstellungen formConnectionSetup = new Admin.frmVerbindungseinstellungen();
             DialogResult dr = formConnectionSetup.ShowDialog();
 
-          
-           
-            
         }
     }
 }

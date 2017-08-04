@@ -39,6 +39,7 @@ namespace bregau_Auditplaner.Tools.Database
             sqsb.UserID = Login;
             sqsb.DataSource = Server;
             sqsb.IntegratedSecurity = false;
+            sqsb.ConnectTimeout = 5;
 
             DataTable tblDatabases;
             try
@@ -57,6 +58,40 @@ namespace bregau_Auditplaner.Tools.Database
                 retDBList.Add(row["database_name"].ToString());
             }
             return retDBList;
+        }
+
+        public static bool checkFullAccessToDB(string connectionString)
+        {
+            SqlConnectionStringBuilder sqsb = new SqlConnectionStringBuilder(connectionString);
+            sqsb.ConnectTimeout = 5;
+
+            try
+            {
+                SqlConnection sqlConn = new SqlConnection(sqsb.ConnectionString);
+                sqlConn.Open();
+                SqlCommand sqlCom = new SqlCommand("SELECT * FROM fn_my_permissions(\'dbo\', \'SCHEMA\')",sqlConn);
+                SqlDataReader sdr;
+                sdr = sqlCom.ExecuteReader();
+                if (sdr.HasRows)
+                {
+                    DataTable schemaTable = sdr.GetSchemaTable();
+                    foreach (DataRow row in schemaTable.Rows)
+                    {
+                        foreach (DataColumn column in schemaTable.Columns)
+                        {
+                            Console.WriteLine(String.Format("{0} = {1}",
+                               column.ColumnName, row[column]));
+                        }
+                    }
+                }
+                sqlConn.Close();
+            }
+            catch (Exception e)
+            {
+                throw (e);
+            }
+
+            return true;
         }
 
         

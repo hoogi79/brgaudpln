@@ -155,6 +155,8 @@ namespace bregau_Auditplaner.Admin
             connectionStringBuilder.Password = txtPassword.Text;
             connectionStringBuilder.IntegratedSecurity = false;
 
+            Tools.Database.SQLInteractionManager.checkFullAccessToDB(connectionStringBuilder.ConnectionString);
+
             if (aesCrypt == null)
                 aesCrypt = new Tools.Encryption.AESEncrypter();
 

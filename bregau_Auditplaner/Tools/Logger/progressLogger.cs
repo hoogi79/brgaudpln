@@ -11,13 +11,17 @@ namespace bregau_Auditplaner.Tools.Logger
     {
         private ToolStripProgressBar p_progressBar;
         private ToolStripStatusLabel p_statusLabel;
+        private System.Timers.Timer p_showTimer;
+
+        
 
         /// <summary>
         /// Erzeugt einen Logger der Fortschrittsdaten annimmt.
         /// </summary>
         /// <param name="statusLabel">Ein Label-Steuerelement einer Statusbar zum Anzeigen von Nachrichten</param>
         /// <param name="progBar">Ein Progressbar-Steuerelement einer Statusbar für die Ausgabe</param>
-        public progressLogger(ToolStripStatusLabel statusLabel, ToolStripProgressBar progBar)
+        /// <param name="displayDuration">Die Zeitspanne (in Millisekunden) in der die Meldung in der Statusleiste angezeigt werden soll. Werte kleiner/gleich Null für unendlich </param>
+        public progressLogger(ToolStripStatusLabel statusLabel, ToolStripProgressBar progBar, int displayDuration)
         {
             if (statusLabel != null)
                 this.p_statusLabel = statusLabel;
@@ -27,6 +31,15 @@ namespace bregau_Auditplaner.Tools.Logger
                 this.p_progressBar = progBar;
             else
                 this.p_progressBar = new ToolStripProgressBar(); // s.o.
+
+            // Timereinstellungen zum zeitgestuerten Löschen der Nachrichten
+            if (displayDuration > 0)
+            {
+                p_showTimer = new System.Timers.Timer(displayDuration);
+                p_showTimer.Stop();
+                p_showTimer.Elapsed += new System.Timers.ElapsedEventHandler(OnStatusTimer);
+            }
+            
         }
 
         public LogLevel LogLevel { get; set; }
@@ -36,8 +49,8 @@ namespace bregau_Auditplaner.Tools.Logger
         public bool AppendMessage(LogMessage LogMessage)
         {
             bool retBool;
-            if (retBool = LogMessage!=null)
-                p_statusLabel.Text = LogMessage.Message;
+            if (retBool = LogMessage != null)
+                displayStatusText(LogMessage.Message);
             return retBool;
         }
 
@@ -91,6 +104,29 @@ namespace bregau_Auditplaner.Tools.Logger
                 this.p_progressBar.Style = ProgressBarStyle.Blocks;
                 this.p_progressBar.Value = value;
             }
+        }
+
+        private void displayStatusText(string text)
+
+        {
+            if (p_statusLabel != null)
+            {
+                p_showTimer.Stop();
+                p_showTimer.Interval = 10000;
+                p_showTimer.Start();
+            }
+            p_statusLabel.Text = text;
+        }
+
+        /// <summary>
+        /// Ereignisbehandlung wenn Timer ausläuft.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
+        private void OnStatusTimer(object source, System.Timers.ElapsedEventArgs args)
+        {
+            p_showTimer.Stop();
+            p_statusLabel.Text = "";
         }
     }
 }
