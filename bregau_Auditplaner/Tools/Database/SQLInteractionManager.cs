@@ -14,6 +14,8 @@ namespace bregau_Auditplaner.Tools.Database
     {
         private static SqlDataSourceEnumerator instances = null;
 
+        // New comment
+
         /// <summary>
         /// Sucht nach SQL Server Instanzen
         /// </summary>
