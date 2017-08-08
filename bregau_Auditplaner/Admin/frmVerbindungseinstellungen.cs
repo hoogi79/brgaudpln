@@ -155,7 +155,18 @@ namespace bregau_Auditplaner.Admin
             connectionStringBuilder.Password = txtPassword.Text;
             connectionStringBuilder.IntegratedSecurity = false;
 
-            Tools.Database.SQLInteractionManager.checkFullAccessToDB(connectionStringBuilder.ConnectionString);
+            /* check if specified user has SELECT, INSERT, UPDATE and DELETE (herein aka FULL access)
+             * if not, give error message and return
+            */
+            if (Tools.Database.SQLInteractionManager.checkFullAccessToDB(connectionStringBuilder.ConnectionString) == false)
+            {
+                errorProvider1.SetError(cmbDataBase, "Kein Vollzugriff auf diese Datenbank!");
+                return;
+            }
+            else
+                btnSaveAs.DialogResult = DialogResult.OK;
+           
+
 
             if (aesCrypt == null)
                 aesCrypt = new Tools.Encryption.AESEncrypter();

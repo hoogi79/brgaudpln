@@ -62,9 +62,9 @@ namespace bregau_Auditplaner.Tools.Database
 
         public static bool checkFullAccessToDB(string connectionString)
         {
+            AccessLevel access = AccessLevel.NONE;
             SqlConnectionStringBuilder sqsb = new SqlConnectionStringBuilder(connectionString);
             sqsb.ConnectTimeout = 5;
-
             try
             {
                 SqlConnection sqlConn = new SqlConnection(sqsb.ConnectionString);
@@ -72,16 +72,21 @@ namespace bregau_Auditplaner.Tools.Database
                 SqlCommand sqlCom = new SqlCommand("SELECT * FROM fn_my_permissions(\'dbo\', \'SCHEMA\')",sqlConn);
                 SqlDataReader sdr;
                 sdr = sqlCom.ExecuteReader();
+
                 if (sdr.HasRows)
                 {
-                    DataTable schemaTable = sdr.GetSchemaTable();
-                    foreach (DataRow row in schemaTable.Rows)
+                    String permissionString;
+                    while (sdr.Read()&&access!=AccessLevel.FULL)
                     {
-                        foreach (DataColumn column in schemaTable.Columns)
-                        {
-                            Console.WriteLine(String.Format("{0} = {1}",
-                               column.ColumnName, row[column]));
-                        }
+                        permissionString = sdr.GetString(2);
+                        if (String.Equals(permissionString, "SELECT"))
+                            access = (access | AccessLevel.SELECT);
+                        if (String.Equals(permissionString, "INSERT"))
+                            access = (access | AccessLevel.INSERT);
+                        if (String.Equals(permissionString, "UPDATE"))
+                            access = (access | AccessLevel.UPDATE);
+                        if (String.Equals(permissionString, "DELETE"))
+                            access = (access | AccessLevel.DELETE);
                     }
                 }
                 sqlConn.Close();
@@ -90,10 +95,10 @@ namespace bregau_Auditplaner.Tools.Database
             {
                 throw (e);
             }
-
-            return true;
+            return (access==AccessLevel.FULL);
         }
 
+        public enum AccessLevel : byte { NONE=0, SELECT=1, INSERT=2, UPDATE=4, DELETE=8, FULL=15};
         
     }
 }

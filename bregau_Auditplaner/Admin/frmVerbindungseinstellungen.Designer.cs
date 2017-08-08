@@ -98,7 +98,6 @@
             // btnSaveAs
             // 
             this.btnSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSaveAs.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSaveAs.Enabled = false;
             this.btnSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveAs.Location = new System.Drawing.Point(269, 3);
