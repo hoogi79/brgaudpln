@@ -49,11 +49,14 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblError = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -76,6 +79,7 @@
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.Controls.Add(this.btnSchließen);
             this.flowLayoutPanel1.Controls.Add(this.btnSaveAs);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 183);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -254,7 +258,29 @@
             // 
             // errorProvider1
             // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
             this.errorProvider1.ContainerControl = this;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.lblError);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(260, 30);
+            this.flowLayoutPanel2.TabIndex = 8;
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.SetFlowBreak(this.lblError, true);
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorProvider1.SetIconAlignment(this.lblError, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.lblError.Location = new System.Drawing.Point(3, 0);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 20);
+            this.lblError.TabIndex = 0;
             // 
             // frmVerbindungseinstellungen
             // 
@@ -275,6 +301,8 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -300,5 +328,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnDBAbfragen;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label lblError;
     }
 }

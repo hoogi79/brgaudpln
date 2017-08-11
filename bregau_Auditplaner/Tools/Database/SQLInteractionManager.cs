@@ -55,9 +55,31 @@ namespace bregau_Auditplaner.Tools.Database
             
             foreach (DataRow row in tblDatabases.Rows)
             {
-                retDBList.Add(row["database_name"].ToString());
+                sqsb.InitialCatalog = row["database_name"].ToString();
+                if (checkCanConnect(sqsb.ConnectionString))
+                    retDBList.Add(row["database_name"].ToString());
             }
             return retDBList;
+        }
+
+        public static bool checkCanConnect(string connectionString)
+        {
+            SqlConnectionStringBuilder sqsb = new SqlConnectionStringBuilder(connectionString);
+            sqsb.ConnectTimeout = 5;
+            try
+            {
+                SqlConnection sqlConn = new SqlConnection(sqsb.ConnectionString);
+                sqlConn.Open();
+                sqlConn.Close();
+            }
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(SqlException))
+                    if (((SqlException)e).Number == 4060 || ((SqlException)e).Number == 18456) // User has no access to CONECT (4060); User ID / Password Error (18456)
+                        return false;
+                throw (e);
+            }
+            return true;
         }
 
         public static bool checkFullAccessToDB(string connectionString)
@@ -93,7 +115,10 @@ namespace bregau_Auditplaner.Tools.Database
             }
             catch (Exception e)
             {
-                throw (e);
+                if (e.GetType() == typeof(SqlException))
+                    if (((SqlException)e).Number == 4060||((SqlException)e).Number==18456) // User has no access to CONECT (4060); User ID / Password Error (18456)
+                        return false;
+                    throw (e);
             }
             return (access==AccessLevel.FULL);
         }

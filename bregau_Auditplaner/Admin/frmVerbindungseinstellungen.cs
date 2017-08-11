@@ -35,6 +35,9 @@ namespace bregau_Auditplaner.Admin
             btnSaveAs.Enabled = validAll;
             btnDBAbfragen.Enabled = (validServer && validLogin && validPassword);
 
+            // Fehleranzeige zurücksetzen
+            errorProvider1.Clear();
+
         }
 
         public frmVerbindungseinstellungen()
@@ -160,14 +163,12 @@ namespace bregau_Auditplaner.Admin
             */
             if (Tools.Database.SQLInteractionManager.checkFullAccessToDB(connectionStringBuilder.ConnectionString) == false)
             {
-                errorProvider1.SetError(cmbDataBase, "Kein Vollzugriff auf diese Datenbank!");
+                errorProvider1.SetError(lblError, "Kein Vollzugriff auf diese Datenbank!");
                 return;
             }
             else
                 btnSaveAs.DialogResult = DialogResult.OK;
            
-
-
             if (aesCrypt == null)
                 aesCrypt = new Tools.Encryption.AESEncrypter();
 

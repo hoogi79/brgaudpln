@@ -61,8 +61,19 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NetSqlAzMan, Version=3.6.0.15, Culture=neutral, PublicKeyToken=ad1153f7ddd0e504, processorArchitecture=MSIL">
+      <HintPath>..\packages\NetSqlAzMan-x64.3.6.0.15\lib\net40\NetSqlAzMan.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,6 +106,7 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Tools\Database\SQLInteractionManager.cs" />
+    <None Include="packages.config" />
     <None Include="Tools\Database\SQLServerConnectionConfig.cs" />
     <Compile Include="Tools\Encryption\AESEncyrpter.cs" />
     <Compile Include="Tools\Logger\iProgressLogger.cs" />
