@@ -37,14 +37,15 @@
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.erzeugeLogMeldungWARNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setzteProgressAuf1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aESEncryptTesterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stsStripMain = new System.Windows.Forms.StatusStrip();
             this.tsStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aESEncryptTesterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuStripMain.SuspendLayout();
             this.stsStripMain.SuspendLayout();
             this.SuspendLayout();
@@ -114,6 +115,22 @@
             this.setzteProgressAuf1ToolStripMenuItem.Text = "Setzte Progress auf -1";
             this.setzteProgressAuf1ToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.setzteProgressAuf1ToolStripMenuItem_CheckStateChanged);
             // 
+            // administrationToolStripMenuItem
+            // 
+            this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator2,
+            this.aESEncryptTesterToolStripMenuItem});
+            this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
+            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.administrationToolStripMenuItem.Text = "Installation";
+            // 
+            // aESEncryptTesterToolStripMenuItem
+            // 
+            this.aESEncryptTesterToolStripMenuItem.Name = "aESEncryptTesterToolStripMenuItem";
+            this.aESEncryptTesterToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.aESEncryptTesterToolStripMenuItem.Text = "Verbindungszeichenfolge erstellen";
+            this.aESEncryptTesterToolStripMenuItem.Click += new System.EventHandler(this.aESEncryptTesterToolStripMenuItem_Click);
+            // 
             // stsStripMain
             // 
             this.stsStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -154,20 +171,10 @@
             this.toolStripMain.TabIndex = 4;
             this.toolStripMain.Text = "toolStrip1";
             // 
-            // administrationToolStripMenuItem
+            // toolStripSeparator2
             // 
-            this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aESEncryptTesterToolStripMenuItem});
-            this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
-            this.administrationToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
-            this.administrationToolStripMenuItem.Text = "Administration";
-            // 
-            // aESEncryptTesterToolStripMenuItem
-            // 
-            this.aESEncryptTesterToolStripMenuItem.Name = "aESEncryptTesterToolStripMenuItem";
-            this.aESEncryptTesterToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
-            this.aESEncryptTesterToolStripMenuItem.Text = "Verbindungszeichenfolge erstellen";
-            this.aESEncryptTesterToolStripMenuItem.Click += new System.EventHandler(this.aESEncryptTesterToolStripMenuItem_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(252, 6);
             // 
             // frmAuditplaner
             // 
@@ -209,6 +216,7 @@
         private System.Windows.Forms.ToolStripMenuItem verbindenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem administrationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aESEncryptTesterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

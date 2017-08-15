@@ -21,6 +21,19 @@ namespace bregau_Auditplaner.Admin
         private bool validPassword = false; 
         private bool validDataBase = false;
 
+        /// <summary>
+        /// Gibt die in diesem Formular erzeugte Verbindungszeichenfolge zurück (Klartext) (Nach Dialog.OK)
+        /// </summary>
+        public string ConnectionString  { get; private set;}
+
+        /// <summary>
+        /// Gibt an ob nach dem Klicken auf OK ein FileSelect Dialog aufgerufen und der Verbindungsstring verschlüssel gespeichert werden soll.
+        /// </summary>
+        public bool DoSaveAs { get; set; } = true;
+
+        /// <summary>
+        /// Überprüft die Eingaben der einzelnen Felder und gibt Steuerelement frei 
+        /// </summary>
         private void ValidateSettings()
         {
             // Zustand der Felder prüfen. Die inhaltliche Gültigkeit der Werte wird (sollte) im Steuerelement Validating geprüft (werden).
@@ -37,7 +50,6 @@ namespace bregau_Auditplaner.Admin
 
             // Fehleranzeige zurücksetzen
             errorProvider1.Clear();
-
         }
 
         public frmVerbindungseinstellungen()
@@ -182,26 +194,31 @@ namespace bregau_Auditplaner.Admin
             //bregau_Auditplaner.Properties.Settings.Default.VerbindungString = serializedECD;
             //bregau_Auditplaner.Properties.Settings.Default.Save();
 
-            saveFileDialog1.Title = "Bitte Speicherort auswählen";
-            saveFileDialog1.Filter = "Text Dateien|*.txt|Alle Dateien|*.*";
-            DialogResult dr = this.saveFileDialog1.ShowDialog();
-            if (dr == DialogResult.OK && !String.IsNullOrWhiteSpace(saveFileDialog1.FileName))
+            if (this.DoSaveAs)
             {
-                try
+                saveFileDialog1.Title = "Bitte Speicherort auswählen";
+                saveFileDialog1.Filter = "Text Dateien|*.txt|Alle Dateien|*.*";
+                DialogResult dr = this.saveFileDialog1.ShowDialog();
+                if (dr == DialogResult.OK && !String.IsNullOrWhiteSpace(saveFileDialog1.FileName))
                 {
-                    using (System.IO.FileStream fs = new System.IO.FileStream(saveFileDialog1.FileName, System.IO.FileMode.Create))
+                    try
                     {
-                        System.IO.StreamWriter sw = new System.IO.StreamWriter(fs);
-                        sw.Write(serializedECD);
-                        sw.Close();
+                        using (System.IO.FileStream fs = new System.IO.FileStream(saveFileDialog1.FileName, System.IO.FileMode.Create))
+                        {
+                            System.IO.StreamWriter sw = new System.IO.StreamWriter(fs);
+                            sw.Write(serializedECD);
+                            sw.Close();
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Program.mainLogger.AppendMessage(DateTime.Now, ex.Message, Tools.Logger.LogLevel.Error);
-                }
+                    catch (Exception ex)
+                    {
+                        Program.mainLogger.AppendMessage(DateTime.Now, ex.Message, Tools.Logger.LogLevel.Error);
+                    }
 
+                }
             }
+            this.ConnectionString = connectionStringBuilder.ConnectionString;
+
         }
 
         private void txtLogin_Validating(object sender, CancelEventArgs e)
@@ -225,6 +242,9 @@ namespace bregau_Auditplaner.Admin
         private void cmbSQLServer_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.validServer = (cmbSQLServer.SelectedIndex != -1);
+            this.cmbDataBase.Items.Clear();
+            this.cmbDataBase.Text = "";
+            this.validDataBase = false;
             ValidateSettings();
         }
 
@@ -236,8 +256,10 @@ namespace bregau_Auditplaner.Admin
 
         private void cmbDataBase_Validating(object sender, CancelEventArgs e)
         {
-            this.validServer = (!String.IsNullOrWhiteSpace(cmbSQLServer.Text));
+            this.validDataBase = !String.IsNullOrWhiteSpace(cmbDataBase.Text);
             ValidateSettings();
         }
+
+
     }
 }

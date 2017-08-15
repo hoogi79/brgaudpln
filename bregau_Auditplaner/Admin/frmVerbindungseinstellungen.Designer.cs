@@ -34,6 +34,8 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSchließen = new System.Windows.Forms.Button();
             this.btnSaveAs = new System.Windows.Forms.Button();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblError = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDBAbfragen = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -49,14 +51,12 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblError = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -104,13 +104,34 @@
             this.btnSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnSaveAs.Enabled = false;
             this.btnSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveAs.Location = new System.Drawing.Point(269, 3);
+            this.btnSaveAs.Location = new System.Drawing.Point(321, 3);
             this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(127, 30);
+            this.btnSaveAs.Size = new System.Drawing.Size(75, 30);
             this.btnSaveAs.TabIndex = 0;
-            this.btnSaveAs.Text = "Speichern unter";
+            this.btnSaveAs.Text = "OK";
             this.btnSaveAs.UseVisualStyleBackColor = true;
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.lblError);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(55, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(260, 30);
+            this.flowLayoutPanel2.TabIndex = 8;
+            // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.SetFlowBreak(this.lblError, true);
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorProvider1.SetIconAlignment(this.lblError, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
+            this.lblError.Location = new System.Drawing.Point(3, 0);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 20);
+            this.lblError.TabIndex = 0;
             // 
             // panel1
             // 
@@ -135,7 +156,7 @@
             // 
             this.btnDBAbfragen.Enabled = false;
             this.btnDBAbfragen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDBAbfragen.Location = new System.Drawing.Point(387, 130);
+            this.btnDBAbfragen.Location = new System.Drawing.Point(387, 134);
             this.btnDBAbfragen.Name = "btnDBAbfragen";
             this.btnDBAbfragen.Size = new System.Drawing.Size(80, 24);
             this.btnDBAbfragen.TabIndex = 6;
@@ -189,7 +210,7 @@
             // btnServerSuchen
             // 
             this.btnServerSuchen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnServerSuchen.Location = new System.Drawing.Point(387, 30);
+            this.btnServerSuchen.Location = new System.Drawing.Point(387, 29);
             this.btnServerSuchen.Name = "btnServerSuchen";
             this.btnServerSuchen.Size = new System.Drawing.Size(80, 24);
             this.btnServerSuchen.TabIndex = 2;
@@ -244,7 +265,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::bregau_Auditplaner.Properties.Resources._3s;
-            this.pictureBox1.Location = new System.Drawing.Point(415, 30);
+            this.pictureBox1.Location = new System.Drawing.Point(415, 29);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 24);
             this.pictureBox1.TabIndex = 7;
@@ -261,27 +282,6 @@
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
             this.errorProvider1.ContainerControl = this;
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.lblError);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(260, 30);
-            this.flowLayoutPanel2.TabIndex = 8;
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.SetFlowBreak(this.lblError, true);
-            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.errorProvider1.SetIconAlignment(this.lblError, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-            this.lblError.Location = new System.Drawing.Point(3, 0);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 20);
-            this.lblError.TabIndex = 0;
-            // 
             // frmVerbindungseinstellungen
             // 
             this.AcceptButton = this.btnSaveAs;
@@ -297,12 +297,12 @@
             this.Load += new System.EventHandler(this.frmVerbindungseinstellungen_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
