@@ -80,9 +80,31 @@ namespace bregau_Auditplaner
 
         private void aESEncryptTesterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Admin.frmVerbindungseinstellungen formConnectionSetup = new Admin.frmVerbindungseinstellungen();
-            DialogResult dr = formConnectionSetup.ShowDialog();
+            Admin.frmVerbindungseinstellungen formConnectionSetup = new Admin.frmVerbindungseinstellungen(AdminMode: true);
+            formConnectionSetup.AllowCreate = true;
+            formConnectionSetup.SaveToDisk = false;
+            DialogResult dr =  formConnectionSetup.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                Program.connectionString = formConnectionSetup.ConnectionString;
+            }
+            
+        }
 
+        private void datenbankToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Admin.frmVerbindungseinstellungen formConnectionSetup = new Admin.frmVerbindungseinstellungen(false);
+        }
+
+        private void datenbankToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+           if (Program.connectionString != null)
+            {
+                Database.bregauDbContext bregauDbContext = new Database.bregauDbContext();
+               
+                bregauDbContext.Users.Add(new Database.Auth.User { Login = "Slytherin", Name = "Theo", FamilyName = "Test", PasswordHash="000" });
+                bregauDbContext.SaveChanges();
+            }
         }
     }
 }

@@ -5,8 +5,5 @@
     <Setting Name="VerbindungString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Verbindung" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;AESDataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;Key&gt;WDdmQU9OT21LenJicGNSWnc5OEhjQ2JHYnh1c1l6Skx6a1lxZStBTCtjQT0=&lt;/Key&gt;&lt;IV&gt;eWIxZnVoU1VoZXNQclF5bm4vV2UyUT09&lt;/IV&gt;&lt;Message&gt;EOTYxGDlPwKIbPaB5ZJHvwJDihqOnN44DYCWd+SCr5NWFYaw+76JzzfRvm/1x3hxBx5zAuwfZwc54WjcXjTdlIm4XsNqB2Pl82ZUpgT60nBprP+D1IqWDNuHp5igrTCobutvPnpaPN+2Bzw9CStpJM7o5I1J0H9om6IC6e6PX1uJ9lSbjlV6oLgEf+FVDWj0&lt;/Message&gt;&lt;/AESDataSet&gt;</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

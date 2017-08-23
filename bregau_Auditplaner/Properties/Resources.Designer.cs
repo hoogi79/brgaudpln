@@ -79,5 +79,14 @@ namespace bregau_Auditplaner.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;AESDataSet xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;&lt;Key&gt;TGFFNDRUUndaRSt1WVdrK3h3bldndGxHZWp1d3RWWGJNazJycXlNTVpLaz0=&lt;/Key&gt;&lt;IV&gt;TFRiZlltWnBDYnJ1L0x5TjFlMkoxdz09&lt;/IV&gt;&lt;Message&gt;orKSml0WkfTc7SJ8gWydGkDS36FSTLzpgkj0qt8vAaLZuNeaJwR1C0AhW0sFMwHRN1AxiLOfMpxqJhnI0ZXREaEQ6X5CGvZkJX5LZ4RS3N3pKPBxsaVt96wtwUWoCesnYSd/DriJBtUC7tMkUNDhr4G0oHSrhehaT8u6dwlhA7VzUzIU2aHmmMJHE84qUrdv&lt;/Message&gt;&lt;/AESDataSet&gt; ähnelt.
+        /// </summary>
+        public static string Verbindung {
+            get {
+                return ResourceManager.GetString("Verbindung", resourceCulture);
+            }
+        }
     }
 }

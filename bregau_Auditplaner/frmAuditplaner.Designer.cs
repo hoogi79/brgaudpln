@@ -32,12 +32,17 @@
             this.mnuStripMain = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verbindenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.datenbankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.erzeugeLogMeldungWARNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setzteProgressAuf1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.datenbankToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aESEncryptTesterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stsStripMain = new System.Windows.Forms.StatusStrip();
             this.tsStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -45,7 +50,6 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuStripMain.SuspendLayout();
             this.stsStripMain.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +70,7 @@
             // 
             this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.verbindenToolStripMenuItem,
+            this.öffnenToolStripMenuItem,
             this.toolStripSeparator1,
             this.beendenToolStripMenuItem});
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
@@ -74,10 +79,34 @@
             // 
             // verbindenToolStripMenuItem
             // 
+            this.verbindenToolStripMenuItem.Enabled = false;
             this.verbindenToolStripMenuItem.Name = "verbindenToolStripMenuItem";
             this.verbindenToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.verbindenToolStripMenuItem.Text = "Verbinden";
             this.verbindenToolStripMenuItem.Click += new System.EventHandler(this.verbindenToolStripMenuItem_Click);
+            // 
+            // öffnenToolStripMenuItem
+            // 
+            this.öffnenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.datenbankToolStripMenuItem,
+            this.dateiToolStripMenuItem1});
+            this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
+            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.öffnenToolStripMenuItem.Text = "Öffnen";
+            // 
+            // datenbankToolStripMenuItem
+            // 
+            this.datenbankToolStripMenuItem.Name = "datenbankToolStripMenuItem";
+            this.datenbankToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.datenbankToolStripMenuItem.Text = "Datenbank";
+            this.datenbankToolStripMenuItem.Click += new System.EventHandler(this.datenbankToolStripMenuItem_Click);
+            // 
+            // dateiToolStripMenuItem1
+            // 
+            this.dateiToolStripMenuItem1.Enabled = false;
+            this.dateiToolStripMenuItem1.Name = "dateiToolStripMenuItem1";
+            this.dateiToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
+            this.dateiToolStripMenuItem1.Text = "Datei";
             // 
             // toolStripSeparator1
             // 
@@ -119,16 +148,29 @@
             // 
             this.administrationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator2,
-            this.aESEncryptTesterToolStripMenuItem});
+            this.aESEncryptTesterToolStripMenuItem,
+            this.datenbankToolStripMenuItem1});
             this.administrationToolStripMenuItem.Name = "administrationToolStripMenuItem";
             this.administrationToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.administrationToolStripMenuItem.Text = "Installation";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(302, 6);
+            // 
+            // datenbankToolStripMenuItem1
+            // 
+            this.datenbankToolStripMenuItem1.Name = "datenbankToolStripMenuItem1";
+            this.datenbankToolStripMenuItem1.Size = new System.Drawing.Size(305, 22);
+            this.datenbankToolStripMenuItem1.Text = "Datenbank";
+            this.datenbankToolStripMenuItem1.Click += new System.EventHandler(this.datenbankToolStripMenuItem1_Click);
+            // 
             // aESEncryptTesterToolStripMenuItem
             // 
             this.aESEncryptTesterToolStripMenuItem.Name = "aESEncryptTesterToolStripMenuItem";
-            this.aESEncryptTesterToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
-            this.aESEncryptTesterToolStripMenuItem.Text = "Verbindungszeichenfolge erstellen";
+            this.aESEncryptTesterToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
+            this.aESEncryptTesterToolStripMenuItem.Text = "Standard Verbindungszeichenfolge erstellen";
             this.aESEncryptTesterToolStripMenuItem.Click += new System.EventHandler(this.aESEncryptTesterToolStripMenuItem_Click);
             // 
             // stsStripMain
@@ -171,11 +213,6 @@
             this.toolStripMain.TabIndex = 4;
             this.toolStripMain.Text = "toolStrip1";
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(252, 6);
-            // 
             // frmAuditplaner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +254,10 @@
         private System.Windows.Forms.ToolStripMenuItem administrationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aESEncryptTesterToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem öffnenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem datenbankToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem datenbankToolStripMenuItem1;
     }
 }
 

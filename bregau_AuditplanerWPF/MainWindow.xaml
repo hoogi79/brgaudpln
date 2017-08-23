@@ -1,0 +1,28 @@
+﻿<Window x:Class="bregau_AuditplanerWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:bregau_AuditplanerWPF"
+        mc:Ignorable="d"
+        Title="bregau Auditplaner WPF Alpha" Width="646.018" Height="355.83">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF215991" Offset="0.008"/>
+                <GradientStop Color="#FFEA2222" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Right" Margin="0,0,25.018,16.83" Width="121" Height="49" VerticalAlignment="Bottom" Background="#FF6DB431" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-4.794"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+    </Grid>
+</Window>

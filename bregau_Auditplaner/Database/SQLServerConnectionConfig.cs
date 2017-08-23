@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bregau_Auditplaner.Tools.Database
+namespace bregau_Auditplaner.Database
 {
     /// <summary>
     /// Kapselt Informationen zur Anbindung an den Datenbankserver.

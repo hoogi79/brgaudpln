@@ -27,9 +27,14 @@ namespace bregau_Auditplaner.Admin
         public string ConnectionString  { get; private set;}
 
         /// <summary>
-        /// Gibt an ob nach dem Klicken auf OK ein FileSelect Dialog aufgerufen und der Verbindungsstring verschlüssel gespeichert werden soll.
+        /// Ermöglicht das Speichern des verschlüsselten ConnectionStrings in eine Datei um sie von dort manuell als Ressource für die Benutzer vorzugeben
         /// </summary>
-        public bool DoSaveAs { get; set; } = true;
+        public bool SaveToDisk { get; set; } = false;
+
+        /// <summary>
+        /// Erlaubt das Erstellen von neuen Datenbanken
+        /// </summary>
+        public bool AllowCreate { get; set; } = false;
 
         /// <summary>
         /// Überprüft die Eingaben der einzelnen Felder und gibt Steuerelement frei 
@@ -52,15 +57,30 @@ namespace bregau_Auditplaner.Admin
             errorProvider1.Clear();
         }
 
-        public frmVerbindungseinstellungen()
+        /// <summary>
+        /// Lädt die Standard Verbindungszeichenfolge und füllt damit die Steuerelemente
+        /// <param name="TryFromSettings">Gibt an, dass versucht werden soll einen Verbdinungsstring aus der Config Datei als Vorgabe zu laden.</param>
+        /// </summary>
+        private void LoadDefaultFrom(bool TryFromSettings = false)
         {
-            InitializeComponent();
-        }
-
-        private void frmVerbindungseinstellungen_Load(object sender, EventArgs e)
-        {
-            // Read: VerbindungString und Deserialize per Hand via XML
-            string encryptedVerbindungString = bregau_Auditplaner.Properties.Settings.Default.Verbindung;
+            string encryptedVerbindungString = null;
+            if (TryFromSettings)
+            {
+                encryptedVerbindungString = bregau_Auditplaner.Properties.Settings.Default.VerbindungString;
+            }
+            else
+            {
+                try
+                {
+                    encryptedVerbindungString = bregau_Auditplaner.Properties.Resources.ResourceManager.GetString("Verbindung");
+                }
+                catch
+                {
+                    ValidateSettings();
+                    return;
+                }
+            }
+          
             Tools.Encryption.AESDataSet encryptedConnectionData;
             try
             {
@@ -82,9 +102,11 @@ namespace bregau_Auditplaner.Admin
                     try
                     {
                         connectionStringBuilder = new System.Data.SqlClient.SqlConnectionStringBuilder(decryptedConnectionString);
+                        cmbSQLServer.Items.Clear();
                         cmbSQLServer.Items.Add(connectionStringBuilder.DataSource);
                         cmbSQLServer.SelectedIndex = 0;
 
+                        cmbDataBase.Items.Clear();
                         cmbDataBase.Items.Add(connectionStringBuilder.InitialCatalog);
                         cmbDataBase.SelectedIndex = 0;
 
@@ -101,13 +123,29 @@ namespace bregau_Auditplaner.Admin
             ValidateSettings();
         }
 
+        public frmVerbindungseinstellungen(bool AdminMode = false)
+        {
+            InitializeComponent();
+            this.SaveToDisk = AdminMode;
+            this.AllowCreate = AdminMode;
+            this.Text = AdminMode ? "Verbindungszeichenfolge erstellen" : " Eine Datenbank auswählen";
+            btnReset.Visible = !AdminMode;  // Reset nur im Nicht-Admin-Modus anzeigen
+        }
+
+
+        private void frmVerbindungseinstellungen_Load(object sender, EventArgs e)
+        {
+            // Read: VerbindungString und Deserialize per Hand via XML
+            this.LoadDefaultFrom(!this.SaveToDisk);
+        }
+
         private void btnDBAbfragen_Click(object sender, EventArgs e)
         {
             cmbDataBase.Items.Clear();
             List<string> databases;
             try
             {
-                databases = Tools.Database.SQLInteractionManager.FindDataBase(cmbSQLServer.Text, txtLogin.Text, txtPassword.Text);
+                databases = Database.SQLInteractionManager.FindDataBase(cmbSQLServer.Text, txtLogin.Text, txtPassword.Text);
             } catch (Exception ex)
             {
                 Program.mainLogger.AppendMessage(DateTime.Now, ex.Message, Tools.Logger.LogLevel.Error);
@@ -147,7 +185,7 @@ namespace bregau_Auditplaner.Admin
         {
             try
             {
-                serverList = Tools.Database.SQLInteractionManager.FindSQLServers();
+                serverList = Database.SQLInteractionManager.FindSQLServers();
             } catch (Exception) {}
         }
 
@@ -170,31 +208,54 @@ namespace bregau_Auditplaner.Admin
             connectionStringBuilder.Password = txtPassword.Text;
             connectionStringBuilder.IntegratedSecurity = false;
 
+
+            /* First check if database exists (or user has no right to "CONNECT"). */
+            if (cmbDataBase.FindString(cmbDataBase.Text) == -1)
+                if (!Database.SQLInteractionManager.checkExists(connectionStringBuilder.ConnectionString))
+                {
+                    if (this.AllowCreate)
+                    {
+                        DialogResult dr = System.Windows.Forms.MessageBox.Show("Datenbank erzeugen?", "Datenbank existiert nicht.", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        if (dr == DialogResult.OK)
+                            Database.SQLInteractionManager.createDatabase(connectionStringBuilder.ConnectionString);
+                        else
+                            return;
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(lblError, "Datenbank nicht gefunden");
+                        btnSaveAs.DialogResult = DialogResult.None;
+                        return;
+                    }
+                }
+                           
             /* check if specified user has SELECT, INSERT, UPDATE and DELETE (herein aka FULL access)
              * if not, give error message and return
             */
-            if (Tools.Database.SQLInteractionManager.checkFullAccessToDB(connectionStringBuilder.ConnectionString) == false)
+            if (Database.SQLInteractionManager.checkFullAccessToDB(connectionStringBuilder.ConnectionString) == false)
             {
                 errorProvider1.SetError(lblError, "Kein Vollzugriff auf diese Datenbank!");
+                Console.WriteLine("Kein Vollzugriff auf diese Datenbank!");
+                btnSaveAs.DialogResult = DialogResult.None;
                 return;
             }
             else
+            {
+                Console.WriteLine("Hat vollen Zugriff. Setze DialogResult auf OK");
                 btnSaveAs.DialogResult = DialogResult.OK;
-           
+            }
+                
+
             if (aesCrypt == null)
                 aesCrypt = new Tools.Encryption.AESEncrypter();
 
             byte[] encryptedConnectionString = aesCrypt.EncryptAES(Encoding.UTF8.GetBytes(connectionStringBuilder.ConnectionString));
             
-            Tools.Encryption.AESDataSet encryptedConnectionData = new Tools.Encryption.AESDataSet();
-            encryptedConnectionData = aesCrypt.GetAESDataSet(encryptedConnectionString);
+            Tools.Encryption.AESDataSet encryptedConnectionData = aesCrypt.GetAESDataSet(encryptedConnectionString);
             string serializedECD = Tools.Encryption.AESDataSet.SerializeXml(encryptedConnectionData);
 
-            //bregau_Auditplaner.Properties.Settings.Default.Verbindung = encryptedConnectionData;
-            //bregau_Auditplaner.Properties.Settings.Default.VerbindungString = serializedECD;
-            //bregau_Auditplaner.Properties.Settings.Default.Save();
-
-            if (this.DoSaveAs)
+            Console.WriteLine(this.SaveToDisk.ToString());
+            if (this.SaveToDisk)
             {
                 saveFileDialog1.Title = "Bitte Speicherort auswählen";
                 saveFileDialog1.Filter = "Text Dateien|*.txt|Alle Dateien|*.*";
@@ -217,6 +278,10 @@ namespace bregau_Auditplaner.Admin
 
                 }
             }
+
+            bregau_Auditplaner.Properties.Settings.Default.VerbindungString = serializedECD;
+            bregau_Auditplaner.Properties.Settings.Default.Save();
+
             this.ConnectionString = connectionStringBuilder.ConnectionString;
 
         }
@@ -260,6 +325,9 @@ namespace bregau_Auditplaner.Admin
             ValidateSettings();
         }
 
-
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            this.LoadDefaultFrom();
+        }
     }
 }

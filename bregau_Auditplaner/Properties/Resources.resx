@@ -121,6 +121,10 @@
   <data name="3s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3s.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Verbindung" xml:space="preserve">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;AESDataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;&lt;Key&gt;TGFFNDRUUndaRSt1WVdrK3h3bldndGxHZWp1d3RWWGJNazJycXlNTVpLaz0=&lt;/Key&gt;&lt;IV&gt;TFRiZlltWnBDYnJ1L0x5TjFlMkoxdz09&lt;/IV&gt;&lt;Message&gt;orKSml0WkfTc7SJ8gWydGkDS36FSTLzpgkj0qt8vAaLZuNeaJwR1C0AhW0sFMwHRN1AxiLOfMpxqJhnI0ZXREaEQ6X5CGvZkJX5LZ4RS3N3pKPBxsaVt96wtwUWoCesnYSd/DriJBtUC7tMkUNDhr4G0oHSrhehaT8u6dwlhA7VzUzIU2aHmmMJHE84qUrdv&lt;/Message&gt;&lt;/AESDataSet&gt;</value>
+    <comment>Default Connection String</comment>
+  </data>
   <data name="_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -34,6 +34,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSchließen = new System.Windows.Forms.Button();
             this.btnSaveAs = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblError = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -71,17 +72,17 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(486, 220);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(486, 224);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.Controls.Add(this.btnSchließen);
             this.flowLayoutPanel1.Controls.Add(this.btnSaveAs);
+            this.flowLayoutPanel1.Controls.Add(this.btnReset);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 183);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 187);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(480, 34);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -102,6 +103,7 @@
             // btnSaveAs
             // 
             this.btnSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSaveAs.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSaveAs.Enabled = false;
             this.btnSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveAs.Location = new System.Drawing.Point(321, 3);
@@ -112,20 +114,31 @@
             this.btnSaveAs.UseVisualStyleBackColor = true;
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
+            // btnReset
+            // 
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Location = new System.Drawing.Point(240, 3);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 30);
+            this.btnReset.TabIndex = 1;
+            this.btnReset.Text = "Standard";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Visible = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.lblError);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(55, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(4, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(260, 30);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(230, 30);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
             // lblError
             // 
             this.lblError.AutoSize = true;
-            this.lblError.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.SetFlowBreak(this.lblError, true);
+            this.lblError.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorProvider1.SetIconAlignment(this.lblError, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
             this.lblError.Location = new System.Drawing.Point(3, 0);
@@ -149,7 +162,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(480, 174);
+            this.panel1.Size = new System.Drawing.Size(480, 178);
             this.panel1.TabIndex = 1;
             // 
             // btnDBAbfragen
@@ -288,7 +301,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSchließen;
-            this.ClientSize = new System.Drawing.Size(486, 220);
+            this.ClientSize = new System.Drawing.Size(486, 224);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -330,5 +343,6 @@
         private System.Windows.Forms.Button btnDBAbfragen;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Button btnReset;
     }
 }
