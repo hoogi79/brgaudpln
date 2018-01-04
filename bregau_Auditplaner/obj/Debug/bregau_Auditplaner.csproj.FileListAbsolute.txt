@@ -17,3 +17,6 @@ C:\Users\Dirk Hoogestraat\Documents\Visual Studio 2015\Projects\bregau_Auditplan
 C:\Users\Dirk Hoogestraat\Documents\Visual Studio 2015\Projects\bregau_Auditplaner\bregau_Auditplaner\obj\Debug\bregau_Auditplaner.exe
 C:\Users\Dirk Hoogestraat\Documents\Visual Studio 2015\Projects\bregau_Auditplaner\bregau_Auditplaner\obj\Debug\bregau_Auditplaner.pdb
 C:\Users\Dirk Hoogestraat\Documents\Visual Studio 2015\Projects\bregau_Auditplaner\bregau_Auditplaner\obj\Debug\bregau_Auditplaner.csprojResolveAssemblyReference.cache
+C:\Users\Dirk Hoogestraat\Documents\Visual Studio 2015\Projects\bregau_Auditplaner\bregau_Auditplaner\obj\Debug\bregau_AuditplanerWPF.frmAuditplaner.resources
+C:\Users\Dirk Hoogestraat\Documents\Visual Studio 2015\Projects\bregau_Auditplaner\bregau_Auditplaner\obj\Debug\bregau_AuditplanerWPF.Admin.frmVerbindungseinstellungen.resources
+C:\Users\Dirk Hoogestraat\Documents\Visual Studio 2015\Projects\bregau_Auditplaner\bregau_Auditplaner\obj\Debug\bregau_AuditplanerWPF.Tools.Logger.simpleLoggerForm.resources

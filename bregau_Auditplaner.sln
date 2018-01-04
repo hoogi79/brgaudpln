@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bregau_Auditplaner", "brega
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bregau_AuditplanerWPF", "bregau_AuditplanerWPF\bregau_AuditplanerWPF.csproj", "{EF7FA91D-A5B4-44FD-BC66-E50213227643}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnfGefB", "..\bregau_Anf-GefB\AnfGefB\AnfGefB.csproj", "{939B1CC5-DB4D-486A-94F1-6363DAC8DEDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnfGefB", "bregau_Anf-GefB\AnfGefB\AnfGefB.csproj", "{939B1CC5-DB4D-486A-94F1-6363DAC8DEDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BE_Rechtslage_GefaehrdungsbeurteilungModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Anforderungen">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GesetzID" Type="int" Nullable="false" />
+          <Property Name="Paragraph" Type="int" Nullable="false" />
+          <Property Name="UebergeordneteID" Type="int" />
+          <Property Name="Anforderungen" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Besondere Fachkunde" Type="bit" Nullable="false" />
+          <Property Name="Daten" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Anforderungen-Bezug">
+          <Key>
+            <PropertyRef Name="AnforderungenID" />
+            <PropertyRef Name="BezugID" />
+          </Key>
+          <Property Name="AnforderungenID" Type="int" Nullable="false" />
+          <Property Name="BezugID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Anforderungen-Gefährdungsfaktoren">
+          <Key>
+            <PropertyRef Name="AnforderungenID" />
+            <PropertyRef Name="GefährdungsfaktorenID" />
+          </Key>
+          <Property Name="AnforderungenID" Type="int" Nullable="false" />
+          <Property Name="GefährdungsfaktorenID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bezug">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezug" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gefährdungsfaktoren">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kategorie" Type="int" Nullable="false" />
+          <Property Name="Nummer" Type="int" Nullable="false" />
+          <Property Name="Gefährdungsfaktor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Merkmale" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="GefährdungsfaktorenKategorien">
+          <Key>
+            <PropertyRef Name="Nummer" />
+          </Key>
+          <Property Name="Nummer" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Gesetze">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Typ" Type="int" Nullable="false" />
+          <Property Name="Gesetz" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Kurzform" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Stand" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paragraphen">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="GesetzID" />
+            <PropertyRef Name="Paragraph" />
+            <PropertyRef Name="Zusatz" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="GesetzID" Type="int" Nullable="false" />
+          <Property Name="Paragraph" Type="int" Nullable="false" />
+          <Property Name="Zusatz" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Titel" Type="nvarchar" MaxLength="255" />
+          <Property Name="Text" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Rechtstypen">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Typ" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <Association Name="FK_Anforderungen_Gesetze">
+          <End Role="Gesetze" Type="Self.Gesetze" Multiplicity="1" />
+          <End Role="Anforderungen" Type="Self.Anforderungen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gesetze">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Anforderungen">
+              <PropertyRef Name="GesetzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anforderungen-Bezug_Anforderungen">
+          <End Role="Anforderungen" Type="Self.Anforderungen" Multiplicity="1" />
+          <End Role="Anforderungen-Bezug" Type="Self.Anforderungen-Bezug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anforderungen">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Anforderungen-Bezug">
+              <PropertyRef Name="AnforderungenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anforderungen-Bezug_Bezug">
+          <End Role="Bezug" Type="Self.Bezug" Multiplicity="1" />
+          <End Role="Anforderungen-Bezug" Type="Self.Anforderungen-Bezug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bezug">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Anforderungen-Bezug">
+              <PropertyRef Name="BezugID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anforderungen-Gefährdungsfaktoren_Anforderungen">
+          <End Role="Anforderungen" Type="Self.Anforderungen" Multiplicity="1" />
+          <End Role="Anforderungen-Gefährdungsfaktoren" Type="Self.Anforderungen-Gefährdungsfaktoren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anforderungen">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Anforderungen-Gefährdungsfaktoren">
+              <PropertyRef Name="AnforderungenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anforderungen-Gefährdungsfaktoren_Gefährdungsfaktoren">
+          <End Role="Gefährdungsfaktoren" Type="Self.Gefährdungsfaktoren" Multiplicity="1" />
+          <End Role="Anforderungen-Gefährdungsfaktoren" Type="Self.Anforderungen-Gefährdungsfaktoren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gefährdungsfaktoren">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Anforderungen-Gefährdungsfaktoren">
+              <PropertyRef Name="GefährdungsfaktorenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gefährdungsfaktoren_GefährdungsfaktorenKategorien">
+          <End Role="GefährdungsfaktorenKategorien" Type="Self.GefährdungsfaktorenKategorien" Multiplicity="1" />
+          <End Role="Gefährdungsfaktoren" Type="Self.Gefährdungsfaktoren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GefährdungsfaktorenKategorien">
+              <PropertyRef Name="Nummer" />
+            </Principal>
+            <Dependent Role="Gefährdungsfaktoren">
+              <PropertyRef Name="Kategorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gesetze_Rechtstypen">
+          <End Role="Rechtstypen" Type="Self.Rechtstypen" Multiplicity="1" />
+          <End Role="Gesetze" Type="Self.Gesetze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rechtstypen">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gesetze">
+              <PropertyRef Name="Typ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paragraphen_Gesetze">
+          <End Role="Gesetze" Type="Self.Gesetze" Multiplicity="1" />
+          <End Role="Paragraphen" Type="Self.Paragraphen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gesetze">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Paragraphen">
+              <PropertyRef Name="GesetzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BE_Rechtslage_GefaehrdungsbeurteilungModelStoreContainer">
+          <EntitySet Name="Anforderungen" EntityType="Self.Anforderungen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Anforderungen-Bezug" EntityType="Self.Anforderungen-Bezug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Anforderungen-Gefährdungsfaktoren" EntityType="Self.Anforderungen-Gefährdungsfaktoren" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bezug" EntityType="Self.Bezug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gefährdungsfaktoren" EntityType="Self.Gefährdungsfaktoren" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GefährdungsfaktorenKategorien" EntityType="Self.GefährdungsfaktorenKategorien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gesetze" EntityType="Self.Gesetze" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paragraphen" EntityType="Self.Paragraphen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rechtstypen" EntityType="Self.Rechtstypen" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Anforderungen_Gesetze" Association="Self.FK_Anforderungen_Gesetze">
+            <End Role="Gesetze" EntitySet="Gesetze" />
+            <End Role="Anforderungen" EntitySet="Anforderungen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anforderungen-Bezug_Anforderungen" Association="Self.FK_Anforderungen-Bezug_Anforderungen">
+            <End Role="Anforderungen" EntitySet="Anforderungen" />
+            <End Role="Anforderungen-Bezug" EntitySet="Anforderungen-Bezug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anforderungen-Bezug_Bezug" Association="Self.FK_Anforderungen-Bezug_Bezug">
+            <End Role="Bezug" EntitySet="Bezug" />
+            <End Role="Anforderungen-Bezug" EntitySet="Anforderungen-Bezug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anforderungen-Gefährdungsfaktoren_Anforderungen" Association="Self.FK_Anforderungen-Gefährdungsfaktoren_Anforderungen">
+            <End Role="Anforderungen" EntitySet="Anforderungen" />
+            <End Role="Anforderungen-Gefährdungsfaktoren" EntitySet="Anforderungen-Gefährdungsfaktoren" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anforderungen-Gefährdungsfaktoren_Gefährdungsfaktoren" Association="Self.FK_Anforderungen-Gefährdungsfaktoren_Gefährdungsfaktoren">
+            <End Role="Gefährdungsfaktoren" EntitySet="Gefährdungsfaktoren" />
+            <End Role="Anforderungen-Gefährdungsfaktoren" EntitySet="Anforderungen-Gefährdungsfaktoren" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gefährdungsfaktoren_GefährdungsfaktorenKategorien" Association="Self.FK_Gefährdungsfaktoren_GefährdungsfaktorenKategorien">
+            <End Role="GefährdungsfaktorenKategorien" EntitySet="GefährdungsfaktorenKategorien" />
+            <End Role="Gefährdungsfaktoren" EntitySet="Gefährdungsfaktoren" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gesetze_Rechtstypen" Association="Self.FK_Gesetze_Rechtstypen">
+            <End Role="Rechtstypen" EntitySet="Rechtstypen" />
+            <End Role="Gesetze" EntitySet="Gesetze" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paragraphen_Gesetze" Association="Self.FK_Paragraphen_Gesetze">
+            <End Role="Gesetze" EntitySet="Gesetze" />
+            <End Role="Paragraphen" EntitySet="Paragraphen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BE_Rechtslage_GefaehrdungsbeurteilungModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Anforderungen">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="GesetzID" Type="Int32" Nullable="false" />
+          <Property Name="Paragraph" Type="Int32" Nullable="false" />
+          <Property Name="UebergeordneteID" Type="Int32" />
+          <Property Name="AnforderungenText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Besondere_Fachkunde" Type="Boolean" Nullable="false" />
+          <Property Name="Daten" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gesetze" Relationship="Self.FK_Anforderungen_Gesetze" FromRole="Anforderungen" ToRole="Gesetze" />
+          <NavigationProperty Name="Bezug" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Bezug" FromRole="Anforderungen" ToRole="Bezug" />
+          <NavigationProperty Name="Gefährdungsfaktoren" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Gefährdungsfaktoren" FromRole="Anforderungen" ToRole="Gefährdungsfaktoren" />
+        </EntityType>
+        <EntityType Name="Gesetze">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Typ" Type="Int32" Nullable="false" />
+          <Property Name="Gesetz" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kurzform" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stand" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Anforderungen" Relationship="Self.FK_Anforderungen_Gesetze" FromRole="Gesetze" ToRole="Anforderungen" />
+          <NavigationProperty Name="Rechtstypen" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Gesetze_Rechtstypen" FromRole="Gesetze" ToRole="Rechtstypen" />
+          <NavigationProperty Name="Paragraphen" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Paragraphen_Gesetze" FromRole="Gesetze" ToRole="Paragraphen" />
+        </EntityType>
+        <Association Name="FK_Anforderungen_Gesetze">
+          <End Role="Gesetze" Type="Self.Gesetze" Multiplicity="1" />
+          <End Role="Anforderungen" Type="Self.Anforderungen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gesetze">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Anforderungen">
+              <PropertyRef Name="GesetzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BE_Rechtslage_GefaehrdungsbeurteilungEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Anforderungen" EntityType="Self.Anforderungen" />
+          <EntitySet Name="Gesetze" EntityType="Self.Gesetze" />
+          <AssociationSet Name="FK_Anforderungen_Gesetze" Association="Self.FK_Anforderungen_Gesetze">
+            <End Role="Gesetze" EntitySet="Gesetze" />
+            <End Role="Anforderungen" EntitySet="Anforderungen" />
+          </AssociationSet>
+          <EntitySet Name="Rechtstypen" EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.Rechtstypen" />
+          <AssociationSet Name="FK_Gesetze_Rechtstypen" Association="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Gesetze_Rechtstypen">
+            <End Role="Rechtstypen" EntitySet="Rechtstypen" />
+            <End Role="Gesetze" EntitySet="Gesetze" />
+          </AssociationSet>
+          <EntitySet Name="Paragraphen" EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.Paragraphen" />
+          <AssociationSet Name="FK_Paragraphen_Gesetze" Association="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Paragraphen_Gesetze">
+            <End Role="Gesetze" EntitySet="Gesetze" />
+            <End Role="Paragraphen" EntitySet="Paragraphen" />
+          </AssociationSet>
+          <EntitySet Name="Bezug" EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.Bezug" />
+          <EntitySet Name="Gefährdungsfaktoren" EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.Gefährdungsfaktoren" />
+          <EntitySet Name="GefährdungsfaktorenKategorien" EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.GefährdungsfaktorenKategorien" />
+          <AssociationSet Name="FK_Gefährdungsfaktoren_GefährdungsfaktorenKategorien" Association="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Gefährdungsfaktoren_GefährdungsfaktorenKategorien">
+            <End Role="GefährdungsfaktorenKategorien" EntitySet="GefährdungsfaktorenKategorien" />
+            <End Role="Gefährdungsfaktoren" EntitySet="Gefährdungsfaktoren" />
+          </AssociationSet>
+          <AssociationSet Name="Anforderungen_Bezug" Association="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Bezug">
+            <End Role="Anforderungen" EntitySet="Anforderungen" />
+            <End Role="Bezug" EntitySet="Bezug" />
+          </AssociationSet>
+          <AssociationSet Name="Anforderungen_Gefährdungsfaktoren" Association="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Gefährdungsfaktoren">
+            <End Role="Anforderungen" EntitySet="Anforderungen" />
+            <End Role="Gefährdungsfaktoren" EntitySet="Gefährdungsfaktoren" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Rechtstypen">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Typ" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gesetze" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Gesetze_Rechtstypen" FromRole="Rechtstypen" ToRole="Gesetze" />
+        </EntityType>
+        <Association Name="FK_Gesetze_Rechtstypen">
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.Rechtstypen" Role="Rechtstypen" Multiplicity="1" />
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.Gesetze" Role="Gesetze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rechtstypen">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gesetze">
+              <PropertyRef Name="Typ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Paragraphen">
+          <Key>
+            <PropertyRef Name="GesetzID" />
+            <PropertyRef Name="Paragraph" />
+            <PropertyRef Name="Zusatz" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="GesetzID" Type="Int32" Nullable="false" />
+          <Property Name="Paragraph" Type="Int32" Nullable="false" />
+          <Property Name="Zusatz" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Titel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gesetze" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Paragraphen_Gesetze" FromRole="Paragraphen" ToRole="Gesetze" />
+        </EntityType>
+        <Association Name="FK_Paragraphen_Gesetze">
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.Gesetze" Role="Gesetze" Multiplicity="1" />
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.Paragraphen" Role="Paragraphen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gesetze">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Paragraphen">
+              <PropertyRef Name="GesetzID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Bezug">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BezugText" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Anforderungen" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Bezug" FromRole="Bezug" ToRole="Anforderungen" />
+        </EntityType>
+        <EntityType Name="Gefährdungsfaktoren">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategorie" Type="Int32" Nullable="false" />
+          <Property Name="Nummer" Type="Int32" Nullable="false" />
+          <Property Name="Gefährdungsfaktor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Merkmale" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GefährdungsfaktorenKategorien" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Gefährdungsfaktoren_GefährdungsfaktorenKategorien" FromRole="Gefährdungsfaktoren" ToRole="GefährdungsfaktorenKategorien" />
+          <NavigationProperty Name="Anforderungen" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Gefährdungsfaktoren" FromRole="Gefährdungsfaktoren" ToRole="Anforderungen" />
+        </EntityType>
+        <EntityType Name="GefährdungsfaktorenKategorien">
+          <Key>
+            <PropertyRef Name="Nummer" />
+          </Key>
+          <Property Name="Nummer" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gefährdungsfaktoren" Relationship="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Gefährdungsfaktoren_GefährdungsfaktorenKategorien" FromRole="GefährdungsfaktorenKategorien" ToRole="Gefährdungsfaktoren" />
+        </EntityType>
+        <Association Name="FK_Gefährdungsfaktoren_GefährdungsfaktorenKategorien">
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.GefährdungsfaktorenKategorien" Role="GefährdungsfaktorenKategorien" Multiplicity="1" />
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.Gefährdungsfaktoren" Role="Gefährdungsfaktoren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GefährdungsfaktorenKategorien">
+              <PropertyRef Name="Nummer" />
+            </Principal>
+            <Dependent Role="Gefährdungsfaktoren">
+              <PropertyRef Name="Kategorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Anforderungen_Bezug">
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen" Role="Anforderungen" Multiplicity="*" />
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.Bezug" Role="Bezug" Multiplicity="*" />
+        </Association>
+        <Association Name="Anforderungen_Gefährdungsfaktoren">
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen" Role="Anforderungen" Multiplicity="*" />
+          <End Type="BE_Rechtslage_GefaehrdungsbeurteilungModel.Gefährdungsfaktoren" Role="Gefährdungsfaktoren" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BE_Rechtslage_GefaehrdungsbeurteilungModelStoreContainer" CdmEntityContainer="BE_Rechtslage_GefaehrdungsbeurteilungEntities">
+          <EntitySetMapping Name="Anforderungen">
+            <EntityTypeMapping TypeName="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen">
+              <MappingFragment StoreEntitySet="Anforderungen">
+                <ScalarProperty Name="AnforderungenText" ColumnName="Anforderungen" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GesetzID" ColumnName="GesetzID" />
+                <ScalarProperty Name="Paragraph" ColumnName="Paragraph" />
+                <ScalarProperty Name="UebergeordneteID" ColumnName="UebergeordneteID" />
+                <ScalarProperty Name="Besondere_Fachkunde" ColumnName="Besondere Fachkunde" />
+                <ScalarProperty Name="Daten" ColumnName="Daten" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gesetze">
+            <EntityTypeMapping TypeName="BE_Rechtslage_GefaehrdungsbeurteilungModel.Gesetze">
+              <MappingFragment StoreEntitySet="Gesetze">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="Gesetz" ColumnName="Gesetz" />
+                <ScalarProperty Name="Kurzform" ColumnName="Kurzform" />
+                <ScalarProperty Name="Stand" ColumnName="Stand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rechtstypen">
+            <EntityTypeMapping TypeName="BE_Rechtslage_GefaehrdungsbeurteilungModel.Rechtstypen">
+              <MappingFragment StoreEntitySet="Rechtstypen">
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paragraphen">
+            <EntityTypeMapping TypeName="BE_Rechtslage_GefaehrdungsbeurteilungModel.Paragraphen">
+              <MappingFragment StoreEntitySet="Paragraphen">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
+                <ScalarProperty Name="Zusatz" ColumnName="Zusatz" />
+                <ScalarProperty Name="Paragraph" ColumnName="Paragraph" />
+                <ScalarProperty Name="GesetzID" ColumnName="GesetzID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bezug">
+            <EntityTypeMapping TypeName="BE_Rechtslage_GefaehrdungsbeurteilungModel.Bezug">
+              <MappingFragment StoreEntitySet="Bezug">
+                <ScalarProperty Name="BezugText" ColumnName="Bezug" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gefährdungsfaktoren">
+            <EntityTypeMapping TypeName="BE_Rechtslage_GefaehrdungsbeurteilungModel.Gefährdungsfaktoren">
+              <MappingFragment StoreEntitySet="Gefährdungsfaktoren">
+                <ScalarProperty Name="Merkmale" ColumnName="Merkmale" />
+                <ScalarProperty Name="Gefährdungsfaktor" ColumnName="Gefährdungsfaktor" />
+                <ScalarProperty Name="Nummer" ColumnName="Nummer" />
+                <ScalarProperty Name="Kategorie" ColumnName="Kategorie" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GefährdungsfaktorenKategorien">
+            <EntityTypeMapping TypeName="BE_Rechtslage_GefaehrdungsbeurteilungModel.GefährdungsfaktorenKategorien">
+              <MappingFragment StoreEntitySet="GefährdungsfaktorenKategorien">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Nummer" ColumnName="Nummer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Anforderungen_Bezug" TypeName="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Bezug" StoreEntitySet="Anforderungen-Bezug">
+            <EndProperty Name="Bezug">
+              <ScalarProperty Name="ID" ColumnName="BezugID" />
+            </EndProperty>
+            <EndProperty Name="Anforderungen">
+              <ScalarProperty Name="ID" ColumnName="AnforderungenID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Anforderungen_Gefährdungsfaktoren" TypeName="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Gefährdungsfaktoren" StoreEntitySet="Anforderungen-Gefährdungsfaktoren">
+            <EndProperty Name="Gefährdungsfaktoren">
+              <ScalarProperty Name="ID" ColumnName="GefährdungsfaktorenID" />
+            </EndProperty>
+            <EndProperty Name="Anforderungen">
+              <ScalarProperty Name="ID" ColumnName="AnforderungenID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
