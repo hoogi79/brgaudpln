@@ -240,3 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# Connection String Info in separate file
+ConnectionConfig.config

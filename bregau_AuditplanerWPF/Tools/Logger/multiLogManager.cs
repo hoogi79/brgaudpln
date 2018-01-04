@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace bregau_AuditplanerWPF.Tools.Logger
 {
@@ -13,7 +12,7 @@ namespace bregau_AuditplanerWPF.Tools.Logger
     /// eine Status-Logbar sein. Die einzelnen Instanzen eines die Schnittstellen iLogger 
     /// implementierenden Loggers können dem multiLogManager über Add bzw. Remove hinzugefügt bzw. entfernt werden. 
     /// </summary>
-    class multiLogManager : iProgressLogger
+    public class multiLogManager : iProgressLogger
     {
         private List<iLogger> p_loggers = new List<iLogger>();
         private int p_progress = 0;
@@ -79,7 +78,7 @@ namespace bregau_AuditplanerWPF.Tools.Logger
             set { } /// Die LogLevel der anghängten Logger müssen individuell angepasst werden. 
         }
 
-        public int Progress
+        public double Progress
         {
             get
             {
@@ -130,10 +129,10 @@ namespace bregau_AuditplanerWPF.Tools.Logger
             } catch (ArgumentNullException) { return new List<LogMessage>(); }
         }
 
-        public bool Show(System.Windows.Forms.Form owner)
-        {
-            return this.p_loggers.Find(x => x.Show(owner) != false)!=null; // Sucht den ersten Logger der sich anzeigen lässt (Show gibt nicht false zurück), falls keiner gefunden, dann wird Null zurückgegeben.
-        }
+        //public bool Show(System.Windows.Window owner)
+        //{
+        //    return this.p_loggers.Find(x => x.Show(owner) != false)!=null; // Sucht den ersten Logger der sich anzeigen lässt (Show gibt nicht false zurück), falls keiner gefunden, dann wird Null zurückgegeben.
+        //}
         #endregion
 
     }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace bregau_Auditplaner.Tools.Logger
+namespace bregau_AuditplanerWPF.Tools.Logger
 {
     public partial class simpleLoggerForm : Form, iLogger
     {

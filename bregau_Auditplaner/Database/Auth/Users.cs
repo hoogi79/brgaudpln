@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bregau_Auditplaner.Database.Auth
+namespace bregau_AuditplanerWPF.Database.Auth
 {
     class User
     {
@@ -16,9 +16,6 @@ namespace bregau_Auditplaner.Database.Auth
         public string PasswordHash { get; set; }
         public List<Group> Groups { get; set; }
         public bool Enabled { get; set; } = true;
-        public string Test { get; set; }
-        public string SuperTest { get; set; }
-        public int Intelligence { get; set;}
     }
 
     class Group

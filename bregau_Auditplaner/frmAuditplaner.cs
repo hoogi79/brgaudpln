@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace bregau_Auditplaner
+namespace bregau_AuditplanerWPF
 {
     public partial class frmAuditplaner : Form
     {
@@ -87,6 +87,9 @@ namespace bregau_Auditplaner
             if (dr == DialogResult.OK)
             {
                 Program.connectionString = formConnectionSetup.ConnectionString;
+                // Weitere Tests für DEBUG
+                if (Database.SQLInteractionManager.checkIfDbIsEmpty(Program.connectionString))
+                    System.Windows.Forms.MessageBox.Show("Leere Datenbank");
             }
             
         }
@@ -98,8 +101,11 @@ namespace bregau_Auditplaner
 
         private void datenbankToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-           if (Program.connectionString != null)
+           if (Program.connectionString != null && Database.EFInteractionManager.checkIfExists(typeof(Database.bregauDbContext)))
             {
+                //if (Database.EFInteractionManager.checkForPendingMigrations(typeof(Database.bregauDbContext)))
+                //    System.Windows.Forms.MessageBox.Show("Migration notwendig");
+
                 Database.bregauDbContext bregauDbContext = new Database.bregauDbContext();
                
                 bregauDbContext.Users.Add(new Database.Auth.User { Login = "Slytherin", Name = "Theo", FamilyName = "Test", PasswordHash="000" });

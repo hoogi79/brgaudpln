@@ -10,20 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace bregau_AuditplanerWPF
+namespace bregau_AuditplanerWPF.Admin
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Interaktionslogik für frmConnectionString.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class frmConnectionString : Window
     {
-        public MainWindow()
+        public frmConnectionString()
         {
             InitializeComponent();
-            
         }
     }
 }

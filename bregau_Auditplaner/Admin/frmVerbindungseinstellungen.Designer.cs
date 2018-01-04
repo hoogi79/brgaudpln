@@ -1,4 +1,4 @@
-﻿namespace bregau_Auditplaner.Admin
+﻿namespace bregau_AuditplanerWPF.Admin
 {
     partial class frmVerbindungseinstellungen
     {
@@ -277,7 +277,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::bregau_Auditplaner.Properties.Resources._3s;
+            this.pictureBox1.Image = global::bregau_AuditplanerWPF.Properties.Resources._3s;
             this.pictureBox1.Location = new System.Drawing.Point(415, 29);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(24, 24);

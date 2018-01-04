@@ -8,13 +8,11 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 
 
-namespace bregau_Auditplaner.Database
+namespace bregau_AuditplanerWPF.Database
 {
     class SQLInteractionManager
     {
         private static SqlDataSourceEnumerator instances = null;
-
-        // New comment
 
         /// <summary>
         /// Sucht nach SQL Server Instanzen
@@ -34,19 +32,14 @@ namespace bregau_Auditplaner.Database
         /// <summary>
         /// Sucht nach Datenbanken auf dem angegebenen Server 
         /// </summary>
-        /// <param name="Server"></param>
-        /// <param name="Login"></param>
-        /// <param name="Password"></param>
+        /// <param name="connectionString"></param>
         /// <returns>Gibt eine Liste von String zurück die die Namen der Datenbanken enthält.</returns>
-        public static List<string> FindDataBase(string Server, string Login, string Password)
+        public static List<string> FindDataBase(string connectionString)
         {
             List<string> retDBList = new List<string>();
-            SqlConnectionStringBuilder sqsb = new SqlConnectionStringBuilder();
-            sqsb.Password = Password;
-            sqsb.UserID = Login;
-            sqsb.DataSource = Server;
-            sqsb.IntegratedSecurity = false;
+            SqlConnectionStringBuilder sqsb = new SqlConnectionStringBuilder(connectionString);
             sqsb.ConnectTimeout = 5;
+            sqsb.Remove("Initial Catalog");
 
             DataTable tblDatabases;
             try
@@ -139,11 +132,11 @@ namespace bregau_Auditplaner.Database
         public static bool checkFullAccessToDB(string connectionString)
         {
             AccessLevel access = AccessLevel.NONE;
-            SqlConnectionStringBuilder sqsb = new SqlConnectionStringBuilder(connectionString);
+            //SqlConnectionStringBuilder sqsb = new SqlConnectionStringBuilder(connectionString);
 
             try
             {
-                SqlConnection sqlConn = new SqlConnection(sqsb.ConnectionString);
+                SqlConnection sqlConn = new SqlConnection(connectionString);
                 sqlConn.Open();
 
                 SqlCommand sqlCom = new SqlCommand("SELECT * FROM fn_my_permissions(\'dbo\', \'SCHEMA\')", sqlConn);
@@ -180,6 +173,35 @@ namespace bregau_Auditplaner.Database
         }
 
         /// <summary>
+        /// Testet ob die im ConnectionString angegebene Datenbank leer, also ohne Tabellen ist.
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns>Gibt <c>wahr</c> zurück, falls die Tabelle leer ist.</returns>
+        public static bool checkIfDbIsEmpty(string connectionString)
+        {
+            try
+            {
+                SqlConnection sqlConn = new SqlConnection(connectionString);
+                sqlConn.Open();
+
+                SqlCommand sqlCom = new SqlCommand("SELECT COUNT(name)FROM sysobjects WHERE xtype = 'U'", sqlConn);
+                SqlDataReader sdr;
+                sqlCom.CommandTimeout = 5;
+                sdr = sqlCom.ExecuteReader();
+
+                if (sdr.HasRows)
+                {
+                    sdr.Read();
+                    if ((int)sdr[0] > 0)
+                        return false;
+                }
+                sqlConn.Close();
+            }
+            catch { throw; }
+            return true;
+        }
+
+        /// <summary>
         /// Erzeugt eine Datenbank mit dem im ConnectionString angegebenen Namen. 
         /// Es darf kein Lock auf die model Systemdatenbank bestehen. Auf eine Freigabe wird max. 2 s gewartet.
         /// </summary>
@@ -198,18 +220,18 @@ namespace bregau_Auditplaner.Database
                 sqlConn = new SqlConnection(sqsb.ConnectionString);
                 sqlConn.Open();
 
-                string queryString = string.Format("SET LOCK_TIMEOUT 5000; CREATE DATABASE {0}", dbName.Trim().Replace(" ", ""));
-                //string queryString = string.Format("SET LOCK_TIMEOUT 2000; IF NOT EXISTS(Select * from sys.databases where name = N'{0}') CREATE DATABASE {0}", dbName.Trim().Replace(" ", ""));
+                //string queryString = string.Format("SET LOCK_TIMEOUT 2000; CREATE DATABASE {0}", dbName.Trim().Replace(" ", ""));
+                string queryString = string.Format("SET LOCK_TIMEOUT 2000; IF NOT EXISTS(Select * from sys.databases where name = N'{0}') CREATE DATABASE {0}", dbName.Trim().Replace(" ", ""));
 
                 SqlCommand sqlCom = new SqlCommand(queryString, sqlConn);
-                sqlCom.CommandTimeout = 5;
+                sqlCom.CommandTimeout = 7;
                 sqlCom.ExecuteNonQuery();
 
                 sqlConn.Close();
 
                 // Wait for Database to be created and Schema Access is set-up. 
                 int timeOut = 0;
-                while (!checkCanConnect(connectionString) && timeOut < 21)
+                while (timeOut < 11) //!checkCanConnect(connectionString) && 
                 {
                     System.Threading.Thread.Sleep(250);
                     timeOut++;

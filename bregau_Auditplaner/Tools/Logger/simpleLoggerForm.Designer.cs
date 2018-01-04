@@ -1,4 +1,4 @@
-﻿namespace bregau_Auditplaner.Tools.Logger
+﻿namespace bregau_AuditplanerWPF.Tools.Logger
 {
     partial class simpleLoggerForm
     {

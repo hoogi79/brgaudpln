@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bregau_AuditplanerWPF.Tools.Logger
 {
-    interface iLogger
+    public interface iLogger
     {
 
         /// <summary>
@@ -25,12 +25,12 @@ namespace bregau_AuditplanerWPF.Tools.Logger
         /// </summary>
         List<LogMessage> Log();
 
-        /// <summary>
-        /// Ruft eine irgendgeartete Anzeige Funktion des Logger auf.
-        /// </summary>
-        /// <param name="owner">Das Hauptfenster an dem die Ausgabe eingehängt werden soll, oder null</param>
-        /// <returns>Gibt false im Falle es eines Fehlers zurück oder falls keine Ausgabefunktion definiert ist</returns>
-        bool Show(System.Windows.Forms.Form owner);
+        ///// <summary>
+        ///// Ruft eine irgendgeartete Anzeige Funktion des Logger auf.
+        ///// </summary>
+        ///// <param name="owner">Das Hauptfenster an dem die Ausgabe eingehängt werden soll, oder null</param>
+        ///// <returns>Gibt false im Falle es eines Fehlers zurück oder falls keine Ausgabefunktion definiert ist</returns>
+        //bool Show(System.Windows.Window owner);
 
         /// <summary>
         /// Fügt dem Logger eine Nachricht hinzu

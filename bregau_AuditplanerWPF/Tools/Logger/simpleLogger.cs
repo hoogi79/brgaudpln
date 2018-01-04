@@ -27,23 +27,18 @@ namespace bregau_AuditplanerWPF.Tools.Logger
 
         public bool AppendMessage(DateTime TimeStamp, string Message, LogLevel ll)
         {
-            throw new NotImplementedException();
+            if (TimeStamp != null && Message != null && Message.Length > 0 && ll >= LogLevel)
+                return this.AppendMessage(new LogMessage(TimeStamp, Message, ll));
+            return false;
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            listMessages.Clear();
         }
 
-        public List<LogMessage> Log()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Show(System.Windows.Forms.Form owner)
-        {
-            return false;
-        }
+        public List<LogMessage> Log() => listMessages;
+        
 
         /// <summary>
         /// Klassen Destruktor. Wird beim Löschen der Klasse aufgerufen.

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace bregau_Auditplaner.Properties {
+namespace bregau_AuditplanerWPF.Properties {
     using System;
     
     

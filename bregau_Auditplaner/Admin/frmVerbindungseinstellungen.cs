@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace bregau_Auditplaner.Admin
+namespace bregau_AuditplanerWPF.Admin
 {
     public partial class frmVerbindungseinstellungen : Form
     {
@@ -35,6 +35,8 @@ namespace bregau_Auditplaner.Admin
         /// Erlaubt das Erstellen von neuen Datenbanken
         /// </summary>
         public bool AllowCreate { get; set; } = false;
+
+        public System.Data.Entity.DbContext DbContext { get; private set; } = null;
 
         /// <summary>
         /// Überprüft die Eingaben der einzelnen Felder und gibt Steuerelement frei 
@@ -66,13 +68,13 @@ namespace bregau_Auditplaner.Admin
             string encryptedVerbindungString = null;
             if (TryFromSettings)
             {
-                encryptedVerbindungString = bregau_Auditplaner.Properties.Settings.Default.VerbindungString;
+                encryptedVerbindungString = bregau_AuditplanerWPF.Properties.Settings.Default.VerbindungString;
             }
             else
             {
                 try
                 {
-                    encryptedVerbindungString = bregau_Auditplaner.Properties.Resources.ResourceManager.GetString("Verbindung");
+                    encryptedVerbindungString = bregau_AuditplanerWPF.Properties.Resources.ResourceManager.GetString("Verbindung");
                 }
                 catch
                 {
@@ -123,9 +125,12 @@ namespace bregau_Auditplaner.Admin
             ValidateSettings();
         }
 
-        public frmVerbindungseinstellungen(bool AdminMode = false)
+        public frmVerbindungseinstellungen(System.Data.Entity.DbContext dBContext, bool AdminMode = false)
         {
+            if (DbContext == null)
+                throw (new ArgumentNullException());
             InitializeComponent();
+            this.DbContext = dBContext;
             this.SaveToDisk = AdminMode;
             this.AllowCreate = AdminMode;
             this.Text = AdminMode ? "Verbindungszeichenfolge erstellen" : " Eine Datenbank auswählen";
@@ -143,9 +148,16 @@ namespace bregau_Auditplaner.Admin
         {
             cmbDataBase.Items.Clear();
             List<string> databases;
+            System.Data.SqlClient.SqlConnectionStringBuilder sqsb = new System.Data.SqlClient.SqlConnectionStringBuilder();
+
+            sqsb.DataSource = cmbSQLServer.Text;
+            sqsb.UserID = txtLogin.Text;
+            sqsb.Password = txtPassword.Text;
+            sqsb.IntegratedSecurity = false;
+            
             try
             {
-                databases = Database.SQLInteractionManager.FindDataBase(cmbSQLServer.Text, txtLogin.Text, txtPassword.Text);
+                databases = Database.SQLInteractionManager.FindDataBase(sqsb.ConnectionString);
             } catch (Exception ex)
             {
                 Program.mainLogger.AppendMessage(DateTime.Now, ex.Message, Tools.Logger.LogLevel.Error);
@@ -198,6 +210,8 @@ namespace bregau_Auditplaner.Admin
 
         private void btnSaveAs_Click(object sender, EventArgs e)
         {
+            bool isNewDataBase = false;
+
             if (backgroundWorker1.IsBusy)
                 backgroundWorker1.CancelAsync();
 
@@ -208,6 +222,7 @@ namespace bregau_Auditplaner.Admin
             connectionStringBuilder.Password = txtPassword.Text;
             connectionStringBuilder.IntegratedSecurity = false;
 
+            
 
             /* First check if database exists (or user has no right to "CONNECT"). */
             if (cmbDataBase.FindString(cmbDataBase.Text) == -1)
@@ -217,7 +232,11 @@ namespace bregau_Auditplaner.Admin
                     {
                         DialogResult dr = System.Windows.Forms.MessageBox.Show("Datenbank erzeugen?", "Datenbank existiert nicht.", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                         if (dr == DialogResult.OK)
+                        {
                             Database.SQLInteractionManager.createDatabase(connectionStringBuilder.ConnectionString);
+                            isNewDataBase = true;
+                        }
+                            
                         else
                             return;
                     }
@@ -241,10 +260,25 @@ namespace bregau_Auditplaner.Admin
             }
             else
             {
+#if DEBUG
                 Console.WriteLine("Hat vollen Zugriff. Setze DialogResult auf OK");
+#endif
                 btnSaveAs.DialogResult = DialogResult.OK;
             }
-                
+
+            // If database is not newly created, check if empty (and warn) 
+            if (!isNewDataBase && Database.SQLInteractionManager.checkIfDbIsEmpty(connectionStringBuilder.ConnectionString))
+            {
+                DialogResult dr = System.Windows.Forms.MessageBox.Show
+                    (
+                        "Datenbank leer. Verwenden dieser Datenbank wird einen neuen Datenstand erzeugen",
+                        "Datenbank ohne Daten.",
+                        MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Question
+                        );
+                if (dr == DialogResult.Cancel)
+                    return;
+            }
 
             if (aesCrypt == null)
                 aesCrypt = new Tools.Encryption.AESEncrypter();
@@ -279,8 +313,8 @@ namespace bregau_Auditplaner.Admin
                 }
             }
 
-            bregau_Auditplaner.Properties.Settings.Default.VerbindungString = serializedECD;
-            bregau_Auditplaner.Properties.Settings.Default.Save();
+            bregau_AuditplanerWPF.Properties.Settings.Default.VerbindungString = serializedECD;
+            bregau_AuditplanerWPF.Properties.Settings.Default.Save();
 
             this.ConnectionString = connectionStringBuilder.ConnectionString;
 

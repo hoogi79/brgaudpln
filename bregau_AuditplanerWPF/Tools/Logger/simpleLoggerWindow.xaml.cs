@@ -10,20 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace bregau_AuditplanerWPF
+namespace bregau_AuditplanerWPF.Tools.Logger
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Interaktionslogik für simpleLoggerWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class simpleLoggerWindow : Window
     {
-        public MainWindow()
+        public simpleLoggerWindow()
         {
             InitializeComponent();
-            
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace bregau_Auditplaner
+namespace bregau_AuditplanerWPF
 {
     static class Program
     {

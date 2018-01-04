@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="bregau_Auditplaner.exe" size="189432">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="bregau_Auditplaner.exe" size="171512">
       <assemblyIdentity name="bregau_Auditplaner" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UoBXfeCa1rqe8Iksv3B0hsASIdd0rTKwl4Tyg7p3ipQ=</dsig:DigestValue>
+        <dsig:DigestValue>1WmWvjhn9ieSfGgT1Av0FZhP2xClKzYvIpPT9MmU+lk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

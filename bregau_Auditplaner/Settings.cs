@@ -1,4 +1,4 @@
-﻿namespace bregau_Auditplaner.Properties {
+﻿namespace bregau_AuditplanerWPF.Properties {
     
     
     // Diese Klasse ermöglicht die Behandlung bestimmter Ereignisse der Einstellungsklasse:

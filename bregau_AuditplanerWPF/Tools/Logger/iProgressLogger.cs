@@ -11,6 +11,6 @@ namespace bregau_AuditplanerWPF.Tools.Logger
         /// <summary>
         /// Der Fortschrittswert. Der Wertebereich liegt zwischen 0 und 100 (MOD Wert). Erlaubt ist auch -1
         /// </summary>
-        int Progress { get; set; }
+        double Progress { get; set; }
     }
 }

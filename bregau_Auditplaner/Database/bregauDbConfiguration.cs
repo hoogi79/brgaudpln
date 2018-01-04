@@ -8,15 +8,14 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.SqlServer;
 using System.Data.Entity.Infrastructure.Interception;
 
-//namespace MoppelKotze
-namespace bregau_Auditplaner.Database
+namespace bregau_AuditplanerWPF.Database
 {
     class bregauDbConfiguration : DbConfiguration
     {
         public bregauDbConfiguration()
         {
             SetDefaultConnectionFactory(new bregauDbConnectionFactory(Program.connectionString));
-            SetDatabaseInitializer<bregauDbContext>(new MigrateDatabaseToLatestVersion<bregauDbContext,Migrations.Configuration>());
+            //SetDatabaseInitializer<bregauDbContext>(new MigrateDatabaseToLatestVersion<bregauDbContext,Migrations.Configuration>());
 #if DEBUG
             string path = System.IO.Path.GetTempPath() + "dblogger.txt";
             AddInterceptor(new DatabaseLogger(path,false));

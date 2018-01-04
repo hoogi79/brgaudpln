@@ -1,4 +1,4 @@
-﻿namespace bregau_Auditplaner
+﻿namespace bregau_AuditplanerWPF
 {
     partial class frmAuditplaner
     {

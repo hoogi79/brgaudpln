@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bregau_Auditplaner.Database
+namespace bregau_AuditplanerWPF.Database
 {
     class bregauDbConnectionFactory : IDbConnectionFactory
     {
