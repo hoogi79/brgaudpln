@@ -13,11 +13,42 @@ namespace AnfGefB
 {
     public partial class frmEingabeAnforderungen : Form
     {
-        private List<Anforderungen> AnforderungenSource = null;
+        BE_Rechtslage_GefaehrdungsbeurteilungEntities _context;
 
         public frmEingabeAnforderungen()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            _context = new BE_Rechtslage_GefaehrdungsbeurteilungEntities();
+            _context.Anforderungen.Load();
+            _context.Gesetze.Load();
+            _context.Paragraphen.Load();
+
+            this.anforderungenBindingSource.DataSource = _context.Anforderungen.Local.ToBindingList();
+            //this.gesetzeBindingSource.DataSource = _context.Gesetze.Local.ToBindingList();
+            //this.paragraphenBindingSource.DataSource = _context.Paragraphen.Local.ToBindingList();
+
+            cboGesetz.DataSource = _context.Gesetze.Local.ToList();
+            cboGesetz.DisplayMember = "Gesetz";
+            cboGesetz.ValueMember = "ID";
+
+            //cboParagraph.DataSource = this.paragraphenBindingSource;
+            //cboParagraph.DisplayMember = "Paragraph";
+            //cboParagraph.ValueMember = "Paragraph";
+
+
+
+
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            this._context.Dispose();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -25,23 +56,23 @@ namespace AnfGefB
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            BE_Rechtslage_GefaehrdungsbeurteilungEntities context = new BE_Rechtslage_GefaehrdungsbeurteilungEntities();
-            var fstAnforderung = context.Anforderungen.Find(209);
-            if (fstAnforderung != null)
-                textBox1.Text = fstAnforderung.ID.ToString() + ": " + fstAnforderung.AnforderungenText;
-        }
-
         private void btnPopulateTable_Click(object sender, EventArgs e)
         {
-            using (BE_Rechtslage_GefaehrdungsbeurteilungEntities context = new BE_Rechtslage_GefaehrdungsbeurteilungEntities())
-            {
-                this.AnforderungenSource= context.Anforderungen.Include(s => s.Gesetze).Include(s => s.Bezug).Include(s => s.Gefährdungsfaktoren).ToList();
-                dataGridView1.DataSource = this.AnforderungenSource;
-            }
+            //Anforderungen temp = (Anforderungen) this.bindingSource1.Current;
+            //List<Paragraphen> tempPar = temp.Gesetze.Paragraphen.ToList();
+            //string qryString = "SELECT Paragraph FROM Paragraphen WHERE GesetzID= " + temp.GesetzID.ToString();
+            //int[] tempParAsInt = _context.Database.SqlQuery<int>(qryString).ToArray<int>();
+            //var temp = ((Anforderungen)this.bindingSource1.Current).Gesetze.ParagraphenListe;
 
+        }
 
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+            //paragraphenBindingSource.DataSource = _context.Paragraphen.Local.ToBindingList().Where(p => p.GesetzID == ((Anforderungen)bindingSource1.Current).GesetzID);
         }
     }
 }

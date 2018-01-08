@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace AnfGefB
 {
-    static class AnfGefB
+    static class main
     {
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.

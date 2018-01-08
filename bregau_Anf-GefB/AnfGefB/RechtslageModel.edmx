@@ -74,7 +74,7 @@
             <PropertyRef Name="Paragraph" />
             <PropertyRef Name="Zusatz" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GesetzID" Type="int" Nullable="false" />
           <Property Name="Paragraph" Type="int" Nullable="false" />
           <Property Name="Zusatz" Type="nvarchar" MaxLength="15" Nullable="false" />
