@@ -27,20 +27,21 @@ namespace AnfGefB
             _context.Anforderungen.Load();
             _context.Gesetze.Load();
             _context.Paragraphen.Load();
+            _context.Bezug.Load();
 
             this.anforderungenBindingSource.DataSource = _context.Anforderungen.Local.ToBindingList();
-            //this.gesetzeBindingSource.DataSource = _context.Gesetze.Local.ToBindingList();
-            //this.paragraphenBindingSource.DataSource = _context.Paragraphen.Local.ToBindingList();
+            this.setParagraphenPool();
 
             cboGesetz.DataSource = _context.Gesetze.Local.ToList();
             cboGesetz.DisplayMember = "Gesetz";
             cboGesetz.ValueMember = "ID";
 
-            //cboParagraph.DataSource = this.paragraphenBindingSource;
-            //cboParagraph.DisplayMember = "Paragraph";
-            //cboParagraph.ValueMember = "Paragraph";
+            cboParagraph.DataSource = this.paragraphenBindingSource;
+            cboParagraph.DisplayMember = "Paragraph";
+            cboParagraph.ValueMember = "Paragraph";
 
-
+            //lstBezuege.DataSource = this.anforderungenBindingSource;
+            //lstBezuege.DisplayMember = "Bezug.BezugText";
 
 
         }
@@ -63,16 +64,26 @@ namespace AnfGefB
             //string qryString = "SELECT Paragraph FROM Paragraphen WHERE GesetzID= " + temp.GesetzID.ToString();
             //int[] tempParAsInt = _context.Database.SqlQuery<int>(qryString).ToArray<int>();
             //var temp = ((Anforderungen)this.bindingSource1.Current).Gesetze.ParagraphenListe;
-
+            var temp = ((Anforderungen)this.anforderungenBindingSource.Current).Bezug.Select( b => b.BezugText).ToArray();
+            this.lstBezuege.Items.Clear();
+            this.lstBezuege.Items.AddRange(temp);
         }
 
         private void btnLoadData_Click(object sender, EventArgs e)
         {
         }
 
-        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        private void anforderungenBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            //paragraphenBindingSource.DataSource = _context.Paragraphen.Local.ToBindingList().Where(p => p.GesetzID == ((Anforderungen)bindingSource1.Current).GesetzID);
+            this.setParagraphenPool();
+        }
+
+        /// <summary>
+        /// Sets the Data Source of the Binding Source for Paragraphen according to the currently selected Gesetz
+        /// </summary>
+        private void setParagraphenPool()
+        {
+            this.paragraphenBindingSource.DataSource = _context.Paragraphen.Local.ToBindingList().Where(p => p.GesetzID == ((Anforderungen)this.anforderungenBindingSource.Current).GesetzID);
         }
     }
 }

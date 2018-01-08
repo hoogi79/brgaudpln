@@ -29,35 +29,24 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEingabeAnforderungen));
             System.Windows.Forms.Label anforderungenTextLabel;
             System.Windows.Forms.Label kurzformLabel;
-            System.Windows.Forms.Label paragraphLabel;
             System.Windows.Forms.Label iDLabel;
             System.Windows.Forms.Label paragraphLabel1;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEingabeAnforderungen));
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cboParagraph = new System.Windows.Forms.ComboBox();
-            this.btnEditParagraph = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabBezug = new System.Windows.Forms.TabPage();
-            this.tabGFaktor = new System.Windows.Forms.TabPage();
-            this.tabDaten = new System.Windows.Forms.TabPage();
-            this.lblID = new System.Windows.Forms.Label();
-            this.cboGesetz = new System.Windows.Forms.ComboBox();
-            this.paragraphTextBox = new System.Windows.Forms.TextBox();
-            this.anforderungenTextTextBox = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLoadData = new System.Windows.Forms.Button();
             this.btnPopulateTable = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblHeading = new System.Windows.Forms.Label();
+            this.anforderungenDataGridView = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
@@ -72,8 +61,20 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.gesetzeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.anforderungenDataGridView = new System.Windows.Forms.DataGridView();
+            this.anforderungenTextTextBox = new System.Windows.Forms.TextBox();
+            this.cboGesetz = new System.Windows.Forms.ComboBox();
+            this.lblID = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabDaten = new System.Windows.Forms.TabPage();
+            this.tabGFaktor = new System.Windows.Forms.TabPage();
+            this.tabBezug = new System.Windows.Forms.TabPage();
+            this.btnEditParagraph = new System.Windows.Forms.Button();
+            this.cboParagraph = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lstBezuegePool = new System.Windows.Forms.ListBox();
+            this.lstBezuege = new System.Windows.Forms.ListBox();
+            this.btnAddBezug = new System.Windows.Forms.Button();
+            this.btnRemoveBezug = new System.Windows.Forms.Button();
             this.anforderungenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,70 +86,28 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paragraphenBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bezuegeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             anforderungenTextLabel = new System.Windows.Forms.Label();
             kurzformLabel = new System.Windows.Forms.Label();
-            paragraphLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
             paragraphLabel1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anforderungenDataGridView)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gesetzeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anforderungenDataGridView)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabBezug.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bezuegeBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // anforderungenTextLabel
-            // 
-            anforderungenTextLabel.AutoSize = true;
-            anforderungenTextLabel.Location = new System.Drawing.Point(12, 79);
-            anforderungenTextLabel.Name = "anforderungenTextLabel";
-            anforderungenTextLabel.Size = new System.Drawing.Size(83, 13);
-            anforderungenTextLabel.TabIndex = 0;
-            anforderungenTextLabel.Text = "Anforderungen :";
-            // 
-            // kurzformLabel
-            // 
-            kurzformLabel.AutoSize = true;
-            kurzformLabel.Location = new System.Drawing.Point(11, 16);
-            kurzformLabel.Name = "kurzformLabel";
-            kurzformLabel.Size = new System.Drawing.Size(43, 13);
-            kurzformLabel.TabIndex = 2;
-            kurzformLabel.Text = "Gesetz:";
-            // 
-            // paragraphLabel
-            // 
-            paragraphLabel.AutoSize = true;
-            paragraphLabel.Location = new System.Drawing.Point(395, 17);
-            paragraphLabel.Name = "paragraphLabel";
-            paragraphLabel.Size = new System.Drawing.Size(59, 13);
-            paragraphLabel.TabIndex = 4;
-            paragraphLabel.Text = "Paragraph:";
-            // 
-            // iDLabel
-            // 
-            iDLabel.AutoSize = true;
-            iDLabel.Location = new System.Drawing.Point(665, 17);
-            iDLabel.Name = "iDLabel";
-            iDLabel.Size = new System.Drawing.Size(21, 13);
-            iDLabel.TabIndex = 6;
-            iDLabel.Text = "ID:";
-            // 
-            // paragraphLabel1
-            // 
-            paragraphLabel1.AutoSize = true;
-            paragraphLabel1.Location = new System.Drawing.Point(395, 51);
-            paragraphLabel1.Name = "paragraphLabel1";
-            paragraphLabel1.Size = new System.Drawing.Size(59, 13);
-            paragraphLabel1.TabIndex = 13;
-            paragraphLabel1.Text = "Paragraph:";
             // 
             // BottomToolStripPanel
             // 
@@ -192,9 +151,9 @@
             this.tableLayoutPanel1.AutoScroll = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.anforderungenDataGridView, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -202,128 +161,10 @@
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(926, 677);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(926, 615);
             this.tableLayoutPanel1.TabIndex = 5;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(paragraphLabel1);
-            this.panel1.Controls.Add(this.cboParagraph);
-            this.panel1.Controls.Add(this.btnEditParagraph);
-            this.panel1.Controls.Add(this.tabControl1);
-            this.panel1.Controls.Add(this.lblID);
-            this.panel1.Controls.Add(this.cboGesetz);
-            this.panel1.Controls.Add(iDLabel);
-            this.panel1.Controls.Add(paragraphLabel);
-            this.panel1.Controls.Add(this.paragraphTextBox);
-            this.panel1.Controls.Add(kurzformLabel);
-            this.panel1.Controls.Add(anforderungenTextLabel);
-            this.panel1.Controls.Add(this.anforderungenTextTextBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 93);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(920, 603);
-            this.panel1.TabIndex = 4;
-            // 
-            // cboParagraph
-            // 
-            this.cboParagraph.FormattingEnabled = true;
-            this.cboParagraph.Location = new System.Drawing.Point(460, 48);
-            this.cboParagraph.Name = "cboParagraph";
-            this.cboParagraph.Size = new System.Drawing.Size(100, 21);
-            this.cboParagraph.TabIndex = 14;
-            // 
-            // btnEditParagraph
-            // 
-            this.btnEditParagraph.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditParagraph.Image = global::AnfGefB.Properties.Resources.Document_16x;
-            this.btnEditParagraph.Location = new System.Drawing.Point(566, 7);
-            this.btnEditParagraph.Name = "btnEditParagraph";
-            this.btnEditParagraph.Size = new System.Drawing.Size(33, 33);
-            this.btnEditParagraph.TabIndex = 13;
-            this.btnEditParagraph.UseVisualStyleBackColor = true;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabBezug);
-            this.tabControl1.Controls.Add(this.tabGFaktor);
-            this.tabControl1.Controls.Add(this.tabDaten);
-            this.tabControl1.Location = new System.Drawing.Point(19, 170);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(545, 182);
-            this.tabControl1.TabIndex = 12;
-            // 
-            // tabBezug
-            // 
-            this.tabBezug.Location = new System.Drawing.Point(4, 22);
-            this.tabBezug.Name = "tabBezug";
-            this.tabBezug.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBezug.Size = new System.Drawing.Size(537, 156);
-            this.tabBezug.TabIndex = 0;
-            this.tabBezug.Text = "Gefährdungsbezug";
-            this.tabBezug.UseVisualStyleBackColor = true;
-            // 
-            // tabGFaktor
-            // 
-            this.tabGFaktor.Location = new System.Drawing.Point(4, 22);
-            this.tabGFaktor.Name = "tabGFaktor";
-            this.tabGFaktor.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGFaktor.Size = new System.Drawing.Size(537, 156);
-            this.tabGFaktor.TabIndex = 1;
-            this.tabGFaktor.Text = "Gefährdungsfaktoren";
-            this.tabGFaktor.UseVisualStyleBackColor = true;
-            // 
-            // tabDaten
-            // 
-            this.tabDaten.Location = new System.Drawing.Point(4, 22);
-            this.tabDaten.Name = "tabDaten";
-            this.tabDaten.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDaten.Size = new System.Drawing.Size(537, 156);
-            this.tabDaten.TabIndex = 2;
-            this.tabDaten.Text = "Daten";
-            this.tabDaten.UseVisualStyleBackColor = true;
-            // 
-            // lblID
-            // 
-            this.lblID.BackColor = System.Drawing.SystemColors.Window;
-            this.lblID.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "ID", true));
-            this.lblID.Location = new System.Drawing.Point(692, 14);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(75, 20);
-            this.lblID.TabIndex = 11;
-            // 
-            // cboGesetz
-            // 
-            this.cboGesetz.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anforderungenBindingSource, "GesetzID", true));
-            this.cboGesetz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboGesetz.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboGesetz.FormattingEnabled = true;
-            this.cboGesetz.Location = new System.Drawing.Point(69, 13);
-            this.cboGesetz.Name = "cboGesetz";
-            this.cboGesetz.Size = new System.Drawing.Size(286, 21);
-            this.cboGesetz.TabIndex = 8;
-            // 
-            // paragraphTextBox
-            // 
-            this.paragraphTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Paragraph", true));
-            this.paragraphTextBox.Location = new System.Drawing.Point(460, 14);
-            this.paragraphTextBox.Name = "paragraphTextBox";
-            this.paragraphTextBox.Size = new System.Drawing.Size(100, 20);
-            this.paragraphTextBox.TabIndex = 5;
-            // 
-            // anforderungenTextTextBox
-            // 
-            this.anforderungenTextTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "AnforderungenText", true));
-            this.anforderungenTextTextBox.Location = new System.Drawing.Point(15, 95);
-            this.anforderungenTextTextBox.Multiline = true;
-            this.anforderungenTextTextBox.Name = "anforderungenTextTextBox";
-            this.anforderungenTextTextBox.Size = new System.Drawing.Size(545, 57);
-            this.anforderungenTextTextBox.TabIndex = 1;
             // 
             // flowLayoutPanel1
             // 
@@ -391,9 +232,31 @@
             this.lblHeading.TabIndex = 0;
             this.lblHeading.Text = "Anforderungen";
             // 
+            // anforderungenDataGridView
+            // 
+            this.anforderungenDataGridView.AutoGenerateColumns = false;
+            this.anforderungenDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.anforderungenDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9});
+            this.anforderungenDataGridView.DataSource = this.anforderungenBindingSource;
+            this.anforderungenDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.anforderungenDataGridView.Location = new System.Drawing.Point(3, 708);
+            this.anforderungenDataGridView.Name = "anforderungenDataGridView";
+            this.anforderungenDataGridView.Size = new System.Drawing.Size(920, 326);
+            this.anforderungenDataGridView.TabIndex = 14;
+            // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 702);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 640);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(926, 22);
             this.statusStrip1.TabIndex = 7;
@@ -406,13 +269,13 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tableLayoutPanel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(926, 677);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(926, 615);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.LeftToolStripPanelVisible = false;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(926, 702);
+            this.toolStripContainer1.Size = new System.Drawing.Size(926, 640);
             this.toolStripContainer1.TabIndex = 8;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -534,31 +397,196 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // anforderungenDataGridView
+            // anforderungenTextTextBox
             // 
-            this.anforderungenDataGridView.AutoGenerateColumns = false;
-            this.anforderungenDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.anforderungenDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9});
-            this.anforderungenDataGridView.DataSource = this.anforderungenBindingSource;
-            this.anforderungenDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.anforderungenDataGridView.Location = new System.Drawing.Point(3, 702);
-            this.anforderungenDataGridView.Name = "anforderungenDataGridView";
-            this.anforderungenDataGridView.Size = new System.Drawing.Size(920, 198);
-            this.anforderungenDataGridView.TabIndex = 14;
+            this.anforderungenTextTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "AnforderungenText", true));
+            this.anforderungenTextTextBox.Location = new System.Drawing.Point(15, 95);
+            this.anforderungenTextTextBox.Multiline = true;
+            this.anforderungenTextTextBox.Name = "anforderungenTextTextBox";
+            this.anforderungenTextTextBox.Size = new System.Drawing.Size(545, 57);
+            this.anforderungenTextTextBox.TabIndex = 1;
+            // 
+            // anforderungenTextLabel
+            // 
+            anforderungenTextLabel.AutoSize = true;
+            anforderungenTextLabel.Location = new System.Drawing.Point(12, 79);
+            anforderungenTextLabel.Name = "anforderungenTextLabel";
+            anforderungenTextLabel.Size = new System.Drawing.Size(83, 13);
+            anforderungenTextLabel.TabIndex = 0;
+            anforderungenTextLabel.Text = "Anforderungen :";
+            // 
+            // kurzformLabel
+            // 
+            kurzformLabel.AutoSize = true;
+            kurzformLabel.Location = new System.Drawing.Point(11, 16);
+            kurzformLabel.Name = "kurzformLabel";
+            kurzformLabel.Size = new System.Drawing.Size(43, 13);
+            kurzformLabel.TabIndex = 2;
+            kurzformLabel.Text = "Gesetz:";
+            // 
+            // iDLabel
+            // 
+            iDLabel.AutoSize = true;
+            iDLabel.Location = new System.Drawing.Point(665, 17);
+            iDLabel.Name = "iDLabel";
+            iDLabel.Size = new System.Drawing.Size(21, 13);
+            iDLabel.TabIndex = 6;
+            iDLabel.Text = "ID:";
+            // 
+            // cboGesetz
+            // 
+            this.cboGesetz.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anforderungenBindingSource, "GesetzID", true));
+            this.cboGesetz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboGesetz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboGesetz.FormattingEnabled = true;
+            this.cboGesetz.Location = new System.Drawing.Point(69, 13);
+            this.cboGesetz.Name = "cboGesetz";
+            this.cboGesetz.Size = new System.Drawing.Size(286, 21);
+            this.cboGesetz.TabIndex = 8;
+            // 
+            // lblID
+            // 
+            this.lblID.BackColor = System.Drawing.SystemColors.Window;
+            this.lblID.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "ID", true));
+            this.lblID.Location = new System.Drawing.Point(692, 14);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(75, 20);
+            this.lblID.TabIndex = 11;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabBezug);
+            this.tabControl1.Controls.Add(this.tabGFaktor);
+            this.tabControl1.Controls.Add(this.tabDaten);
+            this.tabControl1.Location = new System.Drawing.Point(19, 170);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(541, 226);
+            this.tabControl1.TabIndex = 12;
+            // 
+            // tabDaten
+            // 
+            this.tabDaten.Location = new System.Drawing.Point(4, 22);
+            this.tabDaten.Name = "tabDaten";
+            this.tabDaten.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDaten.Size = new System.Drawing.Size(533, 200);
+            this.tabDaten.TabIndex = 2;
+            this.tabDaten.Text = "Daten";
+            this.tabDaten.UseVisualStyleBackColor = true;
+            // 
+            // tabGFaktor
+            // 
+            this.tabGFaktor.Location = new System.Drawing.Point(4, 22);
+            this.tabGFaktor.Name = "tabGFaktor";
+            this.tabGFaktor.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGFaktor.Size = new System.Drawing.Size(533, 200);
+            this.tabGFaktor.TabIndex = 1;
+            this.tabGFaktor.Text = "Gefährdungsfaktoren";
+            this.tabGFaktor.UseVisualStyleBackColor = true;
+            // 
+            // tabBezug
+            // 
+            this.tabBezug.Controls.Add(this.btnRemoveBezug);
+            this.tabBezug.Controls.Add(this.btnAddBezug);
+            this.tabBezug.Controls.Add(this.lstBezuege);
+            this.tabBezug.Controls.Add(this.lstBezuegePool);
+            this.tabBezug.Location = new System.Drawing.Point(4, 22);
+            this.tabBezug.Name = "tabBezug";
+            this.tabBezug.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBezug.Size = new System.Drawing.Size(533, 200);
+            this.tabBezug.TabIndex = 0;
+            this.tabBezug.Text = "Gefährdungsbezug";
+            this.tabBezug.UseVisualStyleBackColor = true;
+            // 
+            // btnEditParagraph
+            // 
+            this.btnEditParagraph.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditParagraph.Image = global::AnfGefB.Properties.Resources.Document_16x;
+            this.btnEditParagraph.Location = new System.Drawing.Point(566, 7);
+            this.btnEditParagraph.Name = "btnEditParagraph";
+            this.btnEditParagraph.Size = new System.Drawing.Size(33, 33);
+            this.btnEditParagraph.TabIndex = 13;
+            this.btnEditParagraph.UseVisualStyleBackColor = true;
+            // 
+            // cboParagraph
+            // 
+            this.cboParagraph.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anforderungenBindingSource, "Paragraph", true));
+            this.cboParagraph.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboParagraph.FormattingEnabled = true;
+            this.cboParagraph.Location = new System.Drawing.Point(460, 14);
+            this.cboParagraph.Name = "cboParagraph";
+            this.cboParagraph.Size = new System.Drawing.Size(100, 21);
+            this.cboParagraph.TabIndex = 14;
+            // 
+            // paragraphLabel1
+            // 
+            paragraphLabel1.AutoSize = true;
+            paragraphLabel1.Location = new System.Drawing.Point(395, 17);
+            paragraphLabel1.Name = "paragraphLabel1";
+            paragraphLabel1.Size = new System.Drawing.Size(59, 13);
+            paragraphLabel1.TabIndex = 13;
+            paragraphLabel1.Text = "Paragraph:";
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(paragraphLabel1);
+            this.panel1.Controls.Add(this.cboParagraph);
+            this.panel1.Controls.Add(this.btnEditParagraph);
+            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Controls.Add(this.lblID);
+            this.panel1.Controls.Add(this.cboGesetz);
+            this.panel1.Controls.Add(iDLabel);
+            this.panel1.Controls.Add(kurzformLabel);
+            this.panel1.Controls.Add(anforderungenTextLabel);
+            this.panel1.Controls.Add(this.anforderungenTextTextBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 93);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(920, 609);
+            this.panel1.TabIndex = 4;
+            // 
+            // lstBezuegePool
+            // 
+            this.lstBezuegePool.FormattingEnabled = true;
+            this.lstBezuegePool.Location = new System.Drawing.Point(46, 49);
+            this.lstBezuegePool.Name = "lstBezuegePool";
+            this.lstBezuegePool.Size = new System.Drawing.Size(177, 147);
+            this.lstBezuegePool.TabIndex = 0;
+            // 
+            // lstBezuege
+            // 
+            this.lstBezuege.FormattingEnabled = true;
+            this.lstBezuege.Location = new System.Drawing.Point(305, 49);
+            this.lstBezuege.Name = "lstBezuege";
+            this.lstBezuege.Size = new System.Drawing.Size(177, 147);
+            this.lstBezuege.TabIndex = 1;
+            // 
+            // btnAddBezug
+            // 
+            this.btnAddBezug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddBezug.Location = new System.Drawing.Point(248, 49);
+            this.btnAddBezug.Name = "btnAddBezug";
+            this.btnAddBezug.Size = new System.Drawing.Size(33, 33);
+            this.btnAddBezug.TabIndex = 14;
+            this.btnAddBezug.Text = ">";
+            this.btnAddBezug.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveBezug
+            // 
+            this.btnRemoveBezug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveBezug.Location = new System.Drawing.Point(248, 99);
+            this.btnRemoveBezug.Name = "btnRemoveBezug";
+            this.btnRemoveBezug.Size = new System.Drawing.Size(33, 33);
+            this.btnRemoveBezug.TabIndex = 15;
+            this.btnRemoveBezug.Text = "<";
+            this.btnRemoveBezug.UseVisualStyleBackColor = true;
             // 
             // anforderungenBindingSource
             // 
             this.anforderungenBindingSource.DataSource = typeof(AnfGefB.Anforderungen);
+            this.anforderungenBindingSource.CurrentChanged += new System.EventHandler(this.anforderungenBindingSource_CurrentChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -620,22 +648,28 @@
             this.dataGridViewTextBoxColumn9.HeaderText = "Gefährdungsfaktoren";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             // 
+            // paragraphenBindingSource
+            // 
+            this.paragraphenBindingSource.DataSource = typeof(AnfGefB.Paragraphen);
+            // 
+            // bezuegeBindingSource
+            // 
+            this.bezuegeBindingSource.DataSource = typeof(AnfGefB.Bezug);
+            // 
             // frmEingabeAnforderungen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 724);
+            this.ClientSize = new System.Drawing.Size(926, 662);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "frmEingabeAnforderungen";
             this.Text = "frmEingabeAnforderungen";
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anforderungenDataGridView)).EndInit();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
@@ -644,9 +678,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gesetzeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anforderungenDataGridView)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabBezug.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bezuegeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -654,7 +692,6 @@
 
         #endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnLoadData;
         private System.Windows.Forms.Button btnPopulateTable;
@@ -668,8 +705,6 @@
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
-        private System.Windows.Forms.TextBox paragraphTextBox;
-        private System.Windows.Forms.TextBox anforderungenTextTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn gesetzIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn paragraphDataGridViewTextBoxColumn;
@@ -689,15 +724,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.BindingSource gesetzeBindingSource;
-        private System.Windows.Forms.ComboBox cboGesetz;
-        private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabBezug;
-        private System.Windows.Forms.TabPage tabGFaktor;
-        private System.Windows.Forms.TabPage tabDaten;
-        private System.Windows.Forms.Button btnEditParagraph;
-        private System.Windows.Forms.ComboBox cboParagraph;
         private System.Windows.Forms.BindingSource anforderungenBindingSource;
         private System.Windows.Forms.DataGridView anforderungenDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -710,5 +736,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox cboParagraph;
+        private System.Windows.Forms.Button btnEditParagraph;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabBezug;
+        private System.Windows.Forms.TabPage tabGFaktor;
+        private System.Windows.Forms.TabPage tabDaten;
+        private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.ComboBox cboGesetz;
+        private System.Windows.Forms.TextBox anforderungenTextTextBox;
+        private System.Windows.Forms.BindingSource paragraphenBindingSource;
+        private System.Windows.Forms.Button btnRemoveBezug;
+        private System.Windows.Forms.Button btnAddBezug;
+        private System.Windows.Forms.ListBox lstBezuege;
+        private System.Windows.Forms.ListBox lstBezuegePool;
+        private System.Windows.Forms.BindingSource bezuegeBindingSource;
     }
 }

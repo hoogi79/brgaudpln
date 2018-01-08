@@ -130,7 +130,9 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Anforderungen.datasource" />
+    <None Include="Properties\DataSources\Bezug.datasource" />
     <None Include="Properties\DataSources\Gesetze.datasource" />
+    <None Include="Properties\DataSources\Paragraphen.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
