@@ -24,7 +24,7 @@ namespace AnfGefB
         {
             base.OnLoad(e);
             _context = new BE_Rechtslage_GefaehrdungsbeurteilungEntities();
-            _context.Anforderungen.Load();
+            _context.Anforderungen.Include(b => b.Bezug).Include(b => b.Gesetze.Paragraphen).Load();
             _context.Gesetze.Load();
             _context.Paragraphen.Load();
             _context.Bezug.Load();
@@ -32,6 +32,7 @@ namespace AnfGefB
             this.anforderungenBindingSource.DataSource = _context.Anforderungen.Local.ToBindingList();
             this.setParagraphenPool();
 
+            // OK:
             cboGesetz.DataSource = _context.Gesetze.Local.ToList();
             cboGesetz.DisplayMember = "Gesetz";
             cboGesetz.ValueMember = "ID";
@@ -40,8 +41,10 @@ namespace AnfGefB
             cboParagraph.DisplayMember = "Paragraph";
             cboParagraph.ValueMember = "Paragraph";
 
-            //lstBezuege.DataSource = this.anforderungenBindingSource;
-            //lstBezuege.DisplayMember = "Bezug.BezugText";
+            //cboTest.DataSource = this.anforderungenBindingSource;
+            //cboTest.DisplayMember = "Gesetze.Paragraphen.Paragraph";
+            //cboTest.ValueMember = "Gesetze.Paragraphen.Paragraph";
+            
 
 
         }

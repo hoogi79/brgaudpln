@@ -17,13 +17,13 @@ namespace AnfGefB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Rechtstypen()
         {
-            this.Gesetze = new HashSet<Gesetze>();
+            this.Gesetze = new ObservableListSource<Gesetze>();
         }
     
         public int ID { get; set; }
         public string Typ { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Gesetze> Gesetze { get; set; }
+        public virtual ObservableListSource<Gesetze> Gesetze { get; set; }
     }
 }

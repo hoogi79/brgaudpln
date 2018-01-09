@@ -17,8 +17,8 @@ namespace AnfGefB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Anforderungen()
         {
-            this.Bezug = new HashSet<Bezug>();
-            this.Gefährdungsfaktoren = new HashSet<Gefährdungsfaktoren>();
+            this.Bezug = new ObservableListSource<Bezug>();
+            this.Gefährdungsfaktoren = new ObservableListSource<Gefährdungsfaktoren>();
         }
     
         public int ID { get; set; }
@@ -31,8 +31,8 @@ namespace AnfGefB
     
         public virtual Gesetze Gesetze { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bezug> Bezug { get; set; }
+        public virtual ObservableListSource<Bezug> Bezug { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Gefährdungsfaktoren> Gefährdungsfaktoren { get; set; }
+        public virtual ObservableListSource<Gefährdungsfaktoren> Gefährdungsfaktoren { get; set; }
     }
 }

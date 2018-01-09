@@ -17,13 +17,13 @@ namespace AnfGefB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bezug()
         {
-            this.Anforderungen = new HashSet<Anforderungen>();
+            this.Anforderungen = new ObservableListSource<Anforderungen>();
         }
     
         public int ID { get; set; }
         public string BezugText { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Anforderungen> Anforderungen { get; set; }
+        public virtual ObservableListSource<Anforderungen> Anforderungen { get; set; }
     }
 }

@@ -17,8 +17,8 @@ namespace AnfGefB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Gesetze()
         {
-            this.Anforderungen = new HashSet<Anforderungen>();
-            this.Paragraphen = new HashSet<Paragraphen>();
+            this.Anforderungen = new ObservableListSource<Anforderungen>();
+            this.Paragraphen = new ObservableListSource<Paragraphen>();
         }
     
         public int ID { get; set; }
@@ -28,9 +28,9 @@ namespace AnfGefB
         public System.DateTime Stand { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Anforderungen> Anforderungen { get; set; }
+        public virtual ObservableListSource<Anforderungen> Anforderungen { get; set; }
         public virtual Rechtstypen Rechtstypen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Paragraphen> Paragraphen { get; set; }
+        public virtual ObservableListSource<Paragraphen> Paragraphen { get; set; }
     }
 }
