@@ -39,7 +39,6 @@
             System.Windows.Forms.Label paragraphLabel;
             System.Windows.Forms.Label paragraphLabel2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEingabeAnforderungen));
-            System.Windows.Forms.Label paragraphLabel3;
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -53,6 +52,7 @@
             this.btnPopulateTable = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lstParagraph = new System.Windows.Forms.ListBox();
             this.paragraphTextBox = new System.Windows.Forms.TextBox();
             this.gesetzIDTextBox = new System.Windows.Forms.TextBox();
             this.iDComboBox = new System.Windows.Forms.ComboBox();
@@ -85,8 +85,8 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.paragraphenBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.paragraphListBox = new System.Windows.Forms.ListBox();
+            this.bsTest = new System.Windows.Forms.BindingSource(this.components);
+            this.bsTest2 = new System.Windows.Forms.BindingSource(this.components);
             this.anforderungenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,7 +105,6 @@
             gesetzIDLabel = new System.Windows.Forms.Label();
             paragraphLabel = new System.Windows.Forms.Label();
             paragraphLabel2 = new System.Windows.Forms.Label();
-            paragraphLabel3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -118,7 +117,8 @@
             this.toolStripContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTest2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -202,7 +202,7 @@
             // paragraphLabel2
             // 
             paragraphLabel2.AutoSize = true;
-            paragraphLabel2.Location = new System.Drawing.Point(573, 156);
+            paragraphLabel2.Location = new System.Drawing.Point(573, 172);
             paragraphLabel2.Name = "paragraphLabel2";
             paragraphLabel2.Size = new System.Drawing.Size(59, 13);
             paragraphLabel2.TabIndex = 20;
@@ -335,8 +335,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(paragraphLabel3);
-            this.panel1.Controls.Add(this.paragraphListBox);
+            this.panel1.Controls.Add(this.lstParagraph);
             this.panel1.Controls.Add(paragraphLabel2);
             this.panel1.Controls.Add(paragraphLabel);
             this.panel1.Controls.Add(this.paragraphTextBox);
@@ -361,6 +360,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(920, 431);
             this.panel1.TabIndex = 4;
+            // 
+            // lstParagraph
+            // 
+            this.lstParagraph.FormattingEnabled = true;
+            this.lstParagraph.Location = new System.Drawing.Point(576, 188);
+            this.lstParagraph.Name = "lstParagraph";
+            this.lstParagraph.Size = new System.Drawing.Size(108, 134);
+            this.lstParagraph.TabIndex = 21;
+            this.lstParagraph.SelectedIndexChanged += new System.EventHandler(this.lstParagraph_SelectedIndexChanged);
             // 
             // paragraphTextBox
             // 
@@ -470,6 +478,7 @@
             this.lstBezuege.Name = "lstBezuege";
             this.lstBezuege.Size = new System.Drawing.Size(177, 137);
             this.lstBezuege.TabIndex = 1;
+            this.lstBezuege.SelectedIndexChanged += new System.EventHandler(this.lstBezuege_SelectedIndexChanged);
             // 
             // lstBezuegePool
             // 
@@ -696,30 +705,6 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // paragraphenBindingSource1
-            // 
-            this.paragraphenBindingSource1.DataSource = typeof(AnfGefB.ObservableListSource<AnfGefB.Paragraphen>);
-            // 
-            // paragraphLabel3
-            // 
-            paragraphLabel3.AutoSize = true;
-            paragraphLabel3.Location = new System.Drawing.Point(668, 336);
-            paragraphLabel3.Name = "paragraphLabel3";
-            paragraphLabel3.Size = new System.Drawing.Size(59, 13);
-            paragraphLabel3.TabIndex = 20;
-            paragraphLabel3.Text = "Paragraph:";
-            // 
-            // paragraphListBox
-            // 
-            this.paragraphListBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.paragraphenBindingSource1, "Paragraph", true));
-            this.paragraphListBox.DataSource = this.paragraphenBindingSource1;
-            this.paragraphListBox.DisplayMember = "Paragraph";
-            this.paragraphListBox.FormattingEnabled = true;
-            this.paragraphListBox.Location = new System.Drawing.Point(733, 336);
-            this.paragraphListBox.Name = "paragraphListBox";
-            this.paragraphListBox.Size = new System.Drawing.Size(120, 95);
-            this.paragraphListBox.TabIndex = 21;
-            // 
             // anforderungenBindingSource
             // 
             this.anforderungenBindingSource.DataSource = typeof(AnfGefB.Anforderungen);
@@ -797,7 +782,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTest2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -868,7 +854,8 @@
         private System.Windows.Forms.TextBox kurzformTextBox;
         private System.Windows.Forms.TextBox paragraphTextBox;
         private System.Windows.Forms.TextBox gesetzIDTextBox;
-        private System.Windows.Forms.ListBox paragraphListBox;
-        private System.Windows.Forms.BindingSource paragraphenBindingSource1;
+        private System.Windows.Forms.ListBox lstParagraph;
+        private System.Windows.Forms.BindingSource bsTest;
+        private System.Windows.Forms.BindingSource bsTest2;
     }
 }

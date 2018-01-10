@@ -24,14 +24,20 @@ namespace AnfGefB
         {
             base.OnLoad(e);
             _context = new BE_Rechtslage_GefaehrdungsbeurteilungEntities();
-            _context.Anforderungen.Include(b => b.Bezug).Include(b => b.Gesetze.Paragraphen).Load();
+            var anf = _context.Anforderungen.Include(b => b.Bezug).Include(g => g.Gesetze.Paragraphen).ToList();
             _context.Gesetze.Load();
             _context.Paragraphen.Load();
-            _context.Bezug.Load();
+            //_context.Bezug.Load();
 
-            this.anforderungenBindingSource.DataSource = _context.Anforderungen.Local.ToBindingList();
-            var temp = _context.Anforderungen.Local.ToBindingList().Select(p => p.Gesetze.Paragraphen);
-            this.paragraphenBindingSource1.DataSource = temp;
+            this.anforderungenBindingSource.DataSource = anf;
+
+            //var temp = _context.Anforderungen.Local.ToBindingList().Select(p => p.Gesetze.Paragraphen);
+            this.bsTest.DataSource = anf;
+            this.bsTest.DataMember = "Gesetze";
+
+            //this.bsTest2.DataSource = bsTest;
+            //this.bsTest2.DataMember = "Paragraphen";
+
             this.setParagraphenPool();
 
             // OK:
@@ -43,12 +49,20 @@ namespace AnfGefB
             cboParagraph.DisplayMember = "Paragraph";
             cboParagraph.ValueMember = "Paragraph";
 
-            //cboTest.DataSource = this.anforderungenBindingSource;
-            //cboTest.DisplayMember = "Gesetze.Paragraphen.Paragraph";
-            //cboTest.ValueMember = "Gesetze.Paragraphen.Paragraph";
+            //lstParagraph.DataSource = anf;
+            //lstParagraph.DisplayMember = "Gesetze.Paragraphen.Paragraph";
 
 
-            
+            lstParagraph.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.anforderungenBindingSource, "Paragraph", true));
+            lstParagraph.DisplayMember = "Gesetze.Paragraphen.Paragraph";
+            lstParagraph.ValueMember = "Gesetze.Paragraphen.ID";
+            lstParagraph.DataSource = this.anforderungenBindingSource;
+            //this.lstParagraph.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.bsTest2, "Paragraph", true));
+
+
+
+
+
 
 
         }
@@ -91,6 +105,17 @@ namespace AnfGefB
         private void setParagraphenPool()
         {
             this.paragraphenBindingSource.DataSource = _context.Paragraphen.Local.ToBindingList().Where(p => p.GesetzID == ((Anforderungen)this.anforderungenBindingSource.Current).GesetzID);
+        }
+
+        private void lstBezuege_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var x = lstBezuege.SelectedItem;
+        }
+
+        private void lstParagraph_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var x = lstParagraph.SelectedItem;
+            var y = lstParagraph.SelectedValue;
         }
     }
 }

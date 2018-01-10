@@ -10,11 +10,11 @@ namespace AnfGefB
     public partial class Gesetze
     {
         [NotMapped]
-        public int[] ParagraphenListe
+        public List<int> ParagraphenListe
         {
             get
             {
-                return this.Paragraphen.Select(p => p.Paragraph).ToArray();
+                return this.Paragraphen.Select(p => p.Paragraph).ToList();
             }
         }
     }

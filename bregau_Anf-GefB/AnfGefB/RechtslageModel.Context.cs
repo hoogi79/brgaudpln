@@ -18,6 +18,7 @@ namespace AnfGefB
         public BE_Rechtslage_GefaehrdungsbeurteilungEntities()
             : base("name=BE_Rechtslage_GefaehrdungsbeurteilungEntities")
         {
+            this.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
