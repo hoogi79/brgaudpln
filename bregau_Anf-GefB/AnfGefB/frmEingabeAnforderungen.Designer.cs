@@ -33,12 +33,13 @@
             System.Windows.Forms.Label kurzformLabel;
             System.Windows.Forms.Label iDLabel;
             System.Windows.Forms.Label paragraphLabel1;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEingabeAnforderungen));
             System.Windows.Forms.Label kurzformLabel1;
             System.Windows.Forms.Label iDLabel1;
             System.Windows.Forms.Label gesetzIDLabel;
             System.Windows.Forms.Label paragraphLabel;
-            System.Windows.Forms.Label textLabel;
+            System.Windows.Forms.Label paragraphLabel2;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEingabeAnforderungen));
+            System.Windows.Forms.Label paragraphLabel3;
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -52,6 +53,10 @@
             this.btnPopulateTable = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.paragraphTextBox = new System.Windows.Forms.TextBox();
+            this.gesetzIDTextBox = new System.Windows.Forms.TextBox();
+            this.iDComboBox = new System.Windows.Forms.ComboBox();
+            this.kurzformTextBox = new System.Windows.Forms.TextBox();
             this.cboParagraph = new System.Windows.Forms.ComboBox();
             this.btnEditParagraph = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -80,8 +85,8 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.kurzformTextBox = new System.Windows.Forms.TextBox();
-            this.iDComboBox = new System.Windows.Forms.ComboBox();
+            this.paragraphenBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.paragraphListBox = new System.Windows.Forms.ListBox();
             this.anforderungenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,10 +96,6 @@
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paragraphenBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gesetzIDTextBox = new System.Windows.Forms.TextBox();
-            this.paragraphTextBox = new System.Windows.Forms.TextBox();
-            this.paragraphenBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.textTextBox = new System.Windows.Forms.TextBox();
             anforderungenTextLabel = new System.Windows.Forms.Label();
             kurzformLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
@@ -103,7 +104,8 @@
             iDLabel1 = new System.Windows.Forms.Label();
             gesetzIDLabel = new System.Windows.Forms.Label();
             paragraphLabel = new System.Windows.Forms.Label();
-            textLabel = new System.Windows.Forms.Label();
+            paragraphLabel2 = new System.Windows.Forms.Label();
+            paragraphLabel3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -116,9 +118,9 @@
             this.toolStripContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // anforderungenTextLabel
@@ -160,6 +162,51 @@
             paragraphLabel1.Size = new System.Drawing.Size(79, 19);
             paragraphLabel1.TabIndex = 13;
             paragraphLabel1.Text = "Paragraph:";
+            // 
+            // kurzformLabel1
+            // 
+            kurzformLabel1.AutoSize = true;
+            kurzformLabel1.Location = new System.Drawing.Point(696, 224);
+            kurzformLabel1.Name = "kurzformLabel1";
+            kurzformLabel1.Size = new System.Drawing.Size(51, 13);
+            kurzformLabel1.TabIndex = 14;
+            kurzformLabel1.Text = "Kurzform:";
+            // 
+            // iDLabel1
+            // 
+            iDLabel1.AutoSize = true;
+            iDLabel1.Location = new System.Drawing.Point(726, 193);
+            iDLabel1.Name = "iDLabel1";
+            iDLabel1.Size = new System.Drawing.Size(21, 13);
+            iDLabel1.TabIndex = 15;
+            iDLabel1.Text = "ID:";
+            // 
+            // gesetzIDLabel
+            // 
+            gesetzIDLabel.AutoSize = true;
+            gesetzIDLabel.Location = new System.Drawing.Point(690, 270);
+            gesetzIDLabel.Name = "gesetzIDLabel";
+            gesetzIDLabel.Size = new System.Drawing.Size(57, 13);
+            gesetzIDLabel.TabIndex = 16;
+            gesetzIDLabel.Text = "Gesetz ID:";
+            // 
+            // paragraphLabel
+            // 
+            paragraphLabel.AutoSize = true;
+            paragraphLabel.Location = new System.Drawing.Point(688, 305);
+            paragraphLabel.Name = "paragraphLabel";
+            paragraphLabel.Size = new System.Drawing.Size(59, 13);
+            paragraphLabel.TabIndex = 17;
+            paragraphLabel.Text = "Paragraph:";
+            // 
+            // paragraphLabel2
+            // 
+            paragraphLabel2.AutoSize = true;
+            paragraphLabel2.Location = new System.Drawing.Point(573, 156);
+            paragraphLabel2.Name = "paragraphLabel2";
+            paragraphLabel2.Size = new System.Drawing.Size(59, 13);
+            paragraphLabel2.TabIndex = 20;
+            paragraphLabel2.Text = "Paragraph:";
             // 
             // BottomToolStripPanel
             // 
@@ -288,8 +335,9 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(textLabel);
-            this.panel1.Controls.Add(this.textTextBox);
+            this.panel1.Controls.Add(paragraphLabel3);
+            this.panel1.Controls.Add(this.paragraphListBox);
+            this.panel1.Controls.Add(paragraphLabel2);
             this.panel1.Controls.Add(paragraphLabel);
             this.panel1.Controls.Add(this.paragraphTextBox);
             this.panel1.Controls.Add(gesetzIDLabel);
@@ -313,6 +361,39 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(920, 431);
             this.panel1.TabIndex = 4;
+            // 
+            // paragraphTextBox
+            // 
+            this.paragraphTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Paragraph", true));
+            this.paragraphTextBox.Location = new System.Drawing.Point(753, 302);
+            this.paragraphTextBox.Name = "paragraphTextBox";
+            this.paragraphTextBox.Size = new System.Drawing.Size(100, 20);
+            this.paragraphTextBox.TabIndex = 18;
+            // 
+            // gesetzIDTextBox
+            // 
+            this.gesetzIDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "GesetzID", true));
+            this.gesetzIDTextBox.Location = new System.Drawing.Point(753, 267);
+            this.gesetzIDTextBox.Name = "gesetzIDTextBox";
+            this.gesetzIDTextBox.Size = new System.Drawing.Size(100, 20);
+            this.gesetzIDTextBox.TabIndex = 17;
+            // 
+            // iDComboBox
+            // 
+            this.iDComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Gesetze.ID", true));
+            this.iDComboBox.FormattingEnabled = true;
+            this.iDComboBox.Location = new System.Drawing.Point(753, 190);
+            this.iDComboBox.Name = "iDComboBox";
+            this.iDComboBox.Size = new System.Drawing.Size(121, 21);
+            this.iDComboBox.TabIndex = 16;
+            // 
+            // kurzformTextBox
+            // 
+            this.kurzformTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Gesetze.Kurzform", true));
+            this.kurzformTextBox.Location = new System.Drawing.Point(753, 221);
+            this.kurzformTextBox.Name = "kurzformTextBox";
+            this.kurzformTextBox.Size = new System.Drawing.Size(100, 20);
+            this.kurzformTextBox.TabIndex = 15;
             // 
             // cboParagraph
             // 
@@ -615,40 +696,29 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // kurzformLabel1
+            // paragraphenBindingSource1
             // 
-            kurzformLabel1.AutoSize = true;
-            kurzformLabel1.Location = new System.Drawing.Point(696, 224);
-            kurzformLabel1.Name = "kurzformLabel1";
-            kurzformLabel1.Size = new System.Drawing.Size(51, 13);
-            kurzformLabel1.TabIndex = 14;
-            kurzformLabel1.Text = "Kurzform:";
+            this.paragraphenBindingSource1.DataSource = typeof(AnfGefB.ObservableListSource<AnfGefB.Paragraphen>);
             // 
-            // kurzformTextBox
+            // paragraphLabel3
             // 
-            this.kurzformTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Gesetze.Kurzform", true));
-            this.kurzformTextBox.Location = new System.Drawing.Point(753, 221);
-            this.kurzformTextBox.Name = "kurzformTextBox";
-            this.kurzformTextBox.Size = new System.Drawing.Size(100, 20);
-            this.kurzformTextBox.TabIndex = 15;
+            paragraphLabel3.AutoSize = true;
+            paragraphLabel3.Location = new System.Drawing.Point(668, 336);
+            paragraphLabel3.Name = "paragraphLabel3";
+            paragraphLabel3.Size = new System.Drawing.Size(59, 13);
+            paragraphLabel3.TabIndex = 20;
+            paragraphLabel3.Text = "Paragraph:";
             // 
-            // iDLabel1
+            // paragraphListBox
             // 
-            iDLabel1.AutoSize = true;
-            iDLabel1.Location = new System.Drawing.Point(726, 193);
-            iDLabel1.Name = "iDLabel1";
-            iDLabel1.Size = new System.Drawing.Size(21, 13);
-            iDLabel1.TabIndex = 15;
-            iDLabel1.Text = "ID:";
-            // 
-            // iDComboBox
-            // 
-            this.iDComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Gesetze.ID", true));
-            this.iDComboBox.FormattingEnabled = true;
-            this.iDComboBox.Location = new System.Drawing.Point(753, 190);
-            this.iDComboBox.Name = "iDComboBox";
-            this.iDComboBox.Size = new System.Drawing.Size(121, 21);
-            this.iDComboBox.TabIndex = 16;
+            this.paragraphListBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.paragraphenBindingSource1, "Paragraph", true));
+            this.paragraphListBox.DataSource = this.paragraphenBindingSource1;
+            this.paragraphListBox.DisplayMember = "Paragraph";
+            this.paragraphListBox.FormattingEnabled = true;
+            this.paragraphListBox.Location = new System.Drawing.Point(733, 336);
+            this.paragraphListBox.Name = "paragraphListBox";
+            this.paragraphListBox.Size = new System.Drawing.Size(120, 95);
+            this.paragraphListBox.TabIndex = 21;
             // 
             // anforderungenBindingSource
             // 
@@ -701,61 +771,6 @@
             // 
             this.paragraphenBindingSource.DataSource = typeof(AnfGefB.Paragraphen);
             // 
-            // gesetzIDLabel
-            // 
-            gesetzIDLabel.AutoSize = true;
-            gesetzIDLabel.Location = new System.Drawing.Point(690, 270);
-            gesetzIDLabel.Name = "gesetzIDLabel";
-            gesetzIDLabel.Size = new System.Drawing.Size(57, 13);
-            gesetzIDLabel.TabIndex = 16;
-            gesetzIDLabel.Text = "Gesetz ID:";
-            // 
-            // gesetzIDTextBox
-            // 
-            this.gesetzIDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "GesetzID", true));
-            this.gesetzIDTextBox.Location = new System.Drawing.Point(753, 267);
-            this.gesetzIDTextBox.Name = "gesetzIDTextBox";
-            this.gesetzIDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.gesetzIDTextBox.TabIndex = 17;
-            // 
-            // paragraphLabel
-            // 
-            paragraphLabel.AutoSize = true;
-            paragraphLabel.Location = new System.Drawing.Point(688, 305);
-            paragraphLabel.Name = "paragraphLabel";
-            paragraphLabel.Size = new System.Drawing.Size(59, 13);
-            paragraphLabel.TabIndex = 17;
-            paragraphLabel.Text = "Paragraph:";
-            // 
-            // paragraphTextBox
-            // 
-            this.paragraphTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Paragraph", true));
-            this.paragraphTextBox.Location = new System.Drawing.Point(753, 302);
-            this.paragraphTextBox.Name = "paragraphTextBox";
-            this.paragraphTextBox.Size = new System.Drawing.Size(100, 20);
-            this.paragraphTextBox.TabIndex = 18;
-            // 
-            // paragraphenBindingSource1
-            // 
-            this.paragraphenBindingSource1.DataSource = typeof(AnfGefB.ObservableListSource<AnfGefB.Paragraphen>);
-            // 
-            // textLabel
-            // 
-            textLabel.AutoSize = true;
-            textLabel.Location = new System.Drawing.Point(716, 353);
-            textLabel.Name = "textLabel";
-            textLabel.Size = new System.Drawing.Size(31, 13);
-            textLabel.TabIndex = 18;
-            textLabel.Text = "Text:";
-            // 
-            // textTextBox
-            // 
-            this.textTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.paragraphenBindingSource1, "Text", true));
-            this.textTextBox.Location = new System.Drawing.Point(753, 350);
-            this.textTextBox.Name = "textTextBox";
-            this.textTextBox.Size = new System.Drawing.Size(100, 20);
-            this.textTextBox.TabIndex = 19;
-            // 
             // frmEingabeAnforderungen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -782,9 +797,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -851,9 +866,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.ComboBox iDComboBox;
         private System.Windows.Forms.TextBox kurzformTextBox;
-        private System.Windows.Forms.TextBox textTextBox;
-        private System.Windows.Forms.BindingSource paragraphenBindingSource1;
         private System.Windows.Forms.TextBox paragraphTextBox;
         private System.Windows.Forms.TextBox gesetzIDTextBox;
+        private System.Windows.Forms.ListBox paragraphListBox;
+        private System.Windows.Forms.BindingSource paragraphenBindingSource1;
     }
 }

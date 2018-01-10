@@ -30,6 +30,8 @@ namespace AnfGefB
             _context.Bezug.Load();
 
             this.anforderungenBindingSource.DataSource = _context.Anforderungen.Local.ToBindingList();
+            var temp = _context.Anforderungen.Local.ToBindingList().Select(p => p.Gesetze.Paragraphen);
+            this.paragraphenBindingSource1.DataSource = temp;
             this.setParagraphenPool();
 
             // OK:
@@ -44,6 +46,8 @@ namespace AnfGefB
             //cboTest.DataSource = this.anforderungenBindingSource;
             //cboTest.DisplayMember = "Gesetze.Paragraphen.Paragraph";
             //cboTest.ValueMember = "Gesetze.Paragraphen.Paragraph";
+
+
             
 
 

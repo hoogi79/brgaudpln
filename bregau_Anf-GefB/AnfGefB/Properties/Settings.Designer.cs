@@ -22,16 +22,5 @@ namespace AnfGefB.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SERVER2008\\SQLEXPRESS;Initial Catalog=BE_Rechtslage_Gefaehrdungsbeurt" +
-            "eilung;User ID=SA;Password=da22gvz")]
-        public string BE_Rechtslage_GefaehrdungsbeurteilungConnectionString {
-            get {
-                return ((string)(this["BE_Rechtslage_GefaehrdungsbeurteilungConnectionString"]));
-            }
-        }
     }
 }
