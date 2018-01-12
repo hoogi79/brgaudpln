@@ -33,10 +33,6 @@
             System.Windows.Forms.Label kurzformLabel;
             System.Windows.Forms.Label iDLabel;
             System.Windows.Forms.Label paragraphLabel1;
-            System.Windows.Forms.Label kurzformLabel1;
-            System.Windows.Forms.Label iDLabel1;
-            System.Windows.Forms.Label gesetzIDLabel;
-            System.Windows.Forms.Label paragraphLabel;
             System.Windows.Forms.Label paragraphLabel2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEingabeAnforderungen));
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -52,20 +48,26 @@
             this.btnPopulateTable = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkFachkunde = new System.Windows.Forms.CheckBox();
             this.lstParagraph = new System.Windows.Forms.ListBox();
-            this.paragraphTextBox = new System.Windows.Forms.TextBox();
-            this.gesetzIDTextBox = new System.Windows.Forms.TextBox();
-            this.iDComboBox = new System.Windows.Forms.ComboBox();
-            this.kurzformTextBox = new System.Windows.Forms.TextBox();
             this.cboParagraph = new System.Windows.Forms.ComboBox();
             this.btnEditParagraph = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabBezug = new System.Windows.Forms.TabPage();
+            this.lblBezuege = new System.Windows.Forms.Label();
             this.btnRemoveBezug = new System.Windows.Forms.Button();
+            this.lblBezuegePool = new System.Windows.Forms.Label();
             this.btnAddBezug = new System.Windows.Forms.Button();
             this.lstBezuege = new System.Windows.Forms.ListBox();
             this.lstBezuegePool = new System.Windows.Forms.ListBox();
             this.tabGFaktor = new System.Windows.Forms.TabPage();
+            this.cboBAUAKategorien = new System.Windows.Forms.ComboBox();
+            this.lblFaktoren = new System.Windows.Forms.Label();
+            this.btnFaktorRemove = new System.Windows.Forms.Button();
+            this.lblFaktorenPool = new System.Windows.Forms.Label();
+            this.btnFaktorAdd = new System.Windows.Forms.Button();
+            this.lstFaktoren = new System.Windows.Forms.ListBox();
+            this.lstFaktorenPool = new System.Windows.Forms.ListBox();
             this.tabDaten = new System.Windows.Forms.TabPage();
             this.lblID = new System.Windows.Forms.Label();
             this.cboGesetz = new System.Windows.Forms.ComboBox();
@@ -87,6 +89,8 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bsTest = new System.Windows.Forms.BindingSource(this.components);
             this.bsTest2 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnFaktorenDetail = new System.Windows.Forms.Button();
+            this.txtDaten = new System.Windows.Forms.TextBox();
             this.anforderungenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,14 +100,11 @@
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paragraphenBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.treeAnforderungen = new System.Windows.Forms.TreeView();
             anforderungenTextLabel = new System.Windows.Forms.Label();
             kurzformLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
             paragraphLabel1 = new System.Windows.Forms.Label();
-            kurzformLabel1 = new System.Windows.Forms.Label();
-            iDLabel1 = new System.Windows.Forms.Label();
-            gesetzIDLabel = new System.Windows.Forms.Label();
-            paragraphLabel = new System.Windows.Forms.Label();
             paragraphLabel2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -111,6 +112,8 @@
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabBezug.SuspendLayout();
+            this.tabGFaktor.SuspendLayout();
+            this.tabDaten.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anforderungenDataGridView)).BeginInit();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -163,46 +166,10 @@
             paragraphLabel1.TabIndex = 13;
             paragraphLabel1.Text = "Paragraph:";
             // 
-            // kurzformLabel1
-            // 
-            kurzformLabel1.AutoSize = true;
-            kurzformLabel1.Location = new System.Drawing.Point(696, 224);
-            kurzformLabel1.Name = "kurzformLabel1";
-            kurzformLabel1.Size = new System.Drawing.Size(51, 13);
-            kurzformLabel1.TabIndex = 14;
-            kurzformLabel1.Text = "Kurzform:";
-            // 
-            // iDLabel1
-            // 
-            iDLabel1.AutoSize = true;
-            iDLabel1.Location = new System.Drawing.Point(726, 193);
-            iDLabel1.Name = "iDLabel1";
-            iDLabel1.Size = new System.Drawing.Size(21, 13);
-            iDLabel1.TabIndex = 15;
-            iDLabel1.Text = "ID:";
-            // 
-            // gesetzIDLabel
-            // 
-            gesetzIDLabel.AutoSize = true;
-            gesetzIDLabel.Location = new System.Drawing.Point(690, 270);
-            gesetzIDLabel.Name = "gesetzIDLabel";
-            gesetzIDLabel.Size = new System.Drawing.Size(57, 13);
-            gesetzIDLabel.TabIndex = 16;
-            gesetzIDLabel.Text = "Gesetz ID:";
-            // 
-            // paragraphLabel
-            // 
-            paragraphLabel.AutoSize = true;
-            paragraphLabel.Location = new System.Drawing.Point(688, 305);
-            paragraphLabel.Name = "paragraphLabel";
-            paragraphLabel.Size = new System.Drawing.Size(59, 13);
-            paragraphLabel.TabIndex = 17;
-            paragraphLabel.Text = "Paragraph:";
-            // 
             // paragraphLabel2
             // 
             paragraphLabel2.AutoSize = true;
-            paragraphLabel2.Location = new System.Drawing.Point(573, 172);
+            paragraphLabel2.Location = new System.Drawing.Point(523, 205);
             paragraphLabel2.Name = "paragraphLabel2";
             paragraphLabel2.Size = new System.Drawing.Size(59, 13);
             paragraphLabel2.TabIndex = 20;
@@ -262,7 +229,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(926, 715);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(926, 765);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // flowLayoutPanel2
@@ -316,7 +283,7 @@
             this.btnPopulateTable.Name = "btnPopulateTable";
             this.btnPopulateTable.Size = new System.Drawing.Size(113, 33);
             this.btnPopulateTable.TabIndex = 4;
-            this.btnPopulateTable.Text = "Info about ";
+            this.btnPopulateTable.Text = "Populate tree";
             this.btnPopulateTable.UseVisualStyleBackColor = true;
             this.btnPopulateTable.Click += new System.EventHandler(this.btnPopulateTable_Click);
             // 
@@ -335,16 +302,10 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.treeAnforderungen);
+            this.panel1.Controls.Add(this.chkFachkunde);
             this.panel1.Controls.Add(this.lstParagraph);
             this.panel1.Controls.Add(paragraphLabel2);
-            this.panel1.Controls.Add(paragraphLabel);
-            this.panel1.Controls.Add(this.paragraphTextBox);
-            this.panel1.Controls.Add(gesetzIDLabel);
-            this.panel1.Controls.Add(this.gesetzIDTextBox);
-            this.panel1.Controls.Add(iDLabel1);
-            this.panel1.Controls.Add(this.iDComboBox);
-            this.panel1.Controls.Add(kurzformLabel1);
-            this.panel1.Controls.Add(this.kurzformTextBox);
             this.panel1.Controls.Add(paragraphLabel1);
             this.panel1.Controls.Add(this.cboParagraph);
             this.panel1.Controls.Add(this.btnEditParagraph);
@@ -358,54 +319,32 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 93);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(920, 431);
+            this.panel1.Size = new System.Drawing.Size(920, 466);
             this.panel1.TabIndex = 4;
+            // 
+            // chkFachkunde
+            // 
+            this.chkFachkunde.AutoSize = true;
+            this.chkFachkunde.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.anforderungenBindingSource, "Besondere_Fachkunde", true));
+            this.chkFachkunde.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkFachkunde.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFachkunde.Location = new System.Drawing.Point(607, 171);
+            this.chkFachkunde.Name = "chkFachkunde";
+            this.chkFachkunde.Size = new System.Drawing.Size(167, 23);
+            this.chkFachkunde.TabIndex = 22;
+            this.chkFachkunde.Text = "Besondere Fachkunde";
+            this.chkFachkunde.UseVisualStyleBackColor = true;
             // 
             // lstParagraph
             // 
             this.lstParagraph.FormattingEnabled = true;
-            this.lstParagraph.Location = new System.Drawing.Point(576, 188);
+            this.lstParagraph.Location = new System.Drawing.Point(526, 221);
             this.lstParagraph.Name = "lstParagraph";
-            this.lstParagraph.Size = new System.Drawing.Size(108, 134);
+            this.lstParagraph.Size = new System.Drawing.Size(108, 56);
             this.lstParagraph.TabIndex = 21;
-            this.lstParagraph.SelectedIndexChanged += new System.EventHandler(this.lstParagraph_SelectedIndexChanged);
-            // 
-            // paragraphTextBox
-            // 
-            this.paragraphTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Paragraph", true));
-            this.paragraphTextBox.Location = new System.Drawing.Point(753, 302);
-            this.paragraphTextBox.Name = "paragraphTextBox";
-            this.paragraphTextBox.Size = new System.Drawing.Size(100, 20);
-            this.paragraphTextBox.TabIndex = 18;
-            // 
-            // gesetzIDTextBox
-            // 
-            this.gesetzIDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "GesetzID", true));
-            this.gesetzIDTextBox.Location = new System.Drawing.Point(753, 267);
-            this.gesetzIDTextBox.Name = "gesetzIDTextBox";
-            this.gesetzIDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.gesetzIDTextBox.TabIndex = 17;
-            // 
-            // iDComboBox
-            // 
-            this.iDComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Gesetze.ID", true));
-            this.iDComboBox.FormattingEnabled = true;
-            this.iDComboBox.Location = new System.Drawing.Point(753, 190);
-            this.iDComboBox.Name = "iDComboBox";
-            this.iDComboBox.Size = new System.Drawing.Size(121, 21);
-            this.iDComboBox.TabIndex = 16;
-            // 
-            // kurzformTextBox
-            // 
-            this.kurzformTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Gesetze.Kurzform", true));
-            this.kurzformTextBox.Location = new System.Drawing.Point(753, 221);
-            this.kurzformTextBox.Name = "kurzformTextBox";
-            this.kurzformTextBox.Size = new System.Drawing.Size(100, 20);
-            this.kurzformTextBox.TabIndex = 15;
             // 
             // cboParagraph
             // 
-            this.cboParagraph.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anforderungenBindingSource, "Paragraph", true));
             this.cboParagraph.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboParagraph.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboParagraph.FormattingEnabled = true;
@@ -430,81 +369,191 @@
             this.tabControl1.Controls.Add(this.tabGFaktor);
             this.tabControl1.Controls.Add(this.tabDaten);
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(19, 190);
+            this.tabControl1.Location = new System.Drawing.Point(13, 143);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(551, 226);
+            this.tabControl1.Size = new System.Drawing.Size(492, 318);
             this.tabControl1.TabIndex = 12;
             // 
             // tabBezug
             // 
+            this.tabBezug.Controls.Add(this.lblBezuege);
             this.tabBezug.Controls.Add(this.btnRemoveBezug);
+            this.tabBezug.Controls.Add(this.lblBezuegePool);
             this.tabBezug.Controls.Add(this.btnAddBezug);
             this.tabBezug.Controls.Add(this.lstBezuege);
             this.tabBezug.Controls.Add(this.lstBezuegePool);
             this.tabBezug.Location = new System.Drawing.Point(4, 28);
             this.tabBezug.Name = "tabBezug";
             this.tabBezug.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBezug.Size = new System.Drawing.Size(543, 194);
+            this.tabBezug.Size = new System.Drawing.Size(484, 286);
             this.tabBezug.TabIndex = 0;
             this.tabBezug.Text = "Gefährdungsbezug";
             this.tabBezug.UseVisualStyleBackColor = true;
             // 
+            // lblBezuege
+            // 
+            this.lblBezuege.AutoSize = true;
+            this.lblBezuege.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBezuege.Location = new System.Drawing.Point(260, 54);
+            this.lblBezuege.Name = "lblBezuege";
+            this.lblBezuege.Size = new System.Drawing.Size(60, 19);
+            this.lblBezuege.TabIndex = 24;
+            this.lblBezuege.Text = "Bezüge:";
+            // 
             // btnRemoveBezug
             // 
             this.btnRemoveBezug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveBezug.Location = new System.Drawing.Point(248, 99);
+            this.btnRemoveBezug.Location = new System.Drawing.Point(225, 151);
             this.btnRemoveBezug.Name = "btnRemoveBezug";
             this.btnRemoveBezug.Size = new System.Drawing.Size(33, 33);
             this.btnRemoveBezug.TabIndex = 15;
             this.btnRemoveBezug.Text = "<";
             this.btnRemoveBezug.UseVisualStyleBackColor = true;
+            this.btnRemoveBezug.Click += new System.EventHandler(this.btnRemoveBezug_Click);
+            // 
+            // lblBezuegePool
+            // 
+            this.lblBezuegePool.AutoSize = true;
+            this.lblBezuegePool.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBezuegePool.Location = new System.Drawing.Point(6, 54);
+            this.lblBezuegePool.Name = "lblBezuegePool";
+            this.lblBezuegePool.Size = new System.Drawing.Size(124, 19);
+            this.lblBezuegePool.TabIndex = 23;
+            this.lblBezuegePool.Text = "Mögliche Bezüge:";
             // 
             // btnAddBezug
             // 
             this.btnAddBezug.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddBezug.Location = new System.Drawing.Point(248, 49);
+            this.btnAddBezug.Location = new System.Drawing.Point(225, 101);
             this.btnAddBezug.Name = "btnAddBezug";
             this.btnAddBezug.Size = new System.Drawing.Size(33, 33);
             this.btnAddBezug.TabIndex = 14;
             this.btnAddBezug.Text = ">";
             this.btnAddBezug.UseVisualStyleBackColor = true;
+            this.btnAddBezug.Click += new System.EventHandler(this.btnAddBezug_Click);
             // 
             // lstBezuege
             // 
             this.lstBezuege.FormattingEnabled = true;
             this.lstBezuege.ItemHeight = 19;
-            this.lstBezuege.Location = new System.Drawing.Point(305, 49);
+            this.lstBezuege.Location = new System.Drawing.Point(264, 80);
             this.lstBezuege.Name = "lstBezuege";
-            this.lstBezuege.Size = new System.Drawing.Size(177, 137);
+            this.lstBezuege.Size = new System.Drawing.Size(212, 194);
             this.lstBezuege.TabIndex = 1;
-            this.lstBezuege.SelectedIndexChanged += new System.EventHandler(this.lstBezuege_SelectedIndexChanged);
             // 
             // lstBezuegePool
             // 
+            this.lstBezuegePool.DisplayMember = "BezugText";
             this.lstBezuegePool.FormattingEnabled = true;
             this.lstBezuegePool.ItemHeight = 19;
-            this.lstBezuegePool.Location = new System.Drawing.Point(46, 49);
+            this.lstBezuegePool.Location = new System.Drawing.Point(7, 80);
             this.lstBezuegePool.Name = "lstBezuegePool";
-            this.lstBezuegePool.Size = new System.Drawing.Size(177, 137);
+            this.lstBezuegePool.Size = new System.Drawing.Size(212, 194);
             this.lstBezuegePool.TabIndex = 0;
+            this.lstBezuegePool.ValueMember = "ID";
             // 
             // tabGFaktor
             // 
+            this.tabGFaktor.Controls.Add(this.btnFaktorenDetail);
+            this.tabGFaktor.Controls.Add(this.cboBAUAKategorien);
+            this.tabGFaktor.Controls.Add(this.lblFaktoren);
+            this.tabGFaktor.Controls.Add(this.btnFaktorRemove);
+            this.tabGFaktor.Controls.Add(this.lblFaktorenPool);
+            this.tabGFaktor.Controls.Add(this.btnFaktorAdd);
+            this.tabGFaktor.Controls.Add(this.lstFaktoren);
+            this.tabGFaktor.Controls.Add(this.lstFaktorenPool);
             this.tabGFaktor.Location = new System.Drawing.Point(4, 28);
             this.tabGFaktor.Name = "tabGFaktor";
             this.tabGFaktor.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGFaktor.Size = new System.Drawing.Size(543, 194);
+            this.tabGFaktor.Size = new System.Drawing.Size(484, 286);
             this.tabGFaktor.TabIndex = 1;
             this.tabGFaktor.Text = "Gefährdungsfaktoren";
             this.tabGFaktor.UseVisualStyleBackColor = true;
             // 
+            // cboBAUAKategorien
+            // 
+            this.cboBAUAKategorien.BackColor = System.Drawing.SystemColors.Control;
+            this.cboBAUAKategorien.DisplayMember = "NummerText";
+            this.cboBAUAKategorien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBAUAKategorien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboBAUAKategorien.FormattingEnabled = true;
+            this.cboBAUAKategorien.Location = new System.Drawing.Point(7, 24);
+            this.cboBAUAKategorien.Name = "cboBAUAKategorien";
+            this.cboBAUAKategorien.Size = new System.Drawing.Size(469, 27);
+            this.cboBAUAKategorien.TabIndex = 31;
+            this.cboBAUAKategorien.ValueMember = "Nummer";
+            this.cboBAUAKategorien.SelectedIndexChanged += new System.EventHandler(this.cboBAUAKategorien_SelectedIndexChanged);
+            // 
+            // lblFaktoren
+            // 
+            this.lblFaktoren.AutoSize = true;
+            this.lblFaktoren.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFaktoren.Location = new System.Drawing.Point(260, 54);
+            this.lblFaktoren.Name = "lblFaktoren";
+            this.lblFaktoren.Size = new System.Drawing.Size(69, 19);
+            this.lblFaktoren.TabIndex = 30;
+            this.lblFaktoren.Text = "Faktoren:";
+            // 
+            // btnFaktorRemove
+            // 
+            this.btnFaktorRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFaktorRemove.Location = new System.Drawing.Point(225, 151);
+            this.btnFaktorRemove.Name = "btnFaktorRemove";
+            this.btnFaktorRemove.Size = new System.Drawing.Size(33, 33);
+            this.btnFaktorRemove.TabIndex = 28;
+            this.btnFaktorRemove.Text = "<";
+            this.btnFaktorRemove.UseVisualStyleBackColor = true;
+            this.btnFaktorRemove.Click += new System.EventHandler(this.btnFaktorRemove_Click);
+            // 
+            // lblFaktorenPool
+            // 
+            this.lblFaktorenPool.AutoSize = true;
+            this.lblFaktorenPool.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFaktorenPool.Location = new System.Drawing.Point(6, 54);
+            this.lblFaktorenPool.Name = "lblFaktorenPool";
+            this.lblFaktorenPool.Size = new System.Drawing.Size(133, 19);
+            this.lblFaktorenPool.TabIndex = 29;
+            this.lblFaktorenPool.Text = "Mögliche Faktoren:";
+            // 
+            // btnFaktorAdd
+            // 
+            this.btnFaktorAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFaktorAdd.Location = new System.Drawing.Point(225, 101);
+            this.btnFaktorAdd.Name = "btnFaktorAdd";
+            this.btnFaktorAdd.Size = new System.Drawing.Size(33, 33);
+            this.btnFaktorAdd.TabIndex = 27;
+            this.btnFaktorAdd.Text = ">";
+            this.btnFaktorAdd.UseVisualStyleBackColor = true;
+            this.btnFaktorAdd.Click += new System.EventHandler(this.btnFaktorAdd_Click);
+            // 
+            // lstFaktoren
+            // 
+            this.lstFaktoren.FormattingEnabled = true;
+            this.lstFaktoren.ItemHeight = 19;
+            this.lstFaktoren.Location = new System.Drawing.Point(264, 80);
+            this.lstFaktoren.Name = "lstFaktoren";
+            this.lstFaktoren.Size = new System.Drawing.Size(212, 194);
+            this.lstFaktoren.TabIndex = 26;
+            // 
+            // lstFaktorenPool
+            // 
+            this.lstFaktorenPool.DisplayMember = "KategorieNummerGefährdungsfaktor";
+            this.lstFaktorenPool.FormattingEnabled = true;
+            this.lstFaktorenPool.ItemHeight = 19;
+            this.lstFaktorenPool.Location = new System.Drawing.Point(7, 80);
+            this.lstFaktorenPool.Name = "lstFaktorenPool";
+            this.lstFaktorenPool.Size = new System.Drawing.Size(212, 194);
+            this.lstFaktorenPool.TabIndex = 25;
+            this.lstFaktorenPool.ValueMember = "ID";
+            // 
             // tabDaten
             // 
+            this.tabDaten.Controls.Add(this.txtDaten);
             this.tabDaten.Location = new System.Drawing.Point(4, 28);
             this.tabDaten.Name = "tabDaten";
             this.tabDaten.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDaten.Size = new System.Drawing.Size(543, 194);
+            this.tabDaten.Size = new System.Drawing.Size(484, 286);
             this.tabDaten.TabIndex = 2;
             this.tabDaten.Text = "Daten";
             this.tabDaten.UseVisualStyleBackColor = true;
@@ -530,7 +579,6 @@
             this.cboGesetz.Location = new System.Drawing.Point(69, 13);
             this.cboGesetz.Name = "cboGesetz";
             this.cboGesetz.Size = new System.Drawing.Size(286, 27);
-            this.cboGesetz.Sorted = true;
             this.cboGesetz.TabIndex = 8;
             // 
             // anforderungenTextTextBox
@@ -557,14 +605,14 @@
             this.dataGridViewTextBoxColumn6});
             this.anforderungenDataGridView.DataSource = this.anforderungenBindingSource;
             this.anforderungenDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.anforderungenDataGridView.Location = new System.Drawing.Point(3, 530);
+            this.anforderungenDataGridView.Location = new System.Drawing.Point(3, 565);
             this.anforderungenDataGridView.Name = "anforderungenDataGridView";
-            this.anforderungenDataGridView.Size = new System.Drawing.Size(920, 182);
+            this.anforderungenDataGridView.Size = new System.Drawing.Size(920, 197);
             this.anforderungenDataGridView.TabIndex = 14;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 740);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 790);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(926, 22);
             this.statusStrip1.TabIndex = 7;
@@ -577,13 +625,13 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tableLayoutPanel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(926, 715);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(926, 765);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.LeftToolStripPanelVisible = false;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(926, 740);
+            this.toolStripContainer1.Size = new System.Drawing.Size(926, 790);
             this.toolStripContainer1.TabIndex = 8;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -705,6 +753,26 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // btnFaktorenDetail
+            // 
+            this.btnFaktorenDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFaktorenDetail.Image = global::AnfGefB.Properties.Resources.Document_16x;
+            this.btnFaktorenDetail.Location = new System.Drawing.Point(225, 201);
+            this.btnFaktorenDetail.Name = "btnFaktorenDetail";
+            this.btnFaktorenDetail.Size = new System.Drawing.Size(33, 33);
+            this.btnFaktorenDetail.TabIndex = 32;
+            this.btnFaktorenDetail.UseVisualStyleBackColor = true;
+            // 
+            // txtDaten
+            // 
+            this.txtDaten.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDaten.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Daten", true));
+            this.txtDaten.Location = new System.Drawing.Point(7, 40);
+            this.txtDaten.Multiline = true;
+            this.txtDaten.Name = "txtDaten";
+            this.txtDaten.Size = new System.Drawing.Size(474, 240);
+            this.txtDaten.TabIndex = 0;
+            // 
             // anforderungenBindingSource
             // 
             this.anforderungenBindingSource.DataSource = typeof(AnfGefB.Anforderungen);
@@ -756,11 +824,18 @@
             // 
             this.paragraphenBindingSource.DataSource = typeof(AnfGefB.Paragraphen);
             // 
+            // treeAnforderungen
+            // 
+            this.treeAnforderungen.Location = new System.Drawing.Point(531, 287);
+            this.treeAnforderungen.Name = "treeAnforderungen";
+            this.treeAnforderungen.Size = new System.Drawing.Size(369, 169);
+            this.treeAnforderungen.TabIndex = 23;
+            // 
             // frmEingabeAnforderungen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 762);
+            this.ClientSize = new System.Drawing.Size(926, 812);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Name = "frmEingabeAnforderungen";
@@ -773,6 +848,11 @@
             this.panel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabBezug.ResumeLayout(false);
+            this.tabBezug.PerformLayout();
+            this.tabGFaktor.ResumeLayout(false);
+            this.tabGFaktor.PerformLayout();
+            this.tabDaten.ResumeLayout(false);
+            this.tabDaten.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anforderungenDataGridView)).EndInit();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -850,12 +930,21 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.ComboBox iDComboBox;
-        private System.Windows.Forms.TextBox kurzformTextBox;
-        private System.Windows.Forms.TextBox paragraphTextBox;
-        private System.Windows.Forms.TextBox gesetzIDTextBox;
         private System.Windows.Forms.ListBox lstParagraph;
         private System.Windows.Forms.BindingSource bsTest;
         private System.Windows.Forms.BindingSource bsTest2;
+        private System.Windows.Forms.CheckBox chkFachkunde;
+        private System.Windows.Forms.Label lblBezuege;
+        private System.Windows.Forms.Label lblBezuegePool;
+        private System.Windows.Forms.ComboBox cboBAUAKategorien;
+        private System.Windows.Forms.Label lblFaktoren;
+        private System.Windows.Forms.Button btnFaktorRemove;
+        private System.Windows.Forms.Label lblFaktorenPool;
+        private System.Windows.Forms.Button btnFaktorAdd;
+        private System.Windows.Forms.ListBox lstFaktoren;
+        private System.Windows.Forms.ListBox lstFaktorenPool;
+        private System.Windows.Forms.Button btnFaktorenDetail;
+        private System.Windows.Forms.TextBox txtDaten;
+        private System.Windows.Forms.TreeView treeAnforderungen;
     }
 }

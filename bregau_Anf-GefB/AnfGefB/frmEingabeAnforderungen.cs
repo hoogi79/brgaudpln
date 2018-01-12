@@ -14,6 +14,7 @@ namespace AnfGefB
     public partial class frmEingabeAnforderungen : Form
     {
         BE_Rechtslage_GefaehrdungsbeurteilungEntities _context;
+        Anforderungen currentAnforderung = null;
 
         public frmEingabeAnforderungen()
         {
@@ -24,47 +25,50 @@ namespace AnfGefB
         {
             base.OnLoad(e);
             _context = new BE_Rechtslage_GefaehrdungsbeurteilungEntities();
-            var anf = _context.Anforderungen.Include(b => b.Bezug).Include(g => g.Gesetze.Paragraphen).ToList();
+
+            var lstAnforderungen = _context.Anforderungen.Include(b => b.Bezug).Include(g => g.Gefährdungsfaktoren).Include(g => g.Gesetze.Paragraphen).ToList();
+           
             _context.Gesetze.Load();
-            _context.Paragraphen.Load();
-            //_context.Bezug.Load();
+            //_context.Paragraphen.Load();
+            _context.Bezug.Load();
+            _context.GefährdungsfaktorenKategorien.Include(g => g.Gefährdungsfaktoren).Load();
 
-            this.anforderungenBindingSource.DataSource = anf;
+            this.anforderungenBindingSource.DataSource = lstAnforderungen;
+            bsTest = new BindingSource(this.anforderungenBindingSource, "Gesetze");
+            bsTest2 = new BindingSource(this.bsTest, "Paragraphen");
 
-            //var temp = _context.Anforderungen.Local.ToBindingList().Select(p => p.Gesetze.Paragraphen);
-            this.bsTest.DataSource = anf;
-            this.bsTest.DataMember = "Gesetze";
+            //this.setParagraphenPool();
 
-            //this.bsTest2.DataSource = bsTest;
-            //this.bsTest2.DataMember = "Paragraphen";
-
-            this.setParagraphenPool();
-
-            // OK:
+            //// OK:
             cboGesetz.DataSource = _context.Gesetze.Local.ToList();
             cboGesetz.DisplayMember = "Gesetz";
             cboGesetz.ValueMember = "ID";
 
-            cboParagraph.DataSource = this.paragraphenBindingSource;
+            cboParagraph.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anforderungenBindingSource, "Paragraph", true));
             cboParagraph.DisplayMember = "Paragraph";
             cboParagraph.ValueMember = "Paragraph";
+            cboParagraph.DataSource = this.bsTest2;
 
-            //lstParagraph.DataSource = anf;
-            //lstParagraph.DisplayMember = "Gesetze.Paragraphen.Paragraph";
+            cboBAUAKategorien.DataSource = _context.GefährdungsfaktorenKategorien.Local.ToList();
 
+            // OK, old Version, more overhead, needs manual update of DataSource in anforderungenBindingSource_CurrentChanged Event wie setParagraphenPool:
+            //cboParagraph.DataSource = this.paragraphenBindingSource;
+            //cboParagraph.DisplayMember = "Paragraph";
+            //cboParagraph.ValueMember = "Paragraph";
 
-            lstParagraph.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.anforderungenBindingSource, "Paragraph", true));
-            lstParagraph.DisplayMember = "Gesetze.Paragraphen.Paragraph";
-            lstParagraph.ValueMember = "Gesetze.Paragraphen.ID";
-            lstParagraph.DataSource = this.anforderungenBindingSource;
-            //this.lstParagraph.DataBindings.Add(new System.Windows.Forms.Binding("DisplayMember", this.bsTest2, "Paragraph", true));
+            // Works nearly as expected. Can be adopted to needs
+            //lstParagraph.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anforderungenBindingSource, "Paragraph", true));
+            //lstParagraph.DisplayMember = "Paragraph";
+            //lstParagraph.ValueMember = "Paragraph";
+            //lstParagraph.DataSource = this.bsTest2;
 
+            lstBezuege.DisplayMember = "Bezug.BezugText";
+            lstBezuege.ValueMember = "Bezug.ID";
+            lstBezuege.DataSource = this.anforderungenBindingSource;
 
-
-
-
-
-
+            lstFaktoren.DisplayMember = "Gefährdungsfaktoren.KategorieNummerGefährdungsfaktor";
+            lstFaktoren.ValueMember = "Gefährdungsfaktoren.ID";
+            lstFaktoren.DataSource = this.anforderungenBindingSource;
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -80,14 +84,27 @@ namespace AnfGefB
 
         private void btnPopulateTable_Click(object sender, EventArgs e)
         {
-            //Anforderungen temp = (Anforderungen) this.bindingSource1.Current;
-            //List<Paragraphen> tempPar = temp.Gesetze.Paragraphen.ToList();
-            //string qryString = "SELECT Paragraph FROM Paragraphen WHERE GesetzID= " + temp.GesetzID.ToString();
-            //int[] tempParAsInt = _context.Database.SqlQuery<int>(qryString).ToArray<int>();
-            //var temp = ((Anforderungen)this.bindingSource1.Current).Gesetze.ParagraphenListe;
-            var temp = ((Anforderungen)this.anforderungenBindingSource.Current).Bezug.Select( b => b.BezugText).ToArray();
-            this.lstBezuege.Items.Clear();
-            this.lstBezuege.Items.AddRange(temp);
+            foreach (Anforderungen a in _context.Anforderungen.Local.Where(a => a.UebergeordneteID == null || a.UebergeordneteID == 0))
+            {
+                TreeNode tn = new TreeNode();
+                tn.Text = a.ID.ToString();
+                tn.Tag = a.ID;
+                AddChildNodes(tn);
+                treeAnforderungen.Nodes.Add(tn);
+            }
+        }
+
+        private TreeNode AddChildNodes(TreeNode parent)
+        {
+            foreach (Anforderungen a in _context.Anforderungen.Local.Where(a => a.UebergeordneteID == (int)parent.Tag))
+            {
+                TreeNode tn = new TreeNode();
+                tn.Text = a.ID.ToString();
+                tn.Tag = a.ID;
+                AddChildNodes(tn);
+                parent.Nodes.Add(tn);
+            }
+            return parent;
         }
 
         private void btnLoadData_Click(object sender, EventArgs e)
@@ -96,7 +113,10 @@ namespace AnfGefB
 
         private void anforderungenBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-            this.setParagraphenPool();
+            this.currentAnforderung = (Anforderungen)anforderungenBindingSource.Current;
+            //this.setParagraphenPool();
+            this.setBezuegePool();
+            this.setFaktorenPool();
         }
 
         /// <summary>
@@ -107,15 +127,60 @@ namespace AnfGefB
             this.paragraphenBindingSource.DataSource = _context.Paragraphen.Local.ToBindingList().Where(p => p.GesetzID == ((Anforderungen)this.anforderungenBindingSource.Current).GesetzID);
         }
 
-        private void lstBezuege_SelectedIndexChanged(object sender, EventArgs e)
+        private void setBezuegePool()
         {
-            var x = lstBezuege.SelectedItem;
+            int[] intBezuege = currentAnforderung.Bezug.Select(b => b.ID).ToArray();
+            this.lstBezuegePool.DataSource = _context.Bezug.Local.Where(b => !intBezuege.Contains(b.ID)).ToList();
         }
 
-        private void lstParagraph_SelectedIndexChanged(object sender, EventArgs e)
+        private void setFaktorenPool()
         {
-            var x = lstParagraph.SelectedItem;
-            var y = lstParagraph.SelectedValue;
+            if (this.cboBAUAKategorien.SelectedIndex != -1)
+            {
+                int[] intFaktoren = currentAnforderung.Gefährdungsfaktoren.Select(g => g.ID).ToArray();
+                this.lstFaktorenPool.DataSource = _context.Gefährdungsfaktoren.Local.Where(k => k.Kategorie == ((int)this.cboBAUAKategorien.SelectedValue)).Where(n => !intFaktoren.Contains(n.ID)).ToList();
+            }
+        }
+
+        private void btnAddBezug_Click(object sender, EventArgs e)
+        {
+            if (lstBezuegePool.SelectedIndex != -1)
+            {
+                currentAnforderung.Bezug.Add((Bezug)lstBezuegePool.SelectedItem);
+                this.setBezuegePool();
+            }
+        }
+
+        private void btnRemoveBezug_Click(object sender, EventArgs e)
+        {
+            if (lstBezuege.SelectedIndex != -1)
+            {
+                currentAnforderung.Bezug.Remove((Bezug)lstBezuege.SelectedItem);
+                this.setBezuegePool();
+            }
+        }
+
+        private void cboBAUAKategorien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.setFaktorenPool();
+        }
+
+        private void btnFaktorAdd_Click(object sender, EventArgs e)
+        {
+            if (lstFaktorenPool.SelectedIndex != -1)
+            {
+                currentAnforderung.Gefährdungsfaktoren.Add((Gefährdungsfaktoren)lstFaktorenPool.SelectedItem);
+                this.setFaktorenPool();
+            }
+        }
+
+        private void btnFaktorRemove_Click(object sender, EventArgs e)
+        {
+            if (lstFaktoren.SelectedIndex != -1)
+            {
+                currentAnforderung.Gefährdungsfaktoren.Remove((Gefährdungsfaktoren)lstFaktoren.SelectedItem);
+                this.setFaktorenPool();
+            }
         }
     }
 }

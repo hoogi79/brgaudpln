@@ -41,11 +41,14 @@
       <HintPath>..\..\bregau_Auditplaner\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +58,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Anforderungen.cs">
@@ -75,6 +81,8 @@
     <Compile Include="frmMainWindow.Designer.cs">
       <DependentUpon>frmMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gefährdungsfaktoren_extended.cs" />
+    <Compile Include="GefährdungsfaktorenKategorien_extended.cs" />
     <Compile Include="Gesetze_Extended.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Gefährdungsfaktoren.cs">
@@ -131,6 +139,8 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Anforderungen.datasource" />
     <None Include="Properties\DataSources\Bezug.datasource" />
+    <None Include="Properties\DataSources\Gefährdungsfaktoren.datasource" />
+    <None Include="Properties\DataSources\GefährdungsfaktorenKategorien.datasource" />
     <None Include="Properties\DataSources\Gesetze.datasource" />
     <None Include="Properties\DataSources\Paragraphen.datasource" />
     <None Include="Properties\Settings.settings">

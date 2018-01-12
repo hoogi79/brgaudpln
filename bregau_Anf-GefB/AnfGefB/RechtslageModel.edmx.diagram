@@ -13,8 +13,8 @@
         <EntityTypeShape EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.Paragraphen" Width="1.5" PointX="0.5" PointY="5.25" />
         <AssociationConnector Association="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Paragraphen_Gesetze" />
         <EntityTypeShape EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.Bezug" Width="1.5" PointX="8.25" PointY="5.25" />
-        <EntityTypeShape EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.Gefährdungsfaktoren" Width="1.75" PointX="8.25" PointY="2" />
-        <EntityTypeShape EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.GefährdungsfaktorenKategorien" Width="1.5" PointX="10.75" PointY="2" />
+        <EntityTypeShape EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.Gefährdungsfaktoren" Width="2.125" PointX="8.25" PointY="2" />
+        <EntityTypeShape EntityType="BE_Rechtslage_GefaehrdungsbeurteilungModel.GefährdungsfaktorenKategorien" Width="2" PointX="11" PointY="2" />
         <AssociationConnector Association="BE_Rechtslage_GefaehrdungsbeurteilungModel.FK_Gefährdungsfaktoren_GefährdungsfaktorenKategorien" />
         <AssociationConnector Association="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Bezug" />
         <AssociationConnector Association="BE_Rechtslage_GefaehrdungsbeurteilungModel.Anforderungen_Gefährdungsfaktoren" />
