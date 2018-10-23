@@ -48,7 +48,9 @@
             this.btnPopulateTable = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.treeAnforderungen = new System.Windows.Forms.TreeView();
             this.chkFachkunde = new System.Windows.Forms.CheckBox();
+            this.anforderungenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lstParagraph = new System.Windows.Forms.ListBox();
             this.cboParagraph = new System.Windows.Forms.ComboBox();
             this.btnEditParagraph = new System.Windows.Forms.Button();
@@ -61,6 +63,7 @@
             this.lstBezuege = new System.Windows.Forms.ListBox();
             this.lstBezuegePool = new System.Windows.Forms.ListBox();
             this.tabGFaktor = new System.Windows.Forms.TabPage();
+            this.btnFaktorenDetail = new System.Windows.Forms.Button();
             this.cboBAUAKategorien = new System.Windows.Forms.ComboBox();
             this.lblFaktoren = new System.Windows.Forms.Label();
             this.btnFaktorRemove = new System.Windows.Forms.Button();
@@ -69,10 +72,18 @@
             this.lstFaktoren = new System.Windows.Forms.ListBox();
             this.lstFaktorenPool = new System.Windows.Forms.ListBox();
             this.tabDaten = new System.Windows.Forms.TabPage();
+            this.txtDaten = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.cboGesetz = new System.Windows.Forms.ComboBox();
             this.anforderungenTextTextBox = new System.Windows.Forms.TextBox();
             this.anforderungenDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
@@ -89,18 +100,7 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bsTest = new System.Windows.Forms.BindingSource(this.components);
             this.bsTest2 = new System.Windows.Forms.BindingSource(this.components);
-            this.btnFaktorenDetail = new System.Windows.Forms.Button();
-            this.txtDaten = new System.Windows.Forms.TextBox();
-            this.anforderungenBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paragraphenBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.treeAnforderungen = new System.Windows.Forms.TreeView();
             anforderungenTextLabel = new System.Windows.Forms.Label();
             kurzformLabel = new System.Windows.Forms.Label();
             iDLabel = new System.Windows.Forms.Label();
@@ -110,6 +110,7 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabBezug.SuspendLayout();
             this.tabGFaktor.SuspendLayout();
@@ -122,7 +123,6 @@
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTest2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -322,6 +322,14 @@
             this.panel1.Size = new System.Drawing.Size(920, 466);
             this.panel1.TabIndex = 4;
             // 
+            // treeAnforderungen
+            // 
+            this.treeAnforderungen.Location = new System.Drawing.Point(531, 287);
+            this.treeAnforderungen.Name = "treeAnforderungen";
+            this.treeAnforderungen.Size = new System.Drawing.Size(369, 169);
+            this.treeAnforderungen.TabIndex = 23;
+            this.treeAnforderungen.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeAnforderungen_AfterSelect);
+            // 
             // chkFachkunde
             // 
             this.chkFachkunde.AutoSize = true;
@@ -334,6 +342,11 @@
             this.chkFachkunde.TabIndex = 22;
             this.chkFachkunde.Text = "Besondere Fachkunde";
             this.chkFachkunde.UseVisualStyleBackColor = true;
+            // 
+            // anforderungenBindingSource
+            // 
+            this.anforderungenBindingSource.DataSource = typeof(AnfGefB.Anforderungen);
+            this.anforderungenBindingSource.CurrentChanged += new System.EventHandler(this.anforderungenBindingSource_CurrentChanged);
             // 
             // lstParagraph
             // 
@@ -471,6 +484,16 @@
             this.tabGFaktor.Text = "Gefährdungsfaktoren";
             this.tabGFaktor.UseVisualStyleBackColor = true;
             // 
+            // btnFaktorenDetail
+            // 
+            this.btnFaktorenDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFaktorenDetail.Image = global::AnfGefB.Properties.Resources.Document_16x;
+            this.btnFaktorenDetail.Location = new System.Drawing.Point(225, 201);
+            this.btnFaktorenDetail.Name = "btnFaktorenDetail";
+            this.btnFaktorenDetail.Size = new System.Drawing.Size(33, 33);
+            this.btnFaktorenDetail.TabIndex = 32;
+            this.btnFaktorenDetail.UseVisualStyleBackColor = true;
+            // 
             // cboBAUAKategorien
             // 
             this.cboBAUAKategorien.BackColor = System.Drawing.SystemColors.Control;
@@ -558,6 +581,16 @@
             this.tabDaten.Text = "Daten";
             this.tabDaten.UseVisualStyleBackColor = true;
             // 
+            // txtDaten
+            // 
+            this.txtDaten.BackColor = System.Drawing.SystemColors.Control;
+            this.txtDaten.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Daten", true));
+            this.txtDaten.Location = new System.Drawing.Point(7, 40);
+            this.txtDaten.Multiline = true;
+            this.txtDaten.Name = "txtDaten";
+            this.txtDaten.Size = new System.Drawing.Size(474, 240);
+            this.txtDaten.TabIndex = 0;
+            // 
             // lblID
             // 
             this.lblID.BackColor = System.Drawing.SystemColors.Window;
@@ -609,6 +642,48 @@
             this.anforderungenDataGridView.Name = "anforderungenDataGridView";
             this.anforderungenDataGridView.Size = new System.Drawing.Size(920, 197);
             this.anforderungenDataGridView.TabIndex = 14;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "GesetzID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "GesetzID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Paragraph";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Paragraph";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "UebergeordneteID";
+            this.dataGridViewTextBoxColumn4.HeaderText = "UebergeordneteID";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "AnforderungenText";
+            this.dataGridViewTextBoxColumn5.HeaderText = "AnforderungenText";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Besondere_Fachkunde";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Besondere_Fachkunde";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Daten";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Daten";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
             // statusStrip1
             // 
@@ -753,83 +828,9 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // btnFaktorenDetail
-            // 
-            this.btnFaktorenDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFaktorenDetail.Image = global::AnfGefB.Properties.Resources.Document_16x;
-            this.btnFaktorenDetail.Location = new System.Drawing.Point(225, 201);
-            this.btnFaktorenDetail.Name = "btnFaktorenDetail";
-            this.btnFaktorenDetail.Size = new System.Drawing.Size(33, 33);
-            this.btnFaktorenDetail.TabIndex = 32;
-            this.btnFaktorenDetail.UseVisualStyleBackColor = true;
-            // 
-            // txtDaten
-            // 
-            this.txtDaten.BackColor = System.Drawing.SystemColors.Control;
-            this.txtDaten.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anforderungenBindingSource, "Daten", true));
-            this.txtDaten.Location = new System.Drawing.Point(7, 40);
-            this.txtDaten.Multiline = true;
-            this.txtDaten.Name = "txtDaten";
-            this.txtDaten.Size = new System.Drawing.Size(474, 240);
-            this.txtDaten.TabIndex = 0;
-            // 
-            // anforderungenBindingSource
-            // 
-            this.anforderungenBindingSource.DataSource = typeof(AnfGefB.Anforderungen);
-            this.anforderungenBindingSource.CurrentChanged += new System.EventHandler(this.anforderungenBindingSource_CurrentChanged);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "GesetzID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "GesetzID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Paragraph";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Paragraph";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "UebergeordneteID";
-            this.dataGridViewTextBoxColumn4.HeaderText = "UebergeordneteID";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "AnforderungenText";
-            this.dataGridViewTextBoxColumn5.HeaderText = "AnforderungenText";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Besondere_Fachkunde";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Besondere_Fachkunde";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Daten";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Daten";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
             // paragraphenBindingSource
             // 
             this.paragraphenBindingSource.DataSource = typeof(AnfGefB.Paragraphen);
-            // 
-            // treeAnforderungen
-            // 
-            this.treeAnforderungen.Location = new System.Drawing.Point(531, 287);
-            this.treeAnforderungen.Name = "treeAnforderungen";
-            this.treeAnforderungen.Size = new System.Drawing.Size(369, 169);
-            this.treeAnforderungen.TabIndex = 23;
             // 
             // frmEingabeAnforderungen
             // 
@@ -846,6 +847,7 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabBezug.ResumeLayout(false);
             this.tabBezug.PerformLayout();
@@ -864,7 +866,6 @@
             this.bindingNavigator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsTest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTest2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anforderungenBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paragraphenBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

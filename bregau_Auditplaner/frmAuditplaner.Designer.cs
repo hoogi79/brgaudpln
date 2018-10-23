@@ -42,8 +42,8 @@
             this.setzteProgressAuf1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administrationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.datenbankToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aESEncryptTesterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.datenbankToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.stsStripMain = new System.Windows.Forms.StatusStrip();
             this.tsStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -81,7 +81,7 @@
             // 
             this.verbindenToolStripMenuItem.Enabled = false;
             this.verbindenToolStripMenuItem.Name = "verbindenToolStripMenuItem";
-            this.verbindenToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.verbindenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.verbindenToolStripMenuItem.Text = "Verbinden";
             this.verbindenToolStripMenuItem.Click += new System.EventHandler(this.verbindenToolStripMenuItem_Click);
             // 
@@ -91,7 +91,7 @@
             this.datenbankToolStripMenuItem,
             this.dateiToolStripMenuItem1});
             this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
-            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.öffnenToolStripMenuItem.Text = "Öffnen";
             // 
             // datenbankToolStripMenuItem
@@ -111,12 +111,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
             // 
@@ -159,19 +159,19 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(302, 6);
             // 
-            // datenbankToolStripMenuItem1
-            // 
-            this.datenbankToolStripMenuItem1.Name = "datenbankToolStripMenuItem1";
-            this.datenbankToolStripMenuItem1.Size = new System.Drawing.Size(305, 22);
-            this.datenbankToolStripMenuItem1.Text = "Datenbank";
-            this.datenbankToolStripMenuItem1.Click += new System.EventHandler(this.datenbankToolStripMenuItem1_Click);
-            // 
             // aESEncryptTesterToolStripMenuItem
             // 
             this.aESEncryptTesterToolStripMenuItem.Name = "aESEncryptTesterToolStripMenuItem";
             this.aESEncryptTesterToolStripMenuItem.Size = new System.Drawing.Size(305, 22);
             this.aESEncryptTesterToolStripMenuItem.Text = "Standard Verbindungszeichenfolge erstellen";
             this.aESEncryptTesterToolStripMenuItem.Click += new System.EventHandler(this.aESEncryptTesterToolStripMenuItem_Click);
+            // 
+            // datenbankToolStripMenuItem1
+            // 
+            this.datenbankToolStripMenuItem1.Name = "datenbankToolStripMenuItem1";
+            this.datenbankToolStripMenuItem1.Size = new System.Drawing.Size(305, 22);
+            this.datenbankToolStripMenuItem1.Text = "Datenbank";
+            this.datenbankToolStripMenuItem1.Click += new System.EventHandler(this.datenbankToolStripMenuItem1_Click);
             // 
             // stsStripMain
             // 

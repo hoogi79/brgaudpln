@@ -27,7 +27,8 @@ namespace AnfGefB
             _context = new BE_Rechtslage_GefaehrdungsbeurteilungEntities();
 
             var lstAnforderungen = _context.Anforderungen.Include(b => b.Bezug).Include(g => g.Gefährdungsfaktoren).Include(g => g.Gesetze.Paragraphen).ToList();
-           
+            
+
             _context.Gesetze.Load();
             //_context.Paragraphen.Load();
             _context.Bezug.Load();
@@ -84,28 +85,9 @@ namespace AnfGefB
 
         private void btnPopulateTable_Click(object sender, EventArgs e)
         {
-            foreach (Anforderungen a in _context.Anforderungen.Local.Where(a => a.UebergeordneteID == null || a.UebergeordneteID == 0))
-            {
-                TreeNode tn = new TreeNode();
-                tn.Text = a.ID.ToString();
-                tn.Tag = a.ID;
-                AddChildNodes(tn);
-                treeAnforderungen.Nodes.Add(tn);
-            }
+            Anforderungen2TreeHelper.CreateTree(ref this.treeAnforderungen, _context.Anforderungen.Local.ToList());
         }
 
-        private TreeNode AddChildNodes(TreeNode parent)
-        {
-            foreach (Anforderungen a in _context.Anforderungen.Local.Where(a => a.UebergeordneteID == (int)parent.Tag))
-            {
-                TreeNode tn = new TreeNode();
-                tn.Text = a.ID.ToString();
-                tn.Tag = a.ID;
-                AddChildNodes(tn);
-                parent.Nodes.Add(tn);
-            }
-            return parent;
-        }
 
         private void btnLoadData_Click(object sender, EventArgs e)
         {
@@ -181,6 +163,11 @@ namespace AnfGefB
                 currentAnforderung.Gefährdungsfaktoren.Remove((Gefährdungsfaktoren)lstFaktoren.SelectedItem);
                 this.setFaktorenPool();
             }
+        }
+
+        private void treeAnforderungen_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            int selctedID = ((Anforderungen)e.Node.Tag).ID;
         }
     }
 }

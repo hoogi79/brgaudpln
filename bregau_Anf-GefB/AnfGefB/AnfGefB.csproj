@@ -122,6 +122,7 @@
     <Compile Include="Rechtstypen.cs">
       <DependentUpon>RechtslageModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Anforderungen2Tree.cs" />
     <EmbeddedResource Include="frmEingabeAnforderungen.resx">
       <DependentUpon>frmEingabeAnforderungen.cs</DependentUpon>
     </EmbeddedResource>
