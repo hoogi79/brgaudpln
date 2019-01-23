@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UI.bregau.AuditPlaner.UI.Desktop
+namespace bregau.AuditPlaner.UI.Desktop
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
