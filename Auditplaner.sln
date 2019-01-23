@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_shared", "_shared", "{BA5CE569-37C8-4C44-A2D8-F6E861DFBD5A}"
+	ProjectSection(SolutionItems) = preProject
+		AuditPlaner\_shared\SharedAssemblyInfo.cs = AuditPlaner\_shared\SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{8E8CA071-9FA7-4BA5-B61C-13B127FC4C2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{DAE6DD35-7E55-42D4-89C0-1268CD2905E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Desktop", "AuditPlaner\UI\UI.Desktop\UI.Desktop.csproj", "{224F45BB-A186-4E4F-9202-7716B73D2124}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{224F45BB-A186-4E4F-9202-7716B73D2124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{224F45BB-A186-4E4F-9202-7716B73D2124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{224F45BB-A186-4E4F-9202-7716B73D2124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{224F45BB-A186-4E4F-9202-7716B73D2124}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{224F45BB-A186-4E4F-9202-7716B73D2124} = {8E8CA071-9FA7-4BA5-B61C-13B127FC4C2F}
+	EndGlobalSection
+EndGlobal

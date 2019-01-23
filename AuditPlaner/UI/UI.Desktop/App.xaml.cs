@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace AuditPlaner2018
+namespace bregau.AuditPlaner.UI.Desktop
 {
     /// <summary>
     /// Interaktionslogik für "App.xaml"
