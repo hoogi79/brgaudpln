@@ -30,10 +30,22 @@ namespace bregau.AuditPlaner.Logic.UI.ViewModel
             {
                 // Code runs "for real"
                 DynamicWindowTitle = WindowTitle;
+                System.Timers.Timer tmr = new System.Timers.Timer(100);
+                tmr.Elapsed += (s, e) => { Progress += 1; };
+                tmr.Enabled = true;
+
+                this.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == "Progress" && Progress == 100)
+                        Progress = 0;
+                };
             }
         }
 
         public string WindowTitle { get; set; } = "AuditPlaner";
         public string DynamicWindowTitle { get; private set;}
+
+        public int Progress { get; set; } = 0;
+
     }
 }

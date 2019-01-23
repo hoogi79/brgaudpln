@@ -26,22 +26,23 @@ namespace UI.TestConsole
 
     class TestClass : INotifyPropertyChanged
     {
-        private string _someProperty;
-        public string SomeProperty {
-            get { return _someProperty; }
-            set
-            {
-                if (value == _someProperty)
-                    return;
-                _someProperty = value;
-                OnProperyChanged();
-            }
-        }
+        public string SomeProperty { get; set; }
+        //private string _someProperty;
+        //public string SomeProperty {
+        //    get { return _someProperty; }
+        //    set
+        //    {
+        //        if (value == _someProperty)
+        //            return;
+        //        _someProperty = value;
+        //        OnProperyChanged();
+        //    }
+        //}
 
-        public virtual void OnProperyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //public virtual void OnProperyChanged([CallerMemberName] string propertyName = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

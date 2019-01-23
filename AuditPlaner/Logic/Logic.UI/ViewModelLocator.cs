@@ -43,9 +43,11 @@ namespace bregau.AuditPlaner.Logic.UI.ViewModel
             }
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<BasicSettingsViewModel>();
         }
 
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public BasicSettingsViewModel BasicSettings => ServiceLocator.Current.GetInstance<BasicSettingsViewModel>();
 
       
         
