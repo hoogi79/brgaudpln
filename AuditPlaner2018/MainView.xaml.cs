@@ -12,16 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace bregau_AuditplanerWPF.Tools.Logger
+namespace AuditPlaner2018
 {
     /// <summary>
-    /// Interaktionslogik für simpleLoggerWindow.xaml
+    /// Interaktionslogik für frmMain.xaml
     /// </summary>
-    public partial class simpleLoggerWindow : Window
+    public partial class frmMain : Window
     {
-        public simpleLoggerWindow()
+        public frmMain()
         {
             InitializeComponent();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,7 +1,7 @@
 /*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:bregau_AuditplanerWPF"
+      <vm:ViewModelLocator xmlns:vm="clr-namespace:AuditPlaner2018"
                            x:Key="Locator" />
   </Application.Resources>
   
@@ -12,11 +12,11 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using GalaSoft.MvvmLight;
+using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
 
-namespace bregau_AuditplanerWPF.ViewModel
+
+namespace AuditPlaner2018.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -45,22 +45,8 @@ namespace bregau_AuditplanerWPF.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public MainViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
-
-        public LogViewModel Log
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<LogViewModel>();
-            }
-        }
-        
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+                
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

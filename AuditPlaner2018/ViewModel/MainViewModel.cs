@@ -1,6 +1,6 @@
 using GalaSoft.MvvmLight;
 
-namespace bregau_AuditplanerWPF.ViewModel
+namespace AuditPlaner2018.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -23,11 +23,13 @@ namespace bregau_AuditplanerWPF.ViewModel
         {
             if (IsInDesignMode)
             {
-                this.WindowTitle = "Design Mode";
+                // Code runs in Blend --> create design time data.
+                WindowTitle = "Auditlog (Design Time)";
             }
             else
             {
-                this.WindowTitle = "Real Mode";
+                // Code runs "for real"
+                WindowTitle = "Auditlog (Run Time)";
             }
         }
 

@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnfGefB", "bregau_Anf-GefB\AnfGefB\AnfGefB.csproj", "{939B1CC5-DB4D-486A-94F1-6363DAC8DEDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditPlaner2018", "AuditPlaner2018\AuditPlaner2018.csproj", "{07B9FA00-A431-4DC1-953E-49FDDA0EF2CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditPlaner.UI.Desktop", "AuditPlaner2018\AuditPlaner.UI.Desktop.csproj", "{07B9FA00-A431-4DC1-953E-49FDDA0EF2CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
