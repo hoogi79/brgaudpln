@@ -6,13 +6,29 @@
         xmlns:local="clr-namespace:bregau.AuditPlaner.UI.Desktop"
         mc:Ignorable="d"
         Title="{Binding DynamicWindowTitle, Mode=OneWay}"
-        DataContext="{Binding Main, Source={StaticResource Locator}}" Height="426.737" Width="692.623">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="11*"/>
-        </Grid.ColumnDefinitions>
-        <ProgressBar HorizontalAlignment="Left" Height="30" Margin="10,367,0,0" VerticalAlignment="Top" Width="664" Value="{Binding Progress}" Grid.ColumnSpan="2"/>
-
-    </Grid>
+        DataContext="{Binding Main, Source={StaticResource Locator}}" Height="450.737" Width="715.623">
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top">
+            <Menu>
+                <MenuItem Header="_Datei">
+                    <MenuItem Header="Verbinden"/>
+                    <MenuItem Header="_Einstellungen" />
+                    <Separator />
+                    <MenuItem Header="_Beenden" />
+                </MenuItem>
+            </Menu>
+            <ToolBar DockPanel.Dock="Top">
+                <Button>Einstellungen</Button>
+            </ToolBar>
+        </StackPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <Label>Hello Moto</Label>
+        </StatusBar>
+        <Grid/>
+        <!--<Menu x:Name="menu" Height="362" VerticalAlignment="Top" Width="100">
+            <MenuItem Name="Datei">
+                Datei
+            </MenuItem>
+        </Menu>-->
+    </DockPanel>
 </Window>

@@ -8,6 +8,24 @@
         Title="Grundlegende Einstellungen" Height="300" Width="435" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
         DataContext="{Binding BasicSettings, Source={StaticResource Locator}}">
     <Grid>
+        <Grid.Resources>
+            <ControlTemplate x:Key="ErrorTemplate">
+                <DockPanel LastChildFill="True">
+                    <Border DockPanel.Dock="Top" BorderBrush="Orange" BorderThickness="1">
+                        <AdornedElementPlaceholder />
+                    </Border>
+                </DockPanel>
+            </ControlTemplate>
+            <!-- Defines the default style for TextBox -->
+            <Style TargetType="TextBox">
+                <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ErrorTemplate}" />
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="25" />
@@ -23,12 +41,26 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">AD-Serveradresse:</Label>
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">SQL-Serveradresse:</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,2" Width="164"></TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,2" Width="164"></TextBox>
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"
+                     Margin="0,2"
+                     Width="164"
+                     Text="{Binding ADServerAddress, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus}">
+            </TextBox>
+            <TextBox Grid.Row="1" 
+                     Grid.Column="1" 
+                     HorizontalAlignment="Left" 
+                     VerticalAlignment="Center" 
+                     Margin="0,2" 
+                     Width="164" 
+                     Text="{Binding SQLServerAdress, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
+            </TextBox>
         </Grid>
-        <WrapPanel Grid.Row="1" VerticalAlignment="Center" Margin="0" HorizontalAlignment="Right" >
-            <Button IsDefault="True">OK</Button>
-            <Button>Abbrechen</Button>
+        <WrapPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" >
+            <Button IsDefault="True" Width="85" Command="{Binding OKCommand, Mode=OneWay}">OK</Button>
+            <Button Width="85">Abbrechen</Button>
         </WrapPanel>
         <StackPanel HorizontalAlignment="Left" Height="100" Margin="-102,60,0,-24" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
 
