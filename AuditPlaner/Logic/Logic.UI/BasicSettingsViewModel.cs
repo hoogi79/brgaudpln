@@ -24,6 +24,12 @@ namespace bregau.AuditPlaner.Logic.UI.ViewModel
                 () => { Trace.TraceInformation("OK"); },
                 () => IsOK
                 );
+
+            AbbrechenCommand = new RelayCommand(
+                () => { CloseSignal = true; },
+                () => true
+                );
+
             ADServerAddress = "server2008.bregau.local";
         }
         
@@ -33,6 +39,9 @@ namespace bregau.AuditPlaner.Logic.UI.ViewModel
         [Url(ErrorMessage ="SQL-Serveradresse muss eine URL sein.")]
         public string SQLServerAdress { get; set; }
 
+        public bool CloseSignal { get; private set; }
+
         public RelayCommand OKCommand { get; private set; }
+        public RelayCommand AbbrechenCommand { get; private set; }
     }
 }

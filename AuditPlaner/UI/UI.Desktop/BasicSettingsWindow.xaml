@@ -4,11 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:bregau.AuditPlaner.UI.Desktop"
+        xmlns:Behaviours="clr-namespace:bregau.AuditPlaner.UI.Desktop.Helpers"
         mc:Ignorable="d"
+        Behaviours:WindowCloseBehavior.Close="{Binding CloseSignal}"
         Title="Grundlegende Einstellungen" Height="300" Width="435" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
         DataContext="{Binding BasicSettings, Source={StaticResource Locator}}">
     <Grid>
         <Grid.Resources>
+            <!--<Style x:Key="MainGridStyle" TargetType="Grid">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding CloseSignal}" Value="true">
+                        <Setter Property="Behaviours:WindowCloseBehavior.Close" Value="true" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>-->
             <ControlTemplate x:Key="ErrorTemplate">
                 <DockPanel LastChildFill="True">
                     <Border DockPanel.Dock="Top" BorderBrush="Orange" BorderThickness="1">
@@ -60,7 +69,7 @@
         </Grid>
         <WrapPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" >
             <Button IsDefault="True" Width="85" Command="{Binding OKCommand, Mode=OneWay}">OK</Button>
-            <Button Width="85">Abbrechen</Button>
+            <Button Width="85" Command="{Binding AbbrechenCommand, Mode=OneWay}">Abbrechen</Button>
         </WrapPanel>
         <StackPanel HorizontalAlignment="Left" Height="100" Margin="-102,60,0,-24" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
 

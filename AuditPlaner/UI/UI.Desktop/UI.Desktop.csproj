@@ -109,6 +109,7 @@
     <Compile Include="BasicSettingsWindow.xaml.cs">
       <DependentUpon>BasicSettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\WindowCloseBehavior.cs" />
     <Compile Include="images1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
