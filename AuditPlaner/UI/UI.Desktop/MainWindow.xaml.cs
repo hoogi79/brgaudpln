@@ -23,6 +23,5 @@ namespace bregau.AuditPlaner.UI.Desktop
         public MainWindow()
         {
             InitializeComponent();
-        }
-    }
+        }    }
 }

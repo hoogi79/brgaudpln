@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.DirectoryServices.AccountManagement;
 
 namespace UI.TestConsole
 {
@@ -21,6 +22,23 @@ namespace UI.TestConsole
             System.Console.WriteLine("Set to \"New World\"");
             tc.SomeProperty = "New World";
             System.Console.ReadKey();
+
+            //List<string> pl = new List<string>();
+            //pl.Add("Dirk");
+            //pl.Add("Henrike");
+            //pl.Add("Helge");
+            //pl.Add("Guido");
+
+            ////pl.ForEach(delegate(string name) { Console.WriteLine(name); });
+            //pl.ForEach((name) => Console.WriteLine(name));
+            //System.Console.ReadKey();
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, "server2008.bregau.local");
+            bool isValid = pc.ValidateCredentials("DH", "do15hl");
+            if (isValid)
+            {
+
+            }
+
         }
     }
 

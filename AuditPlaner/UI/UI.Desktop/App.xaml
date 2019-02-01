@@ -11,6 +11,8 @@
     <ResourceDictionary>
             <UiLogic:ViewModelLocator   x:Key="Locator"
                                         d:IsDataSource="True"/>
+            <local:MessageListener      x:Key="MessageListener" />
+
             <!--:vm="clr-namespace:bregau.AuditPlaner.UI.Desktop.ViewModel" /> -->
     </ResourceDictionary>
   </Application.Resources>

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="bregau.AuditPlaner.Logic.UI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SqlServerAdress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">wiki2k8.bregau.local</Value>
+    </Setting>
+    <Setting Name="AdServerAdressr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">server2008.bregau.local</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

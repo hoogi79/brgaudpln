@@ -1,4 +1,6 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using System.Diagnostics;
 
 namespace bregau.AuditPlaner.Logic.UI.ViewModel
 {
@@ -14,7 +16,7 @@ namespace bregau.AuditPlaner.Logic.UI.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : BaseViewModel
     {
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -39,13 +41,35 @@ namespace bregau.AuditPlaner.Logic.UI.ViewModel
                 //    if (e.PropertyName == "Progress" && Progress == 100)
                 //        Progress = 0;
                 //};
+                Einstellungen = new RelayCommand(() =>
+                {
+                    MessengerInstance.Send(new Messages.OpenSettingsWindow());
+                });
+
+                Verbinden = new RelayCommand(
+                    () =>
+                    {
+                        Trace.TraceInformation("Verbinden ...");
+                    },
+                    () => CanConnect);
+
+                Beenden = new RelayCommand(() => Helpers.ShutdownService.RequestShutdown());
+
+
             }
         }
+
+
+        public int Progress { get; set; } = 0;
+
+        public bool CanConnect { get; private set; } = false;
 
         public string WindowTitle { get; set; } = "AuditLog";
         public string DynamicWindowTitle { get; private set;}
 
-        public int Progress { get; set; } = 0;
+        public RelayCommand Einstellungen { get; private set; }
+        public RelayCommand Verbinden { get; private set; }
+        public RelayCommand Beenden { get; private set; }
 
     }
 }
