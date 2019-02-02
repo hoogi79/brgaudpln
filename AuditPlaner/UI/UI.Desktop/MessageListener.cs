@@ -1,7 +1,7 @@
 ﻿namespace bregau.AuditPlaner.UI.Desktop
 {
     using GalaSoft.MvvmLight.Messaging;
-    using bregau.AuditPlaner.Logic.UI.Messages;
+    using Logic.UI.Messages;
     using Logic.UI.ViewModel;
     using System.Windows;
 

@@ -14,7 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
+using CommonServiceLocator;
 
 namespace bregau.AuditPlaner.Logic.UI.ViewModel
 {
@@ -49,7 +49,6 @@ namespace bregau.AuditPlaner.Logic.UI.ViewModel
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
         public BasicSettingsViewModel BasicSettings => ServiceLocator.Current.GetInstance<BasicSettingsViewModel>();
 
-      
         
         public static void Cleanup()
         {

@@ -65,6 +65,12 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Logic\Logic.UI\Logic.UI.csproj">
+      <Project>{4fd9b285-27ed-42d7-abcf-200592ef749d}</Project>
+      <Name>Logic.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\Fody.3.3.2\build\Fody.targets" Condition="Exists('..\..\..\packages\Fody.3.3.2\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

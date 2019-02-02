@@ -14,6 +14,7 @@ namespace UI.TestConsole
     {
         static void Main(string[] args)
         {
+
             //TestClass tc = new TestClass();
             //tc.PropertyChanged += (e, s) => { System.Console.WriteLine(tc.SomeProperty); };
             //System.Console.WriteLine("Set to \"Hello World\"");
