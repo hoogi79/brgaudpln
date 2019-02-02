@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
@@ -43,5 +43,6 @@ namespace bregau.AuditPlaner.Logic.UI.ViewModel
 
         public RelayCommand OKCommand { get; private set; }
         public RelayCommand AbbrechenCommand { get; private set; }
+
     }
 }

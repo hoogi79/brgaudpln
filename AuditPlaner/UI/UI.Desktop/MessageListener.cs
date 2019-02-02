@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace bregau.AuditPlaner.UI.Desktop
+﻿namespace bregau.AuditPlaner.UI.Desktop
 {
     using GalaSoft.MvvmLight.Messaging;
-
-    using bregau.AuditPlaner.Logic.UI;
     using bregau.AuditPlaner.Logic.UI.Messages;
     using Logic.UI.ViewModel;
     using System.Windows;

@@ -26,7 +26,6 @@ namespace bregau.AuditPlaner.UI.Desktop.Helpers
             }
         }
             
-            
         private static Window GetWindow(DependencyObject sender)
         {
             Window window = null;
