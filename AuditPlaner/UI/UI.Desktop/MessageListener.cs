@@ -7,7 +7,7 @@
 
 
     /// <summary>
-    /// Central listenere for all messages of the app.
+    /// Central listener for all messages of the app.
     /// </summary>
     public class MessageListener
     {

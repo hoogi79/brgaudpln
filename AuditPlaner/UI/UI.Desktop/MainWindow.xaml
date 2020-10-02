@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:bregau.AuditPlaner.UI.Desktop"
         mc:Ignorable="d"
         Title="{Binding DynamicWindowTitle, Mode=OneWay}"
-        DataContext="{Binding Main, Source={StaticResource Locator}}" Height="450.737" Width="715.623"
+        DataContext="{Binding Main, Source={StaticResource Locator}}" 
+        Height="450.737"
+        Width="715.623"
         IsEnabled="{ Binding BindingProperty, Source={StaticResource MessageListener}}">
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Top">
